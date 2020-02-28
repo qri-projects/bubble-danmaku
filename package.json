@@ -28,6 +28,7 @@
   },
   "scripts": {
     "tsc": "tsc",
+    "watch": "tsc -w",
     "prestart": "tsc",
     "start": "electron .",
     "dist": "tsc && electron-builder build"

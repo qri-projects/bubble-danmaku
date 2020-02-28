@@ -1,16 +1,24 @@
 import {app, BrowserWindow, Menu, MenuItem, dialog} from 'electron';
 import path from "path";
-
+import DMclientRE from "./bilive/dm_client_re";
+import MyGlobalD from "./@types/MyGlobal"
+import Listener from "./common/Listener"
+import configWrapper from "./config/config";
 const url = require("url");
 
+
 let mainWindow;
-import DMclientRE from "./bilive/dm_client_re";
+
 let createWindow = function () {
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
         fullscreenable: false,
         maximizable: false,
+        webPreferences: {
+            nodeIntegration: true,
+            preload: path.join(__dirname, "view/preload.js"),
+        }
     })
 
 
@@ -25,10 +33,26 @@ let createWindow = function () {
     }));
 
     mainWindow.webContents.openDevTools()
-    console.log(DMclientRE)
     mainWindow.on('closed', function () {
         mainWindow = null
     })
+
+    mainWindow.webContents.on('did-finish-load', function () {
+        (<MyGlobalD><unknown>global).mainWindow = mainWindow;
+
+        configWrapper.loadConfig((config)=>{
+            (<MyGlobalD><unknown>global).config = config;
+            let listener:Listener = new Listener();
+            mainWindow.webContents.send('configLoaded', config)
+            listener.listen(config.roomId)
+        })
+
+        // console.log('send call')
+        // mainWindow.webContents.send('something', '主进程发送到渲染进程的数据')
+
+    })
+
+
 }
 app.on('ready', createWindow)
 app.on('window-all-closed', () => {

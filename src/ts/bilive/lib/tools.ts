@@ -156,7 +156,6 @@ class Tools extends EventEmitter {
     if (this.logs.length > 500) this.logs.shift()
     this.emit('log', log)
     this.logs.push(log)
-    console.log(log)
   }
   public logs: string[] = []
   /**
