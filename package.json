@@ -1,0 +1,60 @@
+{
+  "name": "bili-danmaku-electron",
+  "version": "1.0.0",
+  "description": "bili danmaku client made by qri",
+  "main": "src/js/app.js",
+  "build": {
+    "appId": "qriDanmaku",
+    "files": [
+      "src",
+      "src/**/*",
+      "node_modules/**/*",
+      "!*.ts"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "static/icon.ico"
+    },
+    "directories": {
+      "buildResources": "build"
+    }
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "prestart": "tsc",
+    "start": "electron .",
+    "dist": "tsc && electron-builder build"
+  },
+  "repository": "https://github.com/HHHHhgqcdxhg/bili-danmaku-electron",
+  "homepage": "https://github.com/HHHHhgqcdxhg/bili-danmaku-electron",
+  "keywords": [
+    "Electron",
+    "bili",
+    "bilibili",
+    "danmaku",
+    "danmu"
+  ],
+  "author": "Qri",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^8.0.2",
+    "typescript": "^3.5.2",
+    "@types/node": "^12.0.12",
+    "@types/request": "^2.48.1",
+    "@types/ws": "^6.0.1",
+    "@types/electron": "^1.6.10"
+  },
+  "dependencies": {
+    "bilibili-danmaku-client": "^2.0.0",
+    "core-js": "^3.6.4",
+    "request": "^2.88.0",
+    "ws": "^7.2.1"
+  }
+}
