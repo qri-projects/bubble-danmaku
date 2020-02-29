@@ -1,23 +1,27 @@
+import {Config} from "../../config/config";
 
 class DanmakuEl{
-    constructor(danmakuJson:DANMU_MSG) {
+    constructor(danmakuJson:DANMU_MSG, config:Config) {
         let info = danmakuJson.info
         this.privilegeType = info[7] || 0
 
         let medal = info["3"]
-        this.medalName = medal[1];
-        this.medalRoomId = medal[3];
-        this.medalLv = medal[0]
-        this.medalColor = "#" + medal[4].toString(16);
+        this.medal_name = medal[1];
+        this.medal_room_id = medal[3];
+        this.medal_level = medal[0]
+        this.medal_color = "#" + medal[4].toString(16);
 
         let user:DANMU_MSG_Info_User = info[2]
-        this.userId = user[0]
-        this.userName = user[1]
+        this.user_id = user[0]
+        this.user_name = user[1]
 
         let ul = info[4]
-        this.userLevel = ul[0]
-        this.userLevelColor = "#" + ul[2].toString(6)
-        this.userHeadImg = ""
+        this.user_level = ul[0]
+        this.user_level_color = "#" + ul[2].toString(6)
+        this.user_head_img = ""
+
+        this.content = info[1];
+        this.prefix_file_name = config.prefixFileName[`${this.privilegeType}`];
     }
 
     /**
@@ -25,15 +29,20 @@ class DanmakuEl{
      */
     privilegeType:number;
 
-    medalName:String;
-    medalRoomId:number | string;
-    medalLv:number;
-    medalColor:String;
+    medal_name:String;
+    medal_room_id:number | string;
+    medal_level:number;
+    medal_color:String;
 
-    userLevel:number;
-    userLevelColor:String;
+    user_level:number;
+    user_level_color:String;
 
-    userId:number;
-    userName:String;
-    userHeadImg:String;
+    user_id:number;
+    user_name:String;
+    user_head_img:String;
+
+    content:String;
+    prefix_file_name:String;
 }
+
+export default DanmakuEl;

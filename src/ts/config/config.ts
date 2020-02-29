@@ -5,17 +5,26 @@ const fs = require('fs');
 
 
 class Config {
-    roomId: number = defaultConfig.roomId;
+    roomId: number = 336119;
 
-    showUserHeadImg: boolean = defaultConfig.showUserHeadImg;
-    showUserName: boolean = defaultConfig.showUserName;
-    showUserMedal: boolean = defaultConfig.showUserMedal;
-    showUserMedalSelfOnly: boolean = defaultConfig.showUserMedalSelfOnly;
-    showDrawDanmaku:boolean = defaultConfig.showDrawDanmaku;
+    showUserHeadImg: boolean = true;
+    showUserName: boolean = true;
+    showUserMedal: boolean = false;
+    showUserMedalSelfOnly: boolean = false;
+    showDrawDanmaku:boolean = true;
 
-    userNameRandColors: Array<String> = defaultConfig.userNameRandColors;
+    userNameRandColors: Array<String> = ["#ffffff"];
 
-    styleFileName: String = defaultConfig.styleFileName;
+    styleFileName: String = "default.css";
+    danmakuTemplateFileName:String = "Danmaku.html";
+    prefixFileName:Prefix = new Prefix();
+}
+
+class Prefix{
+    0:String="guard0.png";
+    1:String="guard1.png";
+    2:String="guard2.png";
+    3:String="guard2.png";
 }
 
 class ConfigWrapper{

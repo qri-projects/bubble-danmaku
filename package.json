@@ -55,6 +55,7 @@
   "dependencies": {
     "bilibili-danmaku-client": "^2.0.0",
     "core-js": "^3.6.4",
+    "handlebars": "^4.7.3",
     "request": "^2.88.0",
     "ws": "^7.2.1"
   }

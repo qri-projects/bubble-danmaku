@@ -1,9 +1,15 @@
-@charset "UTF-8";
+$prefixWidth: 20px;
+$headImgSize: 36px;
+$bottomHeight:20px;
+:root {
+
+}
+
 html, body {
   margin: 0;
   padding: 0;
   font-size: 14px;
-  font-family: Arial, Microsoft YaHei, Microsoft Sans Serif, Microsoft SanSerf, \\5FAE软雅黑 !important;
+  font-family: Arial, Microsoft YaHei, Microsoft Sans Serif, Microsoft SanSerf, \\5FAE\8F6F\96C5\9ED1 !important;
 }
 
 a {
@@ -11,9 +17,10 @@ a {
 }
 
 #danmakuPanel {
-  width: calc(100vw - 20px);
-  margin-left: 20px;
-  height: calc(100vh - 20px);
+  width: calc(100vw - #{$prefixWidth});
+  margin-left: $prefixWidth;
+  //border: 1px solid red;
+  height: calc(100vh - #{$bottomHeight});
   box-sizing: border-box;
 }
 
@@ -26,31 +33,31 @@ a {
 
 .prefix {
   display: none;
-  margin-left: -20px;
-  width: 20px;
+  margin-left: -#{$prefixWidth};
+  width: $prefixWidth;
   align-items: center;
 }
 
-.prefixImg {
-  width: 20px;
-  height: 20px;
+.prefixImg{
+  width: $prefixWidth;
+  height: $prefixWidth;
 }
 
 .headImg {
-  width: 36px;
+  width: $headImgSize;
   height: auto;
   display: flex;
   align-items: center;
 }
 
 .headImgImg {
-  width: 36px;
-  height: 36px;
+  width: $headImgSize;
+  height: $headImgSize;
   border-radius: 50%;
 }
 
 .line {
-  width: calc(100% - 36px);
+  width: calc(100% - #{$headImgSize});
   line-height: 18px;
   font-size: 12px;
   color: #646c7a;
@@ -70,6 +77,7 @@ a {
   font-weight: 400;
   width: 60px;
   display: inline-block;
+
   user-select: none;
   -webkit-user-select: none;
 }
@@ -78,6 +86,7 @@ a {
   background-color: #5896de;
   color: white;
   width: 40px;
+
   padding: 0 2px;
   text-align: center;
   display: block;
@@ -105,22 +114,25 @@ a {
   font-style: normal;
   font-size: 12px;
   font-weight: 400;
+
   user-select: none;
   -webkit-user-select: none;
 }
 
-.guard .prefix {
-  display: flex;
+.guard{
+  .prefix {
+    display: flex;
+  }
 }
 
-.favorite .userName {
-  color: gold;
+.favorite{
+  .userName{
+    color: gold;
+  }
 }
 
-.bottom {
+.bottom{
   width: 100%;
-  height: 20px;
+  height: $bottomHeight;
   background-color: #23ade5;
 }
-
-/*# sourceMappingURL=default.css.map */

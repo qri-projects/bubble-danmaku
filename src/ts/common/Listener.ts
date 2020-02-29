@@ -1,22 +1,35 @@
 import DMclientRE from "../bilive/dm_client_re";
-import {BrowserWindow} from 'electron';
 
-import MyGlobalD from "../@types/MyGlobal";
+interface DanmakuMsgHandler {
+    handleDanmaku(danmaku: DANMU_MSG): void;
 
-class Listener{
-    listen(roomId:number) {
-        setTimeout(() => {
+    handleGift(sendGift: SEND_GIFT): void;
 
-        let client = new DMclientRE({roomID: roomId})
-        client
-            .on("DANMU_MSG", this.sendDanmakuToView)
-            .Connect()
-        }, 0)
+    handleGuard(guardBuy: GUARD_BUY): void;
+
+    handleSuperChat(superChat: SUPER_CHAT_MESSAGE): void;
+}
+
+class Listener {
+    roomId: number;
+    client: DMclientRE;
+    danmakuMsgHandler: DanmakuMsgHandler;
+
+    constructor(roomId: number, danmakuMsgHandler: DanmakuMsgHandler) {
+        this.roomId = roomId;
+        this.client = new DMclientRE({roomID: roomId})
+        this.danmakuMsgHandler = danmakuMsgHandler;
     }
 
-    sendDanmakuToView(dataJson: danmuJson) {
-        (<MyGlobalD><unknown>global).mainWindow.webContents.send(dataJson.cmd, dataJson)
+    listen() {
+        this.client
+            .on("DANMU_MSG", this.danmakuMsgHandler.handleDanmaku)
+            .on("SEND_GIFT", this.danmakuMsgHandler.handleGift)
+            .on("GUARD_BUY", this.danmakuMsgHandler.handleGuard)
+            .on("SUPER_CHAT_MESSAGE", this.danmakuMsgHandler.handleGuard)
+            .Connect()
     }
 }
 
 export default Listener;
+export {DanmakuMsgHandler};

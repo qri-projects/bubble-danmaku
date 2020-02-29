@@ -8,7 +8,8 @@ let defaultConfig = {
     "showDrawDanmaku": true,
     "userNameRandColors": ["#ffffff"],
 
-    "styleFileName": "default.css"
+    "styleFileName": "default.css",
+    "danmakuTemplateFileName": "Danmaku.html"
 }
 
 export default defaultConfig

@@ -8,5 +8,12 @@
   "userNameRandColors": [
     "#ffffff"
   ],
-  "styleFileName": "default.css"
+  "styleFileName": "default.css",
+  "danmakuTemplateFileName": "Danmaku.html",
+  "prefixFileName": {
+    "0": "guard0.png",
+    "1": "guard1.png",
+    "2": "guard2.png",
+    "3": "guard3.png"
+  }
 }
