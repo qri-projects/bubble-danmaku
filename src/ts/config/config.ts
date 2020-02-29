@@ -15,6 +15,7 @@ class Config {
     showDrawDanmaku: boolean = true;
 
     userNameRandColors: Array<String> = ["#ffffff"];
+    favoriteUserNameColor:String = "gold";
 
     danmakuCacheLength: number = 200;
 

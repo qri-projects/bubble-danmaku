@@ -11,6 +11,7 @@
   "userNameRandColors": [
     "#ffffff"
   ],
+  "favoriteUserNameColor":"gold",
   "danmakuCacheLength": 200,
   "styleFileName": "default.css",
   "danmakuTemplateFileName": "Danmaku.html",

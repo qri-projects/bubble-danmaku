@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self';style-src 'self' 'unsafe-inline';">
+    <meta http-equiv="X-Content-Security-Policy"
+          content="default-src 'self'; script-src 'self';style-src 'self' 'unsafe-inline';">
     <title>Bili Danmaku Electron</title>
     <link rel="stylesheet" href="../config/src/style/default.css">
     <base target="_blank"/>
+    <link rel="manifest" href="./common/manifest.json">
 </head>
 <body>
 <div id="danmakuPanel">

@@ -21,6 +21,7 @@ let createWindow = function () {
         maximizable: false,
         webPreferences: {
             nodeIntegration: true,
+            allowRunningInsecureContent:true,
             preload: path.join(__dirname, "view/preload.js"),
         }
     })
