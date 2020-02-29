@@ -1,7 +1,7 @@
 import defaultConfig from "../const/defaultConfig"
 import path from "path";
-const fs = require('fs');
 
+const fs = require('fs');
 
 
 class Config {
@@ -9,30 +9,34 @@ class Config {
 
     showUserHeadImg: boolean = true;
     showUserName: boolean = true;
-    showUserMedal: boolean = false;
-    showUserMedalSelfOnly: boolean = false;
-    showDrawDanmaku:boolean = true;
+    showUserMedal: boolean = true;
+    showUserLevel: boolean = true;
+    showGuardPrefix: boolean = true;
+    showDrawDanmaku: boolean = true;
 
     userNameRandColors: Array<String> = ["#ffffff"];
 
+    danmakuCacheLength: number = 200;
+
     styleFileName: String = "default.css";
-    danmakuTemplateFileName:String = "Danmaku.html";
-    prefixFileName:Prefix = new Prefix();
+    danmakuTemplateFileName: String = "Danmaku.html";
+    prefixFileName: Prefix = new Prefix();
+    timerTemplate:String = "year-month-day hour:minute:second";
 }
 
-class Prefix{
-    0:String="guard0.png";
-    1:String="guard1.png";
-    2:String="guard2.png";
-    3:String="guard2.png";
+class Prefix {
+    0: String = "guard0.png";
+    1: String = "guard1.png";
+    2: String = "guard2.png";
+    3: String = "guard2.png";
 }
 
-class ConfigWrapper{
-    config:Config = new Config();
+class ConfigWrapper {
+    config: Config = new Config();
 
-    loadConfig(callback:(config:Config)=>void){
+    loadConfig(callback: (config: Config) => void) {
         const configFilePath = path.resolve('./config/config.json');
-        fs.readFile(configFilePath, 'utf-8', (err, data)=>{
+        fs.readFile(configFilePath, 'utf-8', (err, data) => {
             if (err) {
                 console.error("读取配置文件失败")
                 callback(this.config)

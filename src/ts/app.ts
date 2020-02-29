@@ -12,7 +12,7 @@ import DanmakuEl from "./view/@type/DanmakuEl";
 
 
 let mainWindow;
-
+let listenning = false;
 let createWindow = function () {
     mainWindow = new BrowserWindow({
         width: 800,
@@ -51,8 +51,11 @@ let createWindow = function () {
 
             loadTemplate(config).then((templates: Templates) => {
                 let danmakuMsgHandler = makeDanmakuMsgHandler(templates, config);
-                let listener: Listener = new Listener(config.roomId, danmakuMsgHandler);
-                listener.listen();
+                if (!listenning) {
+                    let listener: Listener = new Listener(config.roomId, danmakuMsgHandler);
+                    listener.listen();
+                    listenning = true;
+                }
             })
             // let listener:Listener = new Listener();
             // listener.listen(config.roomId)
@@ -91,8 +94,6 @@ function makeDanmakuMsgHandler(templates: Templates, config: Config) {
     let danmakuMsgHandler: DanmakuMsgHandler = {
         handleDanmaku: (danmaku: DANMU_MSG): void => {
             let danmakuEl = new DanmakuEl(danmaku, config);
-            console.log(danmakuEl);
-            console.log(123);
             let elHtml = templates.danmakuTemplate(danmakuEl)
             mainWindow.webContents.send('DANMU_MSG', elHtml)
         },

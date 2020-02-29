@@ -6,10 +6,17 @@ class DanmakuEl{
         this.privilegeType = info[7] || 0
 
         let medal = info["3"]
-        this.medal_name = medal[1];
-        this.medal_room_id = medal[3];
-        this.medal_level = medal[0]
-        this.medal_color = "#" + medal[4].toString(16);
+        if (medal == null || medal.length === 0) {
+            this.medal_name = "";
+            this.medal_room_id = 0;
+            this.medal_level = 0;
+            this.medal_color = "white";
+        }else {
+            this.medal_name = medal[1];
+            this.medal_room_id = medal[3];
+            this.medal_level = medal[0]
+            this.medal_color = "#" + medal[4].toString(16);
+        }
 
         let user:DANMU_MSG_Info_User = info[2]
         this.user_id = user[0]

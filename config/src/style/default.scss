@@ -1,8 +1,25 @@
 $prefixWidth: 20px;
 $headImgSize: 36px;
-$bottomHeight:20px;
+$bottomHeight: 20px;
 :root {
+  --show-user-name: inline-block;
+  //--show-user-name: none;
 
+  --show-user-medal: inline-block;
+  //--show-user-medal: none;
+
+  --show-user-level: inline-block;
+  //--show-user-level: none;
+
+  --show-guard-prefix: block;
+  //--show-guard-prefix: none;
+  --guard-prefix-width: 20px;
+  //--guard-prefix-width: 0;
+
+  --show-user-head-img: flex;
+  //--user-head-img-display: none;
+  --user-head-img-width: 36px;
+  //--user-head-img-width: 0;
 }
 
 html, body {
@@ -17,36 +34,57 @@ a {
 }
 
 #danmakuPanel {
-  width: calc(100vw - #{$prefixWidth});
-  margin-left: $prefixWidth;
-  //border: 1px solid red;
+  width: calc(100vw);
   height: calc(100vh - #{$bottomHeight});
   box-sizing: border-box;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 8px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 5px;
+    background: rgba(255, 196, 161, 0);
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background: rgba(255, 196, 161, 0.5);
+  }
+
+  &::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    /*background: rgba(0,0,0,0.1);*/
+    /*border-radius: 5px;*/
+    border-radius: 5px;
+  }
 }
 
 .danmaku {
   display: flex;
-  display: -webkit-flex;
   flex-direction: row;
   justify-content: flex-start;
+  margin-top: 8px;
 }
 
 .prefix {
-  display: none;
-  margin-left: -#{$prefixWidth};
+  display: var(--show-guard-prefix);
   width: $prefixWidth;
   align-items: center;
 }
 
-.prefixImg{
+.prefixImg {
   width: $prefixWidth;
   height: $prefixWidth;
 }
 
 .headImg {
   width: $headImgSize;
-  height: auto;
-  display: flex;
+  height: 100%;
+  display: var(--show-user-head-img);
   align-items: center;
 }
 
@@ -57,14 +95,17 @@ a {
 }
 
 .line {
-  width: calc(100% - #{$headImgSize});
+  width: calc(100% - var(--user-head-img-width));
   line-height: 18px;
   font-size: 12px;
   color: #646c7a;
+  align-self: center;
+  padding-left: 5px;
 }
 
 .userName {
   color: #23ade5;
+  display: var(--show-user-name);
 }
 
 .userMedal {
@@ -76,7 +117,7 @@ a {
   border-radius: 2px;
   font-weight: 400;
   width: 60px;
-  display: inline-block;
+  display: var(--show-user-medal);
 
   user-select: none;
   -webkit-user-select: none;
@@ -104,7 +145,7 @@ a {
 
 .ul {
   color: #5896de;
-  display: inline-block;
+  display: var(--show-user-level);
   height: 14px;
   line-height: 14px;
   border: 1px solid #5896de;
@@ -119,20 +160,20 @@ a {
   -webkit-user-select: none;
 }
 
-.guard{
-  .prefix {
-    display: flex;
-  }
-}
-
-.favorite{
-  .userName{
-    color: gold;
-  }
-}
-
-.bottom{
-  width: 100%;
+#bottom {
+  width: calc(100% - var(--guard-prefix-width));
   height: $bottomHeight;
-  background-color: #23ade5;
+  background-color: #3288ff;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  line-height: $bottomHeight;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: move;
+  margin-left: var(--guard-prefix-width);
+}
+
+#popularNum {
+  width: 55px;
 }

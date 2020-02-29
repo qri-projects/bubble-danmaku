@@ -1,4 +1,14 @@
 @charset "UTF-8";
+:root {
+  --show-user-name: inline-block;
+  --show-user-medal: inline-block;
+  --show-user-level: inline-block;
+  --show-guard-prefix: block;
+  --guard-prefix-width: 20px;
+  --show-user-head-img: flex;
+  --user-head-img-width: 36px;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -11,22 +21,41 @@ a {
 }
 
 #danmakuPanel {
-  width: calc(100vw - 20px);
-  margin-left: 20px;
+  width: calc(100vw);
   height: calc(100vh - 20px);
   box-sizing: border-box;
+  overflow: auto;
+}
+#danmakuPanel::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 8px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 5px;
+}
+#danmakuPanel::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 5px;
+  background: rgba(255, 196, 161, 0);
+}
+#danmakuPanel:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 196, 161, 0.5);
+}
+#danmakuPanel::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  /*background: rgba(0,0,0,0.1);*/
+  /*border-radius: 5px;*/
+  border-radius: 5px;
 }
 
 .danmaku {
   display: flex;
-  display: -webkit-flex;
   flex-direction: row;
   justify-content: flex-start;
+  margin-top: 8px;
 }
 
 .prefix {
-  display: none;
-  margin-left: -20px;
+  display: var(--show-guard-prefix);
   width: 20px;
   align-items: center;
 }
@@ -38,8 +67,8 @@ a {
 
 .headImg {
   width: 36px;
-  height: auto;
-  display: flex;
+  height: 100%;
+  display: var(--show-user-head-img);
   align-items: center;
 }
 
@@ -50,14 +79,17 @@ a {
 }
 
 .line {
-  width: calc(100% - 36px);
+  width: calc(100% - var(--user-head-img-width));
   line-height: 18px;
   font-size: 12px;
   color: #646c7a;
+  align-self: center;
+  padding-left: 5px;
 }
 
 .userName {
   color: #23ade5;
+  display: var(--show-user-name);
 }
 
 .userMedal {
@@ -69,7 +101,7 @@ a {
   border-radius: 2px;
   font-weight: 400;
   width: 60px;
-  display: inline-block;
+  display: var(--show-user-medal);
   user-select: none;
   -webkit-user-select: none;
 }
@@ -95,7 +127,7 @@ a {
 
 .ul {
   color: #5896de;
-  display: inline-block;
+  display: var(--show-user-level);
   height: 14px;
   line-height: 14px;
   border: 1px solid #5896de;
@@ -109,18 +141,22 @@ a {
   -webkit-user-select: none;
 }
 
-.guard .prefix {
-  display: flex;
-}
-
-.favorite .userName {
-  color: gold;
-}
-
-.bottom {
-  width: 100%;
+#bottom {
+  width: calc(100% - var(--guard-prefix-width));
   height: 20px;
-  background-color: #23ade5;
+  background-color: #3288ff;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  line-height: 20px;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: move;
+  margin-left: var(--guard-prefix-width);
+}
+
+#popularNum {
+  width: 55px;
 }
 
 /*# sourceMappingURL=default.css.map */
