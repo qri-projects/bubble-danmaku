@@ -1,5 +1,6 @@
 import defaultConfig from "../const/defaultConfig"
 import path from "path";
+import {readfileAsync} from "../common/util";
 
 const fs = require('fs');
 
@@ -15,14 +16,24 @@ class Config {
     showDrawDanmaku: boolean = true;
 
     userNameRandColors: Array<String> = ["#ffffff"];
-    favoriteUserNameColor:String = "gold";
+    favoriteUserNameColor: String = "gold";
+    guardUserNameColor: GuardUserNameColor = new GuardUserNameColor();
 
     danmakuCacheLength: number = 200;
 
     styleFileName: String = "default.css";
     danmakuTemplateFileName: String = "Danmaku.html";
     prefixFileName: Prefix = new Prefix();
-    timerTemplate:String = "year-month-day hour:minute:second";
+    timerTemplate: String = "year-month-day hour:minute:second";
+    width = 800;
+    height = 600;
+}
+
+class GuardUserNameColor {
+    0: String = "";
+    1: "#ff0000";
+    2: "#f00000";
+    3: "#e00000";
 }
 
 class Prefix {
@@ -47,9 +58,17 @@ class ConfigWrapper {
             }
         });
     }
+
+}
+
+async function loadConfigAsync(): Promise<Config> {
+    const configFilePath = path.resolve('./config/config.json');
+    let configText: String = await readfileAsync(configFilePath)
+    let config: Config = <Config>JSON.parse(<string>configText);
+    return config;
 }
 
 let configWrapper = new ConfigWrapper();
 
 export default configWrapper;
-export {Config};
+export {Config, loadConfigAsync};

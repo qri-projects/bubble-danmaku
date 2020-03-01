@@ -3,7 +3,7 @@
   --show-user-name: inline-block;
   --show-user-medal: inline-block;
   --show-user-level: inline-block;
-  --show-guard-prefix: block;
+  --show-guard-prefix: flex;
   --guard-prefix-width: 20px;
   --show-user-head-img: flex;
   --user-head-img-width: 36px;
@@ -25,6 +25,15 @@ a {
   height: calc(100vh - 20px);
   box-sizing: border-box;
   overflow: auto;
+}
+#danmakuPanel * {
+  overflow-anchor: none;
+  -webkit-overflow-anchor: none;
+}
+#danmakuPanel #danmakuPanelBottom {
+  overflow-anchor: auto;
+  -webkit-overflow-anchor: auto;
+  height: 1px;
 }
 #danmakuPanel::-webkit-scrollbar {
   /*滚动条整体样式*/
@@ -115,22 +124,73 @@ a {
   display: block;
   float: left;
   line-height: 14px;
+  white-space: nowrap;
 }
 
 .medalLevel {
-  color: #5896de;
+  border-color: #5896de;
   background-color: white;
   width: 16px;
   display: inline-block;
   text-align: center;
 }
 
-.ul {
+.medalLevel-1, .medalLevel-2, .medalLevel-3, .medalLevel-4 {
+  border-color: #61decb;
+}
+.medalLevel-1 .medalName, .medalLevel-2 .medalName, .medalLevel-3 .medalName, .medalLevel-4 .medalName {
+  background-color: #61decb;
+}
+.medalLevel-1 .medalLevel, .medalLevel-2 .medalLevel, .medalLevel-3 .medalLevel, .medalLevel-4 .medalLevel {
+  color: #61decb;
+}
+
+.medalLevel-5, .medalLevel-6, .medalLevel-7, .medalLevel-8 {
+  border-color: #5896de;
+}
+.medalLevel-5 .medalName, .medalLevel-6 .medalName, .medalLevel-7 .medalName, .medalLevel-8 .medalName {
+  background-color: #5896de;
+}
+.medalLevel-5 .medalLevel, .medalLevel-6 .medalLevel, .medalLevel-7 .medalLevel, .medalLevel-8 .medalLevel {
   color: #5896de;
+}
+
+.medalLevel-9, .medalLevel-10, .medalLevel-11, .medalLevel-12 {
+  border-color: #a068f1;
+}
+.medalLevel-9 .medalName, .medalLevel-10 .medalName, .medalLevel-11 .medalName, .medalLevel-12 .medalName {
+  background-color: #a068f1;
+}
+.medalLevel-9 .medalLevel, .medalLevel-10 .medalLevel, .medalLevel-11 .medalLevel, .medalLevel-12 .medalLevel {
+  color: #a068f1;
+}
+
+.medalLevel-13, .medalLevel-14, .medalLevel-15, .medalLevel-16 {
+  border-color: #ff86b2;
+}
+.medalLevel-13 .medalName, .medalLevel-14 .medalName, .medalLevel-15 .medalName, .medalLevel-16 .medalName {
+  background-color: #ff86b2;
+}
+.medalLevel-13 .medalLevel, .medalLevel-14 .medalLevel, .medalLevel-15 .medalLevel, .medalLevel-16 .medalLevel {
+  color: #ff86b2;
+}
+
+.medalLevel-17, .medalLevel-18, .medalLevel-19, .medalLevel-20 {
+  border-color: #f6be18;
+}
+.medalLevel-17 .medalName, .medalLevel-18 .medalName, .medalLevel-19 .medalName, .medalLevel-20 .medalName {
+  background-color: #f6be18;
+}
+.medalLevel-17 .medalLevel, .medalLevel-18 .medalLevel, .medalLevel-19 .medalLevel, .medalLevel-20 .medalLevel {
+  color: #f6be18;
+}
+
+.ul {
+  color: #969696;
   display: var(--show-user-level);
   height: 14px;
   line-height: 14px;
-  border: 1px solid #5896de;
+  border: 1px solid #969696;
   width: 40px;
   border-radius: 2px;
   text-align: center;
@@ -139,6 +199,306 @@ a {
   font-weight: 400;
   user-select: none;
   -webkit-user-select: none;
+}
+
+.ul-10 {
+  border-color: #969696;
+  color: #969696;
+}
+
+.ul-9 {
+  border-color: #969696;
+  color: #969696;
+}
+
+.ul-8 {
+  border-color: #969696;
+  color: #969696;
+}
+
+.ul-7 {
+  border-color: #969696;
+  color: #969696;
+}
+
+.ul-6 {
+  border-color: #969696;
+  color: #969696;
+}
+
+.ul-5 {
+  border-color: #969696;
+  color: #969696;
+}
+
+.ul-4 {
+  border-color: #969696;
+  color: #969696;
+}
+
+.ul-3 {
+  border-color: #969696;
+  color: #969696;
+}
+
+.ul-2 {
+  border-color: #969696;
+  color: #969696;
+}
+
+.ul-1 {
+  border-color: #969696;
+  color: #969696;
+}
+
+.ul-20 {
+  border-color: #61c05a;
+  color: #61c05a;
+}
+
+.ul-19 {
+  border-color: #61c05a;
+  color: #61c05a;
+}
+
+.ul-18 {
+  border-color: #61c05a;
+  color: #61c05a;
+}
+
+.ul-17 {
+  border-color: #61c05a;
+  color: #61c05a;
+}
+
+.ul-16 {
+  border-color: #61c05a;
+  color: #61c05a;
+}
+
+.ul-15 {
+  border-color: #61c05a;
+  color: #61c05a;
+}
+
+.ul-14 {
+  border-color: #61c05a;
+  color: #61c05a;
+}
+
+.ul-13 {
+  border-color: #61c05a;
+  color: #61c05a;
+}
+
+.ul-12 {
+  border-color: #61c05a;
+  color: #61c05a;
+}
+
+.ul-11 {
+  border-color: #61c05a;
+  color: #61c05a;
+}
+
+.ul-30 {
+  border-color: #5896de;
+  color: #5896de;
+}
+
+.ul-29 {
+  border-color: #5896de;
+  color: #5896de;
+}
+
+.ul-28 {
+  border-color: #5896de;
+  color: #5896de;
+}
+
+.ul-27 {
+  border-color: #5896de;
+  color: #5896de;
+}
+
+.ul-26 {
+  border-color: #5896de;
+  color: #5896de;
+}
+
+.ul-25 {
+  border-color: #5896de;
+  color: #5896de;
+}
+
+.ul-24 {
+  border-color: #5896de;
+  color: #5896de;
+}
+
+.ul-23 {
+  border-color: #5896de;
+  color: #5896de;
+}
+
+.ul-22 {
+  border-color: #5896de;
+  color: #5896de;
+}
+
+.ul-21 {
+  border-color: #5896de;
+  color: #5896de;
+}
+
+.ul-40 {
+  border-color: #a068f1;
+  color: #a068f1;
+}
+
+.ul-39 {
+  border-color: #a068f1;
+  color: #a068f1;
+}
+
+.ul-38 {
+  border-color: #a068f1;
+  color: #a068f1;
+}
+
+.ul-37 {
+  border-color: #a068f1;
+  color: #a068f1;
+}
+
+.ul-36 {
+  border-color: #a068f1;
+  color: #a068f1;
+}
+
+.ul-35 {
+  border-color: #a068f1;
+  color: #a068f1;
+}
+
+.ul-34 {
+  border-color: #a068f1;
+  color: #a068f1;
+}
+
+.ul-33 {
+  border-color: #a068f1;
+  color: #a068f1;
+}
+
+.ul-32 {
+  border-color: #a068f1;
+  color: #a068f1;
+}
+
+.ul-31 {
+  border-color: #a068f1;
+  color: #a068f1;
+}
+
+.ul-50 {
+  border-color: #ff86b2;
+  color: #ff86b2;
+}
+
+.ul-49 {
+  border-color: #ff86b2;
+  color: #ff86b2;
+}
+
+.ul-48 {
+  border-color: #ff86b2;
+  color: #ff86b2;
+}
+
+.ul-47 {
+  border-color: #ff86b2;
+  color: #ff86b2;
+}
+
+.ul-46 {
+  border-color: #ff86b2;
+  color: #ff86b2;
+}
+
+.ul-45 {
+  border-color: #ff86b2;
+  color: #ff86b2;
+}
+
+.ul-44 {
+  border-color: #ff86b2;
+  color: #ff86b2;
+}
+
+.ul-43 {
+  border-color: #ff86b2;
+  color: #ff86b2;
+}
+
+.ul-42 {
+  border-color: #ff86b2;
+  color: #ff86b2;
+}
+
+.ul-41 {
+  border-color: #ff86b2;
+  color: #ff86b2;
+}
+
+.ul-60 {
+  border-color: ff9f3d;
+  color: ff9f3d;
+}
+
+.ul-59 {
+  border-color: ff9f3d;
+  color: ff9f3d;
+}
+
+.ul-58 {
+  border-color: ff9f3d;
+  color: ff9f3d;
+}
+
+.ul-57 {
+  border-color: ff9f3d;
+  color: ff9f3d;
+}
+
+.ul-56 {
+  border-color: ff9f3d;
+  color: ff9f3d;
+}
+
+.ul-55 {
+  border-color: ff9f3d;
+  color: ff9f3d;
+}
+
+.ul-54 {
+  border-color: ff9f3d;
+  color: ff9f3d;
+}
+
+.ul-53 {
+  border-color: ff9f3d;
+  color: ff9f3d;
+}
+
+.ul-52 {
+  border-color: ff9f3d;
+  color: ff9f3d;
+}
+
+.ul-51 {
+  border-color: ff9f3d;
+  color: ff9f3d;
 }
 
 #bottom {

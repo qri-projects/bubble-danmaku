@@ -1,6 +1,12 @@
+@use "sass:map";
+
 $prefixWidth: 20px;
 $headImgSize: 36px;
 $bottomHeight: 20px;
+
+$medalColors: (1:#61decb, 2:#5896de, 3:#a068f1, 4:#ff86b2, 5:#f6be18);
+$ulColors: (1: #969696, 2:#61c05a, 3:#5896de, 4:#a068f1, 5:#ff86b2, 6: ff9f3d);
+
 :root {
   --show-user-name: inline-block;
   //--show-user-name: none;
@@ -11,7 +17,7 @@ $bottomHeight: 20px;
   --show-user-level: inline-block;
   //--show-user-level: none;
 
-  --show-guard-prefix: block;
+  --show-guard-prefix: flex;
   //--show-guard-prefix: none;
   --guard-prefix-width: 20px;
   //--guard-prefix-width: 0;
@@ -38,6 +44,18 @@ a {
   height: calc(100vh - #{$bottomHeight});
   box-sizing: border-box;
   overflow: auto;
+
+  * {
+    overflow-anchor: none;
+    -webkit-overflow-anchor: none;
+  }
+
+  #danmakuPanelBottom {
+    overflow-anchor: auto;
+    -webkit-overflow-anchor: auto;
+
+    height: 1px;
+  }
 
   &::-webkit-scrollbar {
     /*滚动条整体样式*/
@@ -133,22 +151,38 @@ a {
   display: block;
   float: left;
   line-height: 14px;
+  white-space: nowrap;
 }
 
 .medalLevel {
-  color: #5896de;
+  border-color: #5896de;
   background-color: white;
   width: 16px;
   display: inline-block;
   text-align: center;
 }
 
+@for $i from 1 through 5 {
+  .medalLevel-#{$i * 4 - 3}, .medalLevel-#{$i * 4 - 2}, .medalLevel-#{$i * 4 - 1}, .medalLevel-#{$i * 4},
+  {
+    border-color: map.get($medalColors, $i);
+
+    .medalName {
+      background-color: map.get($medalColors, $i);
+    }
+
+    .medalLevel {
+      color: map.get($medalColors, $i);
+    }
+  }
+}
+
 .ul {
-  color: #5896de;
+  color: map.get($ulColors, 1);
   display: var(--show-user-level);
   height: 14px;
   line-height: 14px;
-  border: 1px solid #5896de;
+  border: 1px solid map.get($ulColors, 1);
   width: 40px;
   border-radius: 2px;
   text-align: center;
@@ -158,6 +192,16 @@ a {
 
   user-select: none;
   -webkit-user-select: none;
+}
+
+@for $i from 1 through 6 {
+  @for $j from 0 through 9 {
+    .ul-#{$i * 10 - $j } {
+      border-color:map.get($ulColors, $i);
+
+      color:map.get($ulColors, $i);
+    }
+  }
 }
 
 #bottom {

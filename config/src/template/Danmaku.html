@@ -1,4 +1,4 @@
-<div class="{{outer_div_class}}">
+<!--<div class="{{outer_div_class}}">-->
     <div class="prefix">
         <img class="prefixImg" src="../config/src/image/{{prefix_file_name}}" alt="">
     </div>
@@ -10,12 +10,12 @@
     </a>
     <div class="line">
         {{#if medal_level}}
-        <span class="userMedal">
+        <span class="userMedal medalLevel-{{medal_level}}">
                 <span class="medalName">{{medal_name}}</span>
                 <span class="medalLevel">{{medal_level}}</span>
             </span>
         {{/if}}
-        <span class="ul">
+        <span class="ul ul-{{user_level}}">
             UL {{user_level}}
         </span>
         <a href="https://space.bilibili.com/{{user_id}}">
@@ -23,4 +23,4 @@
         </a>
         <span class="content">{{content}}</span>
     </div>
-</div>
+<!--</div>-->

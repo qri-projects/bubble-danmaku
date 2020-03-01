@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy"
-          content="default-src 'self'; script-src 'self';style-src 'self' 'unsafe-inline';">
     <meta http-equiv="X-Content-Security-Policy"
-          content="default-src 'self'; script-src 'self';style-src 'self' 'unsafe-inline';">
+          content="default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'">
     <title>Bili Danmaku Electron</title>
     <link rel="stylesheet" href="../config/src/style/default.css">
     <base target="_blank"/>
@@ -14,7 +12,7 @@
 </head>
 <body>
 <div id="danmakuPanel">
-
+    <div id="danmakuPanelBottom"></div>
 </div>
 <div id="bottom">
     <div id="popular">

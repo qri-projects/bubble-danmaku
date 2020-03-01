@@ -31,8 +31,15 @@ class DanmakuEl {
         this.prefix_file_name = config.prefixFileName[`${this.privilegeType}`];
 
         this.favorite = favorite;
-        this.outer_div_class = `danmaku${this.privilegeType?" guard":""}${this.favorite?" favorite":""}`;
-        this.user_name_style = `color: ${config.favoriteUserNameColor} !important`
+        this.outer_div_class = `danmaku${this.privilegeType ? " guard" : ""}${this.favorite ? " favorite" : ""}`;
+        if (this.favorite) {
+            this.user_name_style = `color: ${config.favoriteUserNameColor} !important`
+        } else if (this.privilegeType) {
+            this.user_name_style = `color:${config.guardUserNameColor[this.privilegeType]} !important`
+        } else {
+            let color: String = config.userNameRandColors[Math.floor(Math.random() * config.userNameRandColors.length)];
+            this.user_name_style = `color: ${color} !important`
+        }
     }
 
     /**
@@ -56,8 +63,8 @@ class DanmakuEl {
     prefix_file_name: String;
     favorite: boolean;
 
-    outer_div_class:String;
-    user_name_style:String;
+    outer_div_class: String;
+    user_name_style: String;
 }
 
 export default DanmakuEl;

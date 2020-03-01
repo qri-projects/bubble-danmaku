@@ -4,8 +4,9 @@ import {Config} from "../config/config";
 import {MyWindow} from "../@types/MyWindow";
 import path from "path";
 import Listener, {DanmakuMsgHandler} from "../common/Listener";
-import loadTemplate, {Templates} from "../common/loadTemplate"
+import {Templates, TemplatesText} from "../common/loadTemplate"
 import DanmakuEl from "./@type/DanmakuEl";
+import HandleBars from "handlebars";
 
 electron.ipcRenderer.on('something', (event, message) => {
     console.log('msg:', message) // 主进程发送到渲染进程的数据
@@ -14,31 +15,40 @@ electron.ipcRenderer.on('something', (event, message) => {
 
 let config: Config;
 
-// electron.ipcRenderer.on('DANMU_MSG', (event, message: DANMU_MSG) => {
-//     console.log(message)
-//     let content = message.info[1]
-//     let user = message.info[2]
-//     let userMedal = message.info[3]
-//
-//     /**
-//      * 舰队类型,0为非舰队, 1总督, 2提督, 3舰长
-//      */
-//     let privilegeType = message.info[7]
-// })
 let danmakuPanel;
+let danmakuPanelBottom;
 let popularNumEl;
 let timerEl;
+let danmakuPanelHover = false;
+let danmakuPanelMouseWheelTime = new Date().getTime();
+
+let danmakuElQueue = [];
+
 window.onload = () => {
     danmakuPanel = document.getElementById("danmakuPanel");
+    danmakuPanelBottom = document.getElementById("danmakuPanelBottom");
     popularNumEl = document.getElementById("popularNum");
     timerEl = document.getElementById("timer");
+
+    window.onmousewheel = (event) => {
+        danmakuPanelMouseWheelTime = new Date().getTime();
+    }
+
+    danmakuPanel.onmouseenter = () => {
+        danmakuPanelHover = true;
+    }
+
+    danmakuPanel.onmouseleave = () => {
+        danmakuPanelHover = false;
+    }
+
     let i = 0;
     let checkTimeInterval = 1;
     let lastDate = new Date();
     // 定时任务
     setInterval(() => {
         i += 1;
-        if (i % 4 == 0) {
+        if (i % 40 == 0) {
 
             // 清理旧弹幕
             let childrenCount: number;
@@ -71,18 +81,44 @@ window.onload = () => {
     }, 250)
 };
 
-electron.ipcRenderer.on('DANMU_MSG', (event, elHtml: String) => {
-    console.log(elHtml)
-    danmakuPanel.innerHTML += elHtml;
-    danmakuPanel.scrollTop = danmakuPanel.scrollHeight;
-})
+function makeTemplates(templatesResInner: TemplatesText) {
+    let templates: Templates = new Templates();
+    templates.danmakuTemplate = HandleBars.compile(templatesResInner.danmakuTemplate);
+    return templates;
+}
 
+function makeDanmakuMsgHandler(templates: Templates) {
+    let danmakuMsgHandler: DanmakuMsgHandler = {
+        handleDanmaku(danmaku: DANMU_MSG): void {
+            let danmakuEl = new DanmakuEl(danmaku, config, false);
+            let elHtml = templates.danmakuTemplate(danmakuEl)
+            let danmakuHtmlEl = document.createElement("div");
+            danmakuHtmlEl.setAttribute("class", <string>danmakuEl.outer_div_class);
+            danmakuHtmlEl.innerHTML = <string>elHtml;
 
-electron.ipcRenderer.on("configLoaded", (event, configInner: Config) => {
+            danmakuPanel.insertBefore(danmakuHtmlEl, danmakuPanelBottom)
+        }, handleGift(sendGift: SEND_GIFT): void {
+        }, handleGuard(guardBuy: GUARD_BUY): void {
+        }, handleSuperChat(superChat: SUPER_CHAT_MESSAGE): void {
+        }
+
+    };
+    return danmakuMsgHandler;
+}
+
+electron.ipcRenderer.on("configLoaded", (event, configInner: Config, templatesResInner: TemplatesText) => {
+    let templates: Templates = makeTemplates(templatesResInner);
+    let danmakuMsgHandler = makeDanmakuMsgHandler(templates);
+
     (<MyWindow><unknown>window).config = configInner;
     config = configInner;
     addStyle(configInner);
     initStyleVariable(config);
+
+
+    let listener = new Listener(config.roomId, danmakuMsgHandler)
+    listener.listen()
+
 });
 
 function addStyle(config: Config) {
@@ -96,7 +132,7 @@ function addStyle(config: Config) {
     head.appendChild(s);
 }
 
-function initStyleVariable(config:Config) {
+function initStyleVariable(config: Config) {
     if (!config.showUserName) {
         document.documentElement.style.setProperty("--show-user-name", "none");
     }

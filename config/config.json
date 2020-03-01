@@ -1,17 +1,17 @@
 {
-  "roomId": 336116,
+  "roomId": 81711,
   "showUserHeadImg": true,
   "showUserName": true,
   "showUserMedal": true,
   "showUserLevel": true,
   "showGuardPrefix": true,
-
   "showDrawDanmaku": true,
-
   "userNameRandColors": [
-    "#ffffff"
+    "#ffffff",
+    "#ff0000"
   ],
-  "favoriteUserNameColor":"gold",
+  "favoriteUserNameColor": "gold",
+  "guardUserNameColor": "pink",
   "danmakuCacheLength": 200,
   "styleFileName": "default.css",
   "danmakuTemplateFileName": "Danmaku.html",
@@ -21,5 +21,7 @@
     "2": "guard2.png",
     "3": "guard3.png"
   },
-  "timerTemplate": "year-month-day hour:minute:second"
+  "timerTemplate": "year-month-day hour:minute:second",
+  "width": 800,
+  "height": 600
 }
