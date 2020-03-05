@@ -1,14 +1,5 @@
 import DMclientRE from "../bilive/dm_client_re";
-
-interface DanmakuMsgHandler {
-    handleDanmaku(danmaku: DANMU_MSG): void;
-
-    handleGift(sendGift: SEND_GIFT): void;
-
-    handleGuard(guardBuy: GUARD_BUY): void;
-
-    handleSuperChat(superChat: SUPER_CHAT_MESSAGE): void;
-}
+import {DanmakuMsgHandler} from "./danmakuHandler/danmakuHandler";
 
 class Listener {
     roomId: number;
@@ -24,6 +15,7 @@ class Listener {
     listen() {
         this.client
             .on("DANMU_MSG", this.danmakuMsgHandler.handleDanmaku)
+            .on("online", this.danmakuMsgHandler.handleOnline)
             .on("SEND_GIFT", this.danmakuMsgHandler.handleGift)
             .on("GUARD_BUY", this.danmakuMsgHandler.handleGuard)
             .on("SUPER_CHAT_MESSAGE", this.danmakuMsgHandler.handleGuard)
@@ -32,4 +24,3 @@ class Listener {
 }
 
 export default Listener;
-export {DanmakuMsgHandler};

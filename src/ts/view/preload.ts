@@ -3,10 +3,12 @@ import electron from "electron"
 import {Config} from "../config/config";
 import {MyWindow} from "../@types/MyWindow";
 import path from "path";
-import Listener, {DanmakuMsgHandler} from "../common/Listener";
 import {Templates, TemplatesText} from "../common/loadTemplate"
 import DanmakuEl from "./@type/DanmakuEl";
 import HandleBars from "handlebars";
+import DB, {UserInDB} from "../common/db";
+import makeDanmakuMsgHandler from "../common/danmakuHandler/danmakuHandler";
+import Listener from "../common/Listener";
 
 electron.ipcRenderer.on('something', (event, message) => {
     console.log('msg:', message) // 主进程发送到渲染进程的数据
@@ -19,18 +21,19 @@ let danmakuPanel;
 let danmakuPanelBottom;
 let popularNumEl;
 let timerEl;
+let popularNumHolderEl;
+
 let danmakuPanelHover = false;
 let danmakuPanelMouseWheelTime = new Date().getTime();
 
-let danmakuElQueue = [];
+let danmakuElQueue: Array<HTMLDivElement> = [];
+
+let db: DB;
 
 window.onload = () => {
-    danmakuPanel = document.getElementById("danmakuPanel");
-    danmakuPanelBottom = document.getElementById("danmakuPanelBottom");
-    popularNumEl = document.getElementById("popularNum");
-    timerEl = document.getElementById("timer");
+    initDomEl();
 
-    window.onmousewheel = (event) => {
+    window.onmousewheel = () => {
         danmakuPanelMouseWheelTime = new Date().getTime();
     }
 
@@ -43,20 +46,22 @@ window.onload = () => {
     }
 
     let i = 0;
-    let checkTimeInterval = 1;
+    let checkTimeInterval = 50;
     let lastDate = new Date();
+    let insertDanmakuInterval = 50;
+    let perIntervalInsertDanmakuNum = 1;
     // 定时任务
     setInterval(() => {
         i += 1;
-        if (i % 40 == 0) {
 
-            // 清理旧弹幕
-            let childrenCount: number;
-            // @ts-ignore
-            if ((childrenCount = danmakuPanel.children.length) > config.danmakuCacheLength) {
-                for (let i = 0; i < childrenCount - config.danmakuCacheLength; i++) {
-                    // @ts-ignore
-                    danmakuPanel.removeChild(danmakuPanel.children[0]);
+        if (i % 400 == 0) {
+            if (config.danmakuCacheLength > 0) {
+                // 清理旧弹幕
+                let childrenCount: number;
+                if ((childrenCount = danmakuPanel.children.length) > config.danmakuCacheLength) {
+                    for (let i = 0; i < childrenCount - config.danmakuCacheLength; i++) {
+                        danmakuPanel.removeChild(danmakuPanel.children[0]);
+                    }
                 }
             }
         }
@@ -78,8 +83,31 @@ window.onload = () => {
             lastDate = current;
         }
 
-    }, 250)
+        // 每秒一次, 调整发弹幕速度
+        if (i % 50 == 0) {
+            let speed = danmakuElQueue.length / 3;
+            perIntervalInsertDanmakuNum = Math.ceil(speed / 50);
+
+            insertDanmakuInterval = Math.floor((1000 / (speed / perIntervalInsertDanmakuNum)) / 20);
+        }
+
+        //
+        if (i % insertDanmakuInterval == 0) {
+            for (let j = 0; j < perIntervalInsertDanmakuNum; j++) {
+                consumeDanmaku();
+            }
+        }
+
+    }, 20)
 };
+
+function initDomEl() {
+    danmakuPanel = document.getElementById("danmakuPanel");
+    danmakuPanelBottom = document.getElementById("danmakuPanelBottom");
+    popularNumEl = document.getElementById("popularNum");
+    timerEl = document.getElementById("timer");
+    popularNumHolderEl = document.getElementById("popularNum");
+}
 
 function makeTemplates(templatesResInner: TemplatesText) {
     let templates: Templates = new Templates();
@@ -87,39 +115,30 @@ function makeTemplates(templatesResInner: TemplatesText) {
     return templates;
 }
 
-function makeDanmakuMsgHandler(templates: Templates) {
-    let danmakuMsgHandler: DanmakuMsgHandler = {
-        handleDanmaku(danmaku: DANMU_MSG): void {
-            let danmakuEl = new DanmakuEl(danmaku, config, false);
-            let elHtml = templates.danmakuTemplate(danmakuEl)
-            let danmakuHtmlEl = document.createElement("div");
-            danmakuHtmlEl.setAttribute("class", <string>danmakuEl.outer_div_class);
-            danmakuHtmlEl.innerHTML = <string>elHtml;
-
-            danmakuPanel.insertBefore(danmakuHtmlEl, danmakuPanelBottom)
-        }, handleGift(sendGift: SEND_GIFT): void {
-        }, handleGuard(guardBuy: GUARD_BUY): void {
-        }, handleSuperChat(superChat: SUPER_CHAT_MESSAGE): void {
-        }
-
-    };
-    return danmakuMsgHandler;
+function consumeDanmaku() {
+    let danmakuHtmlEl;
+    if ((danmakuHtmlEl = danmakuElQueue.shift()) != null) {
+        danmakuPanel.insertBefore(danmakuHtmlEl, danmakuPanelBottom)
+    }
 }
 
+
 electron.ipcRenderer.on("configLoaded", (event, configInner: Config, templatesResInner: TemplatesText) => {
-    let templates: Templates = makeTemplates(templatesResInner);
-    let danmakuMsgHandler = makeDanmakuMsgHandler(templates);
+    db = new DB();
+    db.connectAsync().then(() => {
+        config = configInner;
+        let templates: Templates = makeTemplates(templatesResInner);
+        (<MyWindow><unknown>window).config = configInner;
+        let danmakuMsgHandler = makeDanmakuMsgHandler(templates, config, danmakuElQueue, db, popularNumHolderEl);
+        addStyle(configInner);
+        initStyleVariable(config);
 
-    (<MyWindow><unknown>window).config = configInner;
-    config = configInner;
-    addStyle(configInner);
-    initStyleVariable(config);
 
-
-    let listener = new Listener(config.roomId, danmakuMsgHandler)
-    listener.listen()
-
+        let listener = new Listener(config.roomId, danmakuMsgHandler)
+        listener.listen()
+    })
 });
+
 
 function addStyle(config: Config) {
     const styleFilePath = path.resolve(`./config/src/style/${config.styleFileName}`);

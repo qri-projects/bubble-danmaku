@@ -31,7 +31,7 @@ class DanmakuEl {
         this.prefix_file_name = config.prefixFileName[`${this.privilegeType}`];
 
         this.favorite = favorite;
-        this.outer_div_class = `danmaku${this.privilegeType ? " guard" : ""}${this.favorite ? " favorite" : ""}`;
+        this.outer_div_class = `danmaku user_id_${this.user_id}${this.privilegeType ? " guard" : ""}${this.favorite ? " favorite" : ""}`;
         if (this.favorite) {
             this.user_name_style = `color: ${config.favoriteUserNameColor} !important`
         } else if (this.privilegeType) {

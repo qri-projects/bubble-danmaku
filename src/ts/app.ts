@@ -1,8 +1,7 @@
-import {app, shell, BrowserWindow, Menu, MenuItem, dialog} from "electron";
+import {app, shell, BrowserWindow, Menu, MenuItem, dialog, nativeImage, Tray} from "electron";
 import path from "path";
 import DMclientRE from "./bilive/dm_client_re";
 import MyGlobalD from "./@types/MyGlobal";
-import Listener, {DanmakuMsgHandler} from "./common/Listener";
 import configWrapper, {Config, loadConfigAsync} from "./config/config";
 
 const url = require("url");
@@ -10,14 +9,13 @@ import Handlebars from "handlebars";
 import {loadTemplateText, Templates} from "./common/loadTemplate";
 import DanmakuEl from "./view/@type/DanmakuEl";
 
-let mainWindow;
+let mainWindow: BrowserWindow;
 let config: Config;
 let loadedConfig: boolean = false;
 let appReady = false, appActivate = false;
 
 loadConfigAsync().then((configInner: Config) => {
     config = configInner;
-    console.log(config)
     loadedConfig = true;
     tryCreateWindow()
 });
@@ -30,16 +28,28 @@ function tryCreateWindow() {
 
 let createWindow = function () {
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: config.width,
+        height: config.height,
         fullscreenable: false,
         maximizable: false,
+
+        // 透明
+        transparent: true,
+        // 无边框
+        frame: false,
+        // 任务栏隐身
+        skipTaskbar: true,
+        // 窗口置顶
+        alwaysOnTop: true,
+
         webPreferences: {
             nodeIntegration: true,
             allowRunningInsecureContent: true,
             preload: path.join(__dirname, "view/preload.js"),
-        },
+        }
     });
+
+    // mainWindow.setOverlayIcon(nativeImage.createFromPath("../static/icon-512.png"), "一段描述");
 
     mainWindow.loadURL(
         url.format({
@@ -49,9 +59,32 @@ let createWindow = function () {
         })
     );
 
+    // 托盘
+    let tray;
+    tray = new Tray("./static/icon.ico")
+    const menu = new Menu();
+    const quitMenuItem = new MenuItem({
+        role:"quit",
+        label:"退出"
+    });
+    const separatorMenuItem = new MenuItem({
+        type:"separator"
+    });
+    const configMenuItem = new MenuItem({
+        label:"设置",
+        click:()=>{}
+    })
+    menu.append(configMenuItem);
+    menu.append(separatorMenuItem);
+    menu.append(quitMenuItem);
+
+    tray.setToolTip('This is my application.')
+    tray.setContextMenu(menu)
+
     mainWindow.webContents.openDevTools();
 
     mainWindow.on("closed", function () {
+        // @ts-ignore
         mainWindow = null;
     });
 
@@ -73,7 +106,7 @@ app.on("web-contents-created", (e, webContents) => {
 
 app.on("ready", () => {
     appReady = true;
-    console.log("ready")
+
     tryCreateWindow();
 });
 
@@ -85,6 +118,5 @@ app.on("window-all-closed", () => {
 
 app.on("activate", () => {
     appActivate = true;
-    console.log("activate")
     tryCreateWindow();
 });

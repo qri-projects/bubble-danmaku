@@ -1,17 +1,24 @@
 {
-  "roomId": 81711,
+  "roomId": 863065,
   "showUserHeadImg": true,
   "showUserName": true,
   "showUserMedal": true,
-  "showUserLevel": true,
+  "showUserLevel": false,
   "showGuardPrefix": true,
   "showDrawDanmaku": true,
   "userNameRandColors": [
-    "#ffffff",
-    "#ff0000"
+    "#ff86b2",
+    "#a068f1",
+    "#5896de",
+    "#61decb"
   ],
   "favoriteUserNameColor": "gold",
-  "guardUserNameColor": "pink",
+  "guardUserNameColor": [
+    "red",
+    "#ff0000",
+    "#ff86b2",
+    "pink"
+  ],
   "danmakuCacheLength": 200,
   "styleFileName": "default.css",
   "danmakuTemplateFileName": "Danmaku.html",
@@ -22,6 +29,6 @@
     "3": "guard3.png"
   },
   "timerTemplate": "year-month-day hour:minute:second",
-  "width": 800,
-  "height": 600
+  "width": 370,
+  "height": 780
 }

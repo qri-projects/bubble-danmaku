@@ -12,7 +12,7 @@ class TemplatesText{
     "danmakuTemplate"
 }
 
-async function loadTemplateText(config){
+async function loadTemplateText(config:Config){
     const danmakuTemplateFilePath = path.resolve(`./config/src/template/${config.danmakuTemplateFileName}`);
     let templates = new TemplatesText();
     templates.danmakuTemplate = await readfileAsync(danmakuTemplateFilePath);
