@@ -12,4 +12,11 @@ function readfileAsync(path):Promise<String> {
     })
 }
 
-export {readfileAsync}
+async function fetchAsync(url:string, payload?:RequestInit){
+    let res = await fetch(url, payload);
+    return await res.json();
+}
+
+
+
+export {readfileAsync, fetchAsync}
