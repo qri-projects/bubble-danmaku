@@ -39,8 +39,17 @@ a {
   text-decoration: none;
 }
 
+#danmakuPanelBg {
+  width: calc(100vw - 20px);
+  left: 20px;
+  height: calc(100vh - #{$bottomHeight});
+  position: fixed;
+  background-image: linear-gradient(210deg, rgba(255, 140, 85, 0.19) 0%, rgba(191, 208, 255, 0.76) 40%, rgb(255, 195, 245) 100%);
+  z-index: -1;
+}
+
 #danmakuPanel {
-  width: calc(100vw);
+  width: 100vw;
   height: calc(100vh - #{$bottomHeight});
   box-sizing: border-box;
   overflow: auto;
@@ -198,7 +207,6 @@ a {
   @for $j from 0 through 9 {
     .ul-#{$i * 10 - $j } {
       border-color:map.get($ulColors, $i);
-
       color:map.get($ulColors, $i);
     }
   }
@@ -216,6 +224,8 @@ a {
   -webkit-user-select: none;
   cursor: move;
   margin-left: var(--guard-prefix-width);
+
+  -webkit-app-region: drag;
 }
 
 #popularNum {
