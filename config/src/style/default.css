@@ -25,7 +25,7 @@ a {
   left: 20px;
   height: calc(100vh - 20px);
   position: fixed;
-  background-image: linear-gradient(210deg, rgba(255, 140, 85, 0.19) 0%, rgba(191, 208, 255, 0.76) 40%, #ffc3f5 100%);
+  background-image: linear-gradient(210deg, rgba(255, 140, 85, 0.19) 0%, rgba(191, 208, 255, 0.76) 40%, #ecd7fff7 60%, #ffc3f5 100%);
   z-index: -1;
 }
 
@@ -71,32 +71,27 @@ a {
   justify-content: flex-start;
   margin-top: 8px;
 }
-
-.prefix {
+.danmaku .prefix {
   display: var(--show-guard-prefix);
   width: 20px;
   align-items: center;
 }
-
-.prefixImg {
+.danmaku .prefixImg {
   width: 20px;
   height: 20px;
 }
-
-.headImg {
+.danmaku .headImg {
   width: 36px;
   height: 100%;
   display: var(--show-user-head-img);
   align-items: center;
 }
-
-.headImgImg {
+.danmaku .headImgImg {
   width: 36px;
   height: 36px;
   border-radius: 50%;
 }
-
-.line {
+.danmaku .line {
   width: calc(100% - var(--user-head-img-width));
   line-height: 18px;
   font-size: 12px;
@@ -104,13 +99,11 @@ a {
   align-self: center;
   padding-left: 5px;
 }
-
-.userName {
+.danmaku .userName {
   color: #23ade5;
   display: var(--show-user-name);
 }
-
-.userMedal {
+.danmaku .userMedal {
   border: 1px solid #5896de;
   border-left: 0;
   height: 14px;
@@ -123,8 +116,7 @@ a {
   user-select: none;
   -webkit-user-select: none;
 }
-
-.medalName {
+.danmaku .medalName {
   background-color: #5896de;
   color: white;
   width: 40px;
@@ -135,66 +127,59 @@ a {
   line-height: 14px;
   white-space: nowrap;
 }
-
-.medalLevel {
+.danmaku .medalLevel {
   border-color: #5896de;
   background-color: white;
   width: 16px;
   display: inline-block;
   text-align: center;
 }
-
-.medalLevel-1, .medalLevel-2, .medalLevel-3, .medalLevel-4 {
+.danmaku .medalLevel-1, .danmaku .medalLevel-2, .danmaku .medalLevel-3, .danmaku .medalLevel-4 {
   border-color: #61decb;
 }
-.medalLevel-1 .medalName, .medalLevel-2 .medalName, .medalLevel-3 .medalName, .medalLevel-4 .medalName {
+.danmaku .medalLevel-1 .medalName, .danmaku .medalLevel-2 .medalName, .danmaku .medalLevel-3 .medalName, .danmaku .medalLevel-4 .medalName {
   background-color: #61decb;
 }
-.medalLevel-1 .medalLevel, .medalLevel-2 .medalLevel, .medalLevel-3 .medalLevel, .medalLevel-4 .medalLevel {
+.danmaku .medalLevel-1 .medalLevel, .danmaku .medalLevel-2 .medalLevel, .danmaku .medalLevel-3 .medalLevel, .danmaku .medalLevel-4 .medalLevel {
   color: #61decb;
 }
-
-.medalLevel-5, .medalLevel-6, .medalLevel-7, .medalLevel-8 {
+.danmaku .medalLevel-5, .danmaku .medalLevel-6, .danmaku .medalLevel-7, .danmaku .medalLevel-8 {
   border-color: #5896de;
 }
-.medalLevel-5 .medalName, .medalLevel-6 .medalName, .medalLevel-7 .medalName, .medalLevel-8 .medalName {
+.danmaku .medalLevel-5 .medalName, .danmaku .medalLevel-6 .medalName, .danmaku .medalLevel-7 .medalName, .danmaku .medalLevel-8 .medalName {
   background-color: #5896de;
 }
-.medalLevel-5 .medalLevel, .medalLevel-6 .medalLevel, .medalLevel-7 .medalLevel, .medalLevel-8 .medalLevel {
+.danmaku .medalLevel-5 .medalLevel, .danmaku .medalLevel-6 .medalLevel, .danmaku .medalLevel-7 .medalLevel, .danmaku .medalLevel-8 .medalLevel {
   color: #5896de;
 }
-
-.medalLevel-9, .medalLevel-10, .medalLevel-11, .medalLevel-12 {
+.danmaku .medalLevel-9, .danmaku .medalLevel-10, .danmaku .medalLevel-11, .danmaku .medalLevel-12 {
   border-color: #a068f1;
 }
-.medalLevel-9 .medalName, .medalLevel-10 .medalName, .medalLevel-11 .medalName, .medalLevel-12 .medalName {
+.danmaku .medalLevel-9 .medalName, .danmaku .medalLevel-10 .medalName, .danmaku .medalLevel-11 .medalName, .danmaku .medalLevel-12 .medalName {
   background-color: #a068f1;
 }
-.medalLevel-9 .medalLevel, .medalLevel-10 .medalLevel, .medalLevel-11 .medalLevel, .medalLevel-12 .medalLevel {
+.danmaku .medalLevel-9 .medalLevel, .danmaku .medalLevel-10 .medalLevel, .danmaku .medalLevel-11 .medalLevel, .danmaku .medalLevel-12 .medalLevel {
   color: #a068f1;
 }
-
-.medalLevel-13, .medalLevel-14, .medalLevel-15, .medalLevel-16 {
+.danmaku .medalLevel-13, .danmaku .medalLevel-14, .danmaku .medalLevel-15, .danmaku .medalLevel-16 {
   border-color: #ff86b2;
 }
-.medalLevel-13 .medalName, .medalLevel-14 .medalName, .medalLevel-15 .medalName, .medalLevel-16 .medalName {
+.danmaku .medalLevel-13 .medalName, .danmaku .medalLevel-14 .medalName, .danmaku .medalLevel-15 .medalName, .danmaku .medalLevel-16 .medalName {
   background-color: #ff86b2;
 }
-.medalLevel-13 .medalLevel, .medalLevel-14 .medalLevel, .medalLevel-15 .medalLevel, .medalLevel-16 .medalLevel {
+.danmaku .medalLevel-13 .medalLevel, .danmaku .medalLevel-14 .medalLevel, .danmaku .medalLevel-15 .medalLevel, .danmaku .medalLevel-16 .medalLevel {
   color: #ff86b2;
 }
-
-.medalLevel-17, .medalLevel-18, .medalLevel-19, .medalLevel-20 {
+.danmaku .medalLevel-17, .danmaku .medalLevel-18, .danmaku .medalLevel-19, .danmaku .medalLevel-20 {
   border-color: #f6be18;
 }
-.medalLevel-17 .medalName, .medalLevel-18 .medalName, .medalLevel-19 .medalName, .medalLevel-20 .medalName {
+.danmaku .medalLevel-17 .medalName, .danmaku .medalLevel-18 .medalName, .danmaku .medalLevel-19 .medalName, .danmaku .medalLevel-20 .medalName {
   background-color: #f6be18;
 }
-.medalLevel-17 .medalLevel, .medalLevel-18 .medalLevel, .medalLevel-19 .medalLevel, .medalLevel-20 .medalLevel {
+.danmaku .medalLevel-17 .medalLevel, .danmaku .medalLevel-18 .medalLevel, .danmaku .medalLevel-19 .medalLevel, .danmaku .medalLevel-20 .medalLevel {
   color: #f6be18;
 }
-
-.ul {
+.danmaku .ul {
   color: #969696;
   display: var(--show-user-level);
   height: 14px;
@@ -209,303 +194,243 @@ a {
   user-select: none;
   -webkit-user-select: none;
 }
-
-.ul-10 {
+.danmaku .ul-10 {
   border-color: #969696;
   color: #969696;
 }
-
-.ul-9 {
+.danmaku .ul-9 {
   border-color: #969696;
   color: #969696;
 }
-
-.ul-8 {
+.danmaku .ul-8 {
   border-color: #969696;
   color: #969696;
 }
-
-.ul-7 {
+.danmaku .ul-7 {
   border-color: #969696;
   color: #969696;
 }
-
-.ul-6 {
+.danmaku .ul-6 {
   border-color: #969696;
   color: #969696;
 }
-
-.ul-5 {
+.danmaku .ul-5 {
   border-color: #969696;
   color: #969696;
 }
-
-.ul-4 {
+.danmaku .ul-4 {
   border-color: #969696;
   color: #969696;
 }
-
-.ul-3 {
+.danmaku .ul-3 {
   border-color: #969696;
   color: #969696;
 }
-
-.ul-2 {
+.danmaku .ul-2 {
   border-color: #969696;
   color: #969696;
 }
-
-.ul-1 {
+.danmaku .ul-1 {
   border-color: #969696;
   color: #969696;
 }
-
-.ul-20 {
+.danmaku .ul-20 {
   border-color: #61c05a;
   color: #61c05a;
 }
-
-.ul-19 {
+.danmaku .ul-19 {
   border-color: #61c05a;
   color: #61c05a;
 }
-
-.ul-18 {
+.danmaku .ul-18 {
   border-color: #61c05a;
   color: #61c05a;
 }
-
-.ul-17 {
+.danmaku .ul-17 {
   border-color: #61c05a;
   color: #61c05a;
 }
-
-.ul-16 {
+.danmaku .ul-16 {
   border-color: #61c05a;
   color: #61c05a;
 }
-
-.ul-15 {
+.danmaku .ul-15 {
   border-color: #61c05a;
   color: #61c05a;
 }
-
-.ul-14 {
+.danmaku .ul-14 {
   border-color: #61c05a;
   color: #61c05a;
 }
-
-.ul-13 {
+.danmaku .ul-13 {
   border-color: #61c05a;
   color: #61c05a;
 }
-
-.ul-12 {
+.danmaku .ul-12 {
   border-color: #61c05a;
   color: #61c05a;
 }
-
-.ul-11 {
+.danmaku .ul-11 {
   border-color: #61c05a;
   color: #61c05a;
 }
-
-.ul-30 {
+.danmaku .ul-30 {
   border-color: #5896de;
   color: #5896de;
 }
-
-.ul-29 {
+.danmaku .ul-29 {
   border-color: #5896de;
   color: #5896de;
 }
-
-.ul-28 {
+.danmaku .ul-28 {
   border-color: #5896de;
   color: #5896de;
 }
-
-.ul-27 {
+.danmaku .ul-27 {
   border-color: #5896de;
   color: #5896de;
 }
-
-.ul-26 {
+.danmaku .ul-26 {
   border-color: #5896de;
   color: #5896de;
 }
-
-.ul-25 {
+.danmaku .ul-25 {
   border-color: #5896de;
   color: #5896de;
 }
-
-.ul-24 {
+.danmaku .ul-24 {
   border-color: #5896de;
   color: #5896de;
 }
-
-.ul-23 {
+.danmaku .ul-23 {
   border-color: #5896de;
   color: #5896de;
 }
-
-.ul-22 {
+.danmaku .ul-22 {
   border-color: #5896de;
   color: #5896de;
 }
-
-.ul-21 {
+.danmaku .ul-21 {
   border-color: #5896de;
   color: #5896de;
 }
-
-.ul-40 {
+.danmaku .ul-40 {
   border-color: #a068f1;
   color: #a068f1;
 }
-
-.ul-39 {
+.danmaku .ul-39 {
   border-color: #a068f1;
   color: #a068f1;
 }
-
-.ul-38 {
+.danmaku .ul-38 {
   border-color: #a068f1;
   color: #a068f1;
 }
-
-.ul-37 {
+.danmaku .ul-37 {
   border-color: #a068f1;
   color: #a068f1;
 }
-
-.ul-36 {
+.danmaku .ul-36 {
   border-color: #a068f1;
   color: #a068f1;
 }
-
-.ul-35 {
+.danmaku .ul-35 {
   border-color: #a068f1;
   color: #a068f1;
 }
-
-.ul-34 {
+.danmaku .ul-34 {
   border-color: #a068f1;
   color: #a068f1;
 }
-
-.ul-33 {
+.danmaku .ul-33 {
   border-color: #a068f1;
   color: #a068f1;
 }
-
-.ul-32 {
+.danmaku .ul-32 {
   border-color: #a068f1;
   color: #a068f1;
 }
-
-.ul-31 {
+.danmaku .ul-31 {
   border-color: #a068f1;
   color: #a068f1;
 }
-
-.ul-50 {
+.danmaku .ul-50 {
   border-color: #ff86b2;
   color: #ff86b2;
 }
-
-.ul-49 {
+.danmaku .ul-49 {
   border-color: #ff86b2;
   color: #ff86b2;
 }
-
-.ul-48 {
+.danmaku .ul-48 {
   border-color: #ff86b2;
   color: #ff86b2;
 }
-
-.ul-47 {
+.danmaku .ul-47 {
   border-color: #ff86b2;
   color: #ff86b2;
 }
-
-.ul-46 {
+.danmaku .ul-46 {
   border-color: #ff86b2;
   color: #ff86b2;
 }
-
-.ul-45 {
+.danmaku .ul-45 {
   border-color: #ff86b2;
   color: #ff86b2;
 }
-
-.ul-44 {
+.danmaku .ul-44 {
   border-color: #ff86b2;
   color: #ff86b2;
 }
-
-.ul-43 {
+.danmaku .ul-43 {
   border-color: #ff86b2;
   color: #ff86b2;
 }
-
-.ul-42 {
+.danmaku .ul-42 {
   border-color: #ff86b2;
   color: #ff86b2;
 }
-
-.ul-41 {
+.danmaku .ul-41 {
   border-color: #ff86b2;
   color: #ff86b2;
 }
-
-.ul-60 {
+.danmaku .ul-60 {
   border-color: ff9f3d;
   color: ff9f3d;
 }
-
-.ul-59 {
+.danmaku .ul-59 {
   border-color: ff9f3d;
   color: ff9f3d;
 }
-
-.ul-58 {
+.danmaku .ul-58 {
   border-color: ff9f3d;
   color: ff9f3d;
 }
-
-.ul-57 {
+.danmaku .ul-57 {
   border-color: ff9f3d;
   color: ff9f3d;
 }
-
-.ul-56 {
+.danmaku .ul-56 {
   border-color: ff9f3d;
   color: ff9f3d;
 }
-
-.ul-55 {
+.danmaku .ul-55 {
   border-color: ff9f3d;
   color: ff9f3d;
 }
-
-.ul-54 {
+.danmaku .ul-54 {
   border-color: ff9f3d;
   color: ff9f3d;
 }
-
-.ul-53 {
+.danmaku .ul-53 {
   border-color: ff9f3d;
   color: ff9f3d;
 }
-
-.ul-52 {
+.danmaku .ul-52 {
   border-color: ff9f3d;
   color: ff9f3d;
 }
-
-.ul-51 {
+.danmaku .ul-51 {
   border-color: ff9f3d;
   color: ff9f3d;
 }

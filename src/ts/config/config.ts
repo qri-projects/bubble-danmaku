@@ -15,6 +15,9 @@ class Config {
     showGuardPrefix: boolean = true;
     showDrawDanmaku: boolean = true;
 
+    showGift:boolean = true;
+    showSilverGift:boolean = true;
+
     userNameRandColors: Array<String> = ["#ffffff"];
     favoriteUserNameColor: String = "gold";
     guardUserNameColor: GuardUserNameColor = new GuardUserNameColor();
@@ -23,6 +26,7 @@ class Config {
 
     styleFileName: String = "default.css";
     danmakuTemplateFileName: String = "Danmaku.html";
+    sendGiftTemplateFileName: String = "SendGift.html";
     prefixFileName: Prefix = new Prefix();
     timerTemplate: String = "year-month-day hour:minute:second";
     width = 800;

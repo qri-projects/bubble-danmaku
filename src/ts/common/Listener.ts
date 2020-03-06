@@ -1,12 +1,12 @@
 import DMclientRE from "../bilive/dm_client_re";
-import {DanmakuMsgHandler} from "./danmakuHandler/danmakuHandler";
+import {DanmakuHandler} from "./danmakuHandler/danmakuHandler";
 
 class Listener {
     roomId: number;
     client: DMclientRE;
-    danmakuMsgHandler: DanmakuMsgHandler;
+    danmakuMsgHandler: DanmakuHandler;
 
-    constructor(roomId: number, danmakuMsgHandler: DanmakuMsgHandler) {
+    constructor(roomId: number, danmakuMsgHandler: DanmakuHandler) {
         this.roomId = roomId;
         this.client = new DMclientRE({roomID: roomId})
         this.danmakuMsgHandler = danmakuMsgHandler;

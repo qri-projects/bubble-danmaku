@@ -1,0 +1,21 @@
+<a href="https://space.bilibili.com/{{user_id}}">
+    <div class="headImg">
+        <img src="{{user_face_url}}" alt=""
+             class="headImgImg">
+    </div>
+</a>
+<div class="line">
+    {{#if medal_level}}
+    <span class="userMedal medalLevel-{{medal_level}}">
+                <span class="medalName">{{medal_name}}</span>
+                <span class="medalLevel">{{medal_level}}</span>
+            </span>
+    {{/if}}
+    <span class="ul ul-{{user_level}}">
+            UL {{user_level}}
+        </span>
+    <a href="https://space.bilibili.com/{{user_id}}">
+        <span class="userName" style="{{user_name_style}}">{{user_name}}&nbsp;:</span>
+    </a>
+    <span class="content">{{content}}</span>
+</div>

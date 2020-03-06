@@ -1,11 +1,15 @@
 {
-  "roomId": 863065,
+  "roomId": 336116,
   "showUserHeadImg": true,
   "showUserName": true,
   "showUserMedal": true,
   "showUserLevel": false,
   "showGuardPrefix": true,
   "showDrawDanmaku": true,
+
+  "showGift": true,
+  "showSilverGift": true,
+
   "userNameRandColors": [
     "#ff86b2",
     "#a068f1",
@@ -22,6 +26,7 @@
   "danmakuCacheLength": 200,
   "styleFileName": "default.css",
   "danmakuTemplateFileName": "Danmaku.html",
+  "sendGiftTemplateFileName": "SendGift.html",
   "prefixFileName": {
     "0": "guard0.png",
     "1": "guard1.png",

@@ -8,6 +8,8 @@ const url = require("url");
 import Handlebars from "handlebars";
 import {loadTemplateText, Templates} from "./common/loadTemplate";
 import DanmakuEl from "./view/@type/DanmakuEl";
+import {fetchGiftInfoAsync} from "./view/@type/giftInfo";
+import {GiftInfo} from "./view/@type/giftInfo";
 
 let mainWindow: BrowserWindow;
 let config: Config;

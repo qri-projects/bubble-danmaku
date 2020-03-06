@@ -7,8 +7,10 @@ import {Templates, TemplatesText} from "../common/loadTemplate"
 import DanmakuEl from "./@type/DanmakuEl";
 import HandleBars from "handlebars";
 import DB, {UserInDB} from "../common/db";
-import makeDanmakuMsgHandler from "../common/danmakuHandler/danmakuHandler";
+import {DanmakuHandler} from "../common/danmakuHandler/danmakuHandler";
 import Listener from "../common/Listener";
+import {fetchGiftInfoAsync} from "./@type/giftInfo";
+import {GiftInfo} from "./@type/giftInfo";
 
 electron.ipcRenderer.on('something', (event, message) => {
     console.log('msg:', message) // 主进程发送到渲染进程的数据
@@ -27,7 +29,7 @@ let danmakuPanelHover = false;
 let danmakuPanelMouseWheelTime = new Date().getTime();
 
 let danmakuElQueue: Array<HTMLDivElement> = [];
-
+let giftMap:Map<number, GiftInfo> = new Map<number, GiftInfo>();
 let db: DB;
 
 window.onload = () => {
@@ -112,6 +114,7 @@ function initDomEl() {
 function makeTemplates(templatesResInner: TemplatesText) {
     let templates: Templates = new Templates();
     templates.danmakuTemplate = HandleBars.compile(templatesResInner.danmakuTemplate);
+    templates.sendGiftTemplate = HandleBars.compile(templatesResInner.sendGiftTemplate);
     return templates;
 }
 
@@ -125,17 +128,25 @@ function consumeDanmaku() {
 
 electron.ipcRenderer.on("configLoaded", (event, configInner: Config, templatesResInner: TemplatesText) => {
     db = new DB();
+
     db.connectAsync().then(() => {
-        config = configInner;
-        let templates: Templates = makeTemplates(templatesResInner);
-        (<MyWindow><unknown>window).config = configInner;
-        let danmakuMsgHandler = makeDanmakuMsgHandler(templates, config, danmakuElQueue, db, popularNumHolderEl);
-        addStyle(configInner);
-        initStyleVariable(config);
+        fetchGiftInfoAsync().then((giftInfoInner)=>{
+            let gifts:Array<GiftInfo> = giftInfoInner.data.list;
+            for(let gift of gifts){
+                giftMap[gift.id] = gift;
+            }
 
+            config = configInner;
+            let templates: Templates = makeTemplates(templatesResInner);
+            (<MyWindow><unknown>window).config = configInner;
+            let danmakuHandler = new DanmakuHandler(db,config, templates, danmakuElQueue, popularNumHolderEl, giftMap);
+            addStyle(configInner);
+            initStyleVariable(config);
 
-        let listener = new Listener(config.roomId, danmakuMsgHandler)
-        listener.listen()
+            let listener = new Listener(config.roomId, danmakuHandler)
+            listener.listen()
+        });
+
     })
 });
 

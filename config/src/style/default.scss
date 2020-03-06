@@ -44,7 +44,7 @@ a {
   left: 20px;
   height: calc(100vh - #{$bottomHeight});
   position: fixed;
-  background-image: linear-gradient(210deg, rgba(255, 140, 85, 0.19) 0%, rgba(191, 208, 255, 0.76) 40%, rgb(255, 195, 245) 100%);
+  background-image: linear-gradient(210deg, rgba(255, 140, 85, 0.19) 0%, rgba(191, 208, 255, 0.76) 40%, #ecd7fff7 60%, #ffc3f5 100%);
   z-index: -1;
 }
 
@@ -90,124 +90,125 @@ a {
   }
 }
 
+
 .danmaku {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   margin-top: 8px;
-}
 
-.prefix {
-  display: var(--show-guard-prefix);
-  width: $prefixWidth;
-  align-items: center;
-}
+  .prefix {
+    display: var(--show-guard-prefix);
+    width: $prefixWidth;
+    align-items: center;
+  }
 
-.prefixImg {
-  width: $prefixWidth;
-  height: $prefixWidth;
-}
+  .prefixImg {
+    width: $prefixWidth;
+    height: $prefixWidth;
+  }
 
-.headImg {
-  width: $headImgSize;
-  height: 100%;
-  display: var(--show-user-head-img);
-  align-items: center;
-}
+  .headImg {
+    width: $headImgSize;
+    height: 100%;
+    display: var(--show-user-head-img);
+    align-items: center;
+  }
 
-.headImgImg {
-  width: $headImgSize;
-  height: $headImgSize;
-  border-radius: 50%;
-}
+  .headImgImg {
+    width: $headImgSize;
+    height: $headImgSize;
+    border-radius: 50%;
+  }
 
-.line {
-  width: calc(100% - var(--user-head-img-width));
-  line-height: 18px;
-  font-size: 12px;
-  color: #646c7a;
-  align-self: center;
-  padding-left: 5px;
-}
+  .line {
+    width: calc(100% - var(--user-head-img-width));
+    line-height: 18px;
+    font-size: 12px;
+    color: #646c7a;
+    align-self: center;
+    padding-left: 5px;
+  }
 
-.userName {
-  color: #23ade5;
-  display: var(--show-user-name);
-}
+  .userName {
+    color: #23ade5;
+    display: var(--show-user-name);
+  }
 
-.userMedal {
-  border: 1px solid #5896de;
-  border-left: 0;
-  height: 14px;
-  line-height: 14px;
-  font-size: 12px;
-  border-radius: 2px;
-  font-weight: 400;
-  width: 60px;
-  display: var(--show-user-medal);
+  .userMedal {
+    border: 1px solid #5896de;
+    border-left: 0;
+    height: 14px;
+    line-height: 14px;
+    font-size: 12px;
+    border-radius: 2px;
+    font-weight: 400;
+    width: 60px;
+    display: var(--show-user-medal);
 
-  user-select: none;
-  -webkit-user-select: none;
-}
+    user-select: none;
+    -webkit-user-select: none;
+  }
 
-.medalName {
-  background-color: #5896de;
-  color: white;
-  width: 40px;
+  .medalName {
+    background-color: #5896de;
+    color: white;
+    width: 40px;
 
-  padding: 0 2px;
-  text-align: center;
-  display: block;
-  float: left;
-  line-height: 14px;
-  white-space: nowrap;
-}
+    padding: 0 2px;
+    text-align: center;
+    display: block;
+    float: left;
+    line-height: 14px;
+    white-space: nowrap;
+  }
 
-.medalLevel {
-  border-color: #5896de;
-  background-color: white;
-  width: 16px;
-  display: inline-block;
-  text-align: center;
-}
+  .medalLevel {
+    border-color: #5896de;
+    background-color: white;
+    width: 16px;
+    display: inline-block;
+    text-align: center;
+  }
 
-@for $i from 1 through 5 {
-  .medalLevel-#{$i * 4 - 3}, .medalLevel-#{$i * 4 - 2}, .medalLevel-#{$i * 4 - 1}, .medalLevel-#{$i * 4},
-  {
-    border-color: map.get($medalColors, $i);
+  @for $i from 1 through 5 {
+    .medalLevel-#{$i * 4 - 3}, .medalLevel-#{$i * 4 - 2}, .medalLevel-#{$i * 4 - 1}, .medalLevel-#{$i * 4},
+    {
+      border-color: map.get($medalColors, $i);
 
-    .medalName {
-      background-color: map.get($medalColors, $i);
-    }
+      .medalName {
+        background-color: map.get($medalColors, $i);
+      }
 
-    .medalLevel {
-      color: map.get($medalColors, $i);
+      .medalLevel {
+        color: map.get($medalColors, $i);
+      }
     }
   }
-}
 
-.ul {
-  color: map.get($ulColors, 1);
-  display: var(--show-user-level);
-  height: 14px;
-  line-height: 14px;
-  border: 1px solid map.get($ulColors, 1);
-  width: 40px;
-  border-radius: 2px;
-  text-align: center;
-  font-style: normal;
-  font-size: 12px;
-  font-weight: 400;
+  .ul {
+    color: map.get($ulColors, 1);
+    display: var(--show-user-level);
+    height: 14px;
+    line-height: 14px;
+    border: 1px solid map.get($ulColors, 1);
+    width: 40px;
+    border-radius: 2px;
+    text-align: center;
+    font-style: normal;
+    font-size: 12px;
+    font-weight: 400;
 
-  user-select: none;
-  -webkit-user-select: none;
-}
+    user-select: none;
+    -webkit-user-select: none;
+  }
 
-@for $i from 1 through 6 {
-  @for $j from 0 through 9 {
-    .ul-#{$i * 10 - $j } {
-      border-color:map.get($ulColors, $i);
-      color:map.get($ulColors, $i);
+  @for $i from 1 through 6 {
+    @for $j from 0 through 9 {
+      .ul-#{$i * 10 - $j } {
+        border-color:map.get($ulColors, $i);
+        color:map.get($ulColors, $i);
+      }
     }
   }
 }

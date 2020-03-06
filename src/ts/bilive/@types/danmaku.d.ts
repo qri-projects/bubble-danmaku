@@ -1941,6 +1941,9 @@ interface SEND_GIFT_Data {
     /** 高能 */
     super: 0 | 1
     super_gift_num: number
+    super_batch_gift_num:number
+    /** combo_id */
+    batch_combo_id:string
     /** 价值 */
     price: number
     rnd: string
@@ -1979,6 +1982,7 @@ interface SEND_GIFT_Data {
     effect_block: 0 | 1,
     coin_type: 'gold' | 'silver',
     total_coin: number,
+    combo_send:SEND_GIFT_Data_ComboSend
     effect: number,
     tag_image: '',
     user_count: number,
@@ -2000,6 +2004,18 @@ interface SEND_GIFT_Data_TopList {
     guard_level: number
     /** 是否本人 */
     isSelf: 0 | 1
+}
+
+interface SEND_GIFT_Data_ComboSend{
+    uid: 13496620
+    uname: "Yuki_QwQ"
+    gift_num: 1
+    combo_num: 1
+    gift_id: 30090
+    gift_name: "么么哒"
+    action: "投喂"
+    combo_id: "gift:combo_id:13496620:128912828:30090:1583499595.0587"
+    send_master: null
 }
 
 interface SEND_GIFT_Data_Medal {
