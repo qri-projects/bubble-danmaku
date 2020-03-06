@@ -19,8 +19,6 @@ interface DanmakuMsgHandlerItfc {
     handleOnline(num: number);
 }
 
-let that:DanmakuHandler;
-
 class DanmakuHandler {
     db: DB;
     config: Config;
@@ -36,28 +34,31 @@ class DanmakuHandler {
         this.danmakuElQueue = danmakuElQueue;
         this.popularNumHolder = popularNumHolder;
         this.giftMap = giftMap;
-        that = this;
+        console.log(this)
     }
 
-    async handleDanmaku(danmaku: DANMU_MSG): Promise<void> {
+    handleDanmaku(danmaku: DANMU_MSG): void {
+        console.log(this)
+        let that = this;
         let userId = danmaku.info["2"]["0"];
-        let user = await getUser(userId, that.db)
-        let danmakuEl = new DanmakuEl(danmaku, that.config, user);
-        let elHtml = that.templates.danmakuTemplate(danmakuEl)
-        let danmakuHtmlEl = document.createElement("div");
-        danmakuHtmlEl.setAttribute("class", <string>danmakuEl.outer_div_class);
-        danmakuHtmlEl.innerHTML = <string>elHtml;
-        that.danmakuElQueue.push(danmakuHtmlEl);
+        getUser(userId, that.db).then(user => {
+            let danmakuEl = new DanmakuEl(danmaku, that.config, user);
+            let elHtml = that.templates.danmakuTemplate(danmakuEl)
+            let danmakuHtmlEl = document.createElement("div");
+            danmakuHtmlEl.setAttribute("class", <string>danmakuEl.outer_div_class);
+            danmakuHtmlEl.innerHTML = <string>elHtml;
+            that.danmakuElQueue.push(danmakuHtmlEl);
+        });
     }
 
     async handleGift(sendGift: SEND_GIFT): Promise<void> {
-        if (!that.config.showGift) {
+        if (!this.config.showGift) {
             return;
         }
         let userId = sendGift.data.uid;
-        let user = await getUser(userId, that.db);
-        let giftEl = makeGiftEl(sendGift, that.giftMap, user);
-        if (that.config.showSilverGift || (!that.config.showSilverGift && giftEl.coin_type == "gold")) {
+        let user = await getUser(userId, this.db);
+        let giftEl = makeGiftEl(sendGift, this.giftMap, user);
+        if (this.config.showSilverGift || (!this.config.showSilverGift && giftEl.coin_type == "gold")) {
 
         }
     }
@@ -71,7 +72,7 @@ class DanmakuHandler {
     }
 
     handleOnline(num: number) {
-        that.popularNumHolder.innerText = num.toString();
+        throw new Error("Method not implemented.");
     }
 
 
