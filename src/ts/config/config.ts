@@ -15,8 +15,8 @@ class Config {
     showGuardPrefix: boolean = true;
     showDrawDanmaku: boolean = true;
 
-    showGift:boolean = true;
-    showSilverGift:boolean = true;
+    showGift: boolean = true;
+    showSilverGift: boolean = true;
 
     userNameRandColors: Array<String> = ["#ffffff"];
     favoriteUserNameColor: String = "gold";
@@ -31,6 +31,9 @@ class Config {
     timerTemplate: String = "year-month-day hour:minute:second";
     width = 800;
     height = 600;
+
+    biliAccount = "";
+    biliPassword = ""
 }
 
 class GuardUserNameColor {

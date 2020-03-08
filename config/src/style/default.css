@@ -20,8 +20,32 @@ a {
   text-decoration: none;
 }
 
+*::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 8px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 5px;
+  background: rgba(255, 196, 161, 0);
+}
+
+*:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 196, 161, 0.75);
+}
+
+*::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  /*background: rgba(0,0,0,0.1);*/
+  /*border-radius: 5px;*/
+  border-radius: 5px;
+}
+
 #danmakuPanelBg {
-  width: calc(100vw - 20px);
+  width: calc(100vw - var(--guard-prefix-width) - 8px - 5px);
   left: 20px;
   height: calc(100vh - 20px);
   position: fixed;
@@ -30,10 +54,10 @@ a {
 }
 
 #danmakuPanel {
-  width: 100vw;
+  width: calc(100vw - 5px);
   height: calc(100vh - 20px);
   box-sizing: border-box;
-  overflow: auto;
+  overflow: scroll;
 }
 #danmakuPanel * {
   overflow-anchor: none;
@@ -43,26 +67,6 @@ a {
   overflow-anchor: auto;
   -webkit-overflow-anchor: auto;
   height: 1px;
-}
-#danmakuPanel::-webkit-scrollbar {
-  /*滚动条整体样式*/
-  width: 8px;
-  /*高宽分别对应横竖滚动条的尺寸*/
-  height: 5px;
-}
-#danmakuPanel::-webkit-scrollbar-thumb {
-  /*滚动条里面小方块*/
-  border-radius: 5px;
-  background: rgba(255, 196, 161, 0);
-}
-#danmakuPanel:hover::-webkit-scrollbar-thumb {
-  background: rgba(255, 196, 161, 0.5);
-}
-#danmakuPanel::-webkit-scrollbar-track {
-  /*滚动条里面轨道*/
-  /*background: rgba(0,0,0,0.1);*/
-  /*border-radius: 5px;*/
-  border-radius: 5px;
 }
 
 .danmaku {
@@ -82,7 +86,9 @@ a {
 }
 .danmaku .headImg {
   width: 36px;
-  height: 100%;
+  height: 36px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #4f7dff;
   display: var(--show-user-head-img);
   align-items: center;
 }
@@ -102,6 +108,12 @@ a {
 .danmaku .userName {
   color: #23ade5;
   display: var(--show-user-name);
+  font-weight: bold;
+  text-shadow: 0 0 4px white;
+}
+.danmaku .content {
+  font-weight: 700;
+  text-shadow: 0 0 4px white;
 }
 .danmaku .userMedal {
   border: 1px solid #5896de;
@@ -435,8 +447,64 @@ a {
   color: ff9f3d;
 }
 
+.gift {
+  display: flex;
+  flex-direction: row;
+  margin-top: 8px;
+  width: calc(100% - 20px);
+  margin-left: 20px;
+  padding: 0 8% 0 6%;
+  box-sizing: border-box;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgba(81, 167, 255, 0.38);
+  box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.25);
+}
+.gift .user {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  max-width: 84px;
+}
+.gift .userName {
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 0 4px black;
+  text-align: center;
+}
+.gift .headImg {
+  width: 36px;
+  height: 36px;
+}
+.gift .headImgImg {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 3px 0px #00000078;
+}
+.gift .giftImg {
+  width: 50px;
+  height: 50px;
+}
+.gift .send {
+  font-size: 16px;
+  font-weight: bolder;
+  color: white;
+  text-shadow: 1px 0px 1px black, -1px 0px 1px black, 0px -1px 1px black, 0px 1px 1px black;
+}
+.gift .giftNum {
+  min-width: 40px;
+  color: white;
+  text-shadow: 1px 0px 2px black, -1px 0px 2px black, 0px -1px 2px black, 0px 1px 2px black;
+  display: flex;
+  font-size: 22px;
+  font-weight: bold;
+}
+
 #bottom {
-  width: calc(100% - var(--guard-prefix-width));
+  width: calc(100% - var(--guard-prefix-width) - 8px - 5px);
   height: 20px;
   background-color: #3288ff;
   color: white;

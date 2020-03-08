@@ -19,7 +19,7 @@ interface DanmakuMsgHandlerItfc {
     handleOnline(num: number);
 }
 
-let that:DanmakuHandler;
+let that: DanmakuHandler;
 
 class DanmakuHandler {
     db: DB;
@@ -58,7 +58,24 @@ class DanmakuHandler {
         let user = await getUser(userId, that.db);
         let giftEl = makeGiftEl(sendGift, that.giftMap, user);
         if (that.config.showSilverGift || (!that.config.showSilverGift && giftEl.coin_type == "gold")) {
+            let giftHtmlEl;
+            if (giftEl.combo_id) {
+                let el:HTMLDivElement = <HTMLDivElement>document.querySelector(`#${giftEl.combo_id} .giftNumNumber`);
+                if(el){
+                    el.innerText = giftEl.combo_num.toString();
+                    return ;
+                }else{
+                    giftHtmlEl = document.createElement("div");
+                    giftHtmlEl.setAttribute("id", giftEl.combo_id)
+                }
+            }else {
+                giftHtmlEl = document.createElement("div");
+            }
+            let elHtml = that.templates.sendGiftTemplate(giftEl)
+            giftHtmlEl.setAttribute("class", <string>giftEl.outer_div_class);
 
+            giftHtmlEl.innerHTML = <string>elHtml;
+            that.danmakuElQueue.push(giftHtmlEl);
         }
     }
 

@@ -4,8 +4,14 @@ $prefixWidth: 20px;
 $headImgSize: 36px;
 $bottomHeight: 20px;
 
+$giftHeadImgSize:36px;
+$giftHeight: 50px;
+
 $medalColors: (1:#61decb, 2:#5896de, 3:#a068f1, 4:#ff86b2, 5:#f6be18);
 $ulColors: (1: #969696, 2:#61c05a, 3:#5896de, 4:#a068f1, 5:#ff86b2, 6: ff9f3d);
+
+$scrollBarWidth: 8px;
+$resizeFixSize: 5px;
 
 :root {
   --show-user-name: inline-block;
@@ -39,8 +45,31 @@ a {
   text-decoration: none;
 }
 
+*::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: $scrollBarWidth; /*高宽分别对应横竖滚动条的尺寸*/
+  height: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 5px;
+  background: rgba(255, 196, 161, 0);
+}
+
+*:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 196, 161, 0.75);
+}
+
+*::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  /*background: rgba(0,0,0,0.1);*/
+  /*border-radius: 5px;*/
+  border-radius: 5px;
+}
+
 #danmakuPanelBg {
-  width: calc(100vw - 20px);
+  width: calc(100vw - var(--guard-prefix-width) - #{$scrollBarWidth} - #{$resizeFixSize});
   left: 20px;
   height: calc(100vh - #{$bottomHeight});
   position: fixed;
@@ -49,10 +78,10 @@ a {
 }
 
 #danmakuPanel {
-  width: 100vw;
+  width: calc(100vw - #{$resizeFixSize});
   height: calc(100vh - #{$bottomHeight});
   box-sizing: border-box;
-  overflow: auto;
+  overflow: scroll;
 
   * {
     overflow-anchor: none;
@@ -64,29 +93,6 @@ a {
     -webkit-overflow-anchor: auto;
 
     height: 1px;
-  }
-
-  &::-webkit-scrollbar {
-    /*滚动条整体样式*/
-    width: 8px; /*高宽分别对应横竖滚动条的尺寸*/
-    height: 5px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    /*滚动条里面小方块*/
-    border-radius: 5px;
-    background: rgba(255, 196, 161, 0);
-  }
-
-  &:hover::-webkit-scrollbar-thumb {
-    background: rgba(255, 196, 161, 0.5);
-  }
-
-  &::-webkit-scrollbar-track {
-    /*滚动条里面轨道*/
-    /*background: rgba(0,0,0,0.1);*/
-    /*border-radius: 5px;*/
-    border-radius: 5px;
   }
 }
 
@@ -110,7 +116,9 @@ a {
 
   .headImg {
     width: $headImgSize;
-    height: 100%;
+    height: $headImgSize;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px #4f7dff;
     display: var(--show-user-head-img);
     align-items: center;
   }
@@ -133,6 +141,13 @@ a {
   .userName {
     color: #23ade5;
     display: var(--show-user-name);
+    font-weight: bold;
+    text-shadow: 0 0 4px white;
+  }
+
+  .content{
+    font-weight: 700;
+    text-shadow: 0 0 4px white;
   }
 
   .userMedal {
@@ -211,10 +226,79 @@ a {
       }
     }
   }
+
+}
+
+.gift{
+  display: flex;
+  flex-direction: row;
+  margin-top: 8px;
+  width: calc(100% - #{$prefixWidth});
+  margin-left: $prefixWidth;
+  //height: $giftHeight;
+  padding: 0 8% 0 6%;
+  box-sizing: border-box;
+
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+
+  background-color: rgba(81, 167, 255, 0.38);
+  box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.25);
+
+  .user{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-width: 84px
+  }
+
+  .userName{
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 0 4px black;
+    text-align: center;
+  }
+
+  .headImg {
+    width: $giftHeadImgSize;
+    height: $giftHeadImgSize;
+  }
+
+  .headImgImg {
+    width: $giftHeadImgSize;
+    height: $giftHeadImgSize;
+    border-radius: 50%;
+    box-shadow: 2px 2px 3px 0px #00000078;
+  }
+
+  .giftImg{
+    width: $giftHeight;
+    height: $giftHeight;
+  }
+
+  $sendTextTextShadow: 1px black;
+  .send{
+    font-size: 16px;
+    font-weight: bolder;
+    color: white;
+    text-shadow: 1px 0px $sendTextTextShadow, -1px 0px $sendTextTextShadow, 0px -1px $sendTextTextShadow, 0px 1px $sendTextTextShadow;
+  }
+
+  $giftTextTextShadow:2px black;
+  .giftNum{
+    min-width: 40px;
+    color: white;
+    text-shadow: 1px 0px $giftTextTextShadow, -1px 0px $giftTextTextShadow, 0px -1px $giftTextTextShadow, 0px 1px $giftTextTextShadow;
+    display: flex;
+    font-size: 22px;
+    font-weight: bold;
+  }
 }
 
 #bottom {
-  width: calc(100% - var(--guard-prefix-width));
+  width: calc(100% - var(--guard-prefix-width) - #{$scrollBarWidth} - #{$resizeFixSize});
   height: $bottomHeight;
   background-color: #3288ff;
   color: white;

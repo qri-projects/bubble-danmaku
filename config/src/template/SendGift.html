@@ -1,21 +1,16 @@
-<a href="https://space.bilibili.com/{{user_id}}">
-    <div class="headImg">
-        <img src="{{user_face_url}}" alt=""
-             class="headImgImg">
-    </div>
-</a>
-<div class="line">
-    {{#if medal_level}}
-    <span class="userMedal medalLevel-{{medal_level}}">
-                <span class="medalName">{{medal_name}}</span>
-                <span class="medalLevel">{{medal_level}}</span>
-            </span>
-    {{/if}}
-    <span class="ul ul-{{user_level}}">
-            UL {{user_level}}
-        </span>
+<div class="user">
     <a href="https://space.bilibili.com/{{user_id}}">
-        <span class="userName" style="{{user_name_style}}">{{user_name}}&nbsp;:</span>
+        <div class="headImg">
+            <img src="{{user_face_url}}" alt=""
+                 class="headImgImg">
+        </div>
     </a>
-    <span class="content">{{content}}</span>
+    <div class="userName">{{user_name}}</div>
+
+</div>
+<div class="send">赠送</div>
+<img class="giftImg" src="{{gift_img}}">
+<div class="giftNum">
+    <div class="mult">x&nbsp;</div>
+    <div class="giftNumNumber">{{gift_num}}</div>
 </div>

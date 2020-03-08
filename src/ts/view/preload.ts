@@ -11,6 +11,7 @@ import {DanmakuHandler} from "../common/danmakuHandler/danmakuHandler";
 import Listener from "../common/Listener";
 import {fetchGiftInfoAsync} from "./@type/giftInfo";
 import {GiftInfo} from "./@type/giftInfo";
+import {GiftEl} from "./@type/GiftEl";
 
 electron.ipcRenderer.on('something', (event, message) => {
     console.log('msg:', message) // 主进程发送到渲染进程的数据

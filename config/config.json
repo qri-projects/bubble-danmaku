@@ -1,5 +1,5 @@
 {
-  "roomId": 336116,
+  "roomId": 4767523,
   "showUserHeadImg": true,
   "showUserName": true,
   "showUserMedal": true,
@@ -11,17 +11,17 @@
   "showSilverGift": true,
 
   "userNameRandColors": [
-    "#ff86b2",
     "#a068f1",
     "#5896de",
-    "#61decb"
+    "#61decb",
+    "#ffc0cb"
   ],
   "favoriteUserNameColor": "gold",
   "guardUserNameColor": [
-    "red",
     "#ff0000",
     "#ff86b2",
-    "pink"
+    "#ff86b2",
+    "#ff86b2"
   ],
   "danmakuCacheLength": 200,
   "styleFileName": "default.css",
@@ -35,5 +35,8 @@
   },
   "timerTemplate": "year-month-day hour:minute:second",
   "width": 370,
-  "height": 780
+  "height": 780,
+
+  "biliAccount": "",
+  "biliPassword": ""
 }
