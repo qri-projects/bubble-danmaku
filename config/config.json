@@ -1,14 +1,10 @@
 {
-  "roomId": 4767523,
+  "roomId": 544893,
   "showUserHeadImg": true,
   "showUserName": true,
   "showUserMedal": true,
   "showUserLevel": false,
   "showGuardPrefix": true,
-  "showDrawDanmaku": true,
-
-  "showGift": true,
-  "showSilverGift": true,
 
   "userNameRandColors": [
     "#a068f1",
@@ -38,5 +34,14 @@
   "height": 780,
 
   "biliAccount": "",
-  "biliPassword": ""
+  "biliPassword": "",
+
+  "userLevelUpperThan" : -1,
+  "medalLevelUpperThan" : -1,
+  "filterRe": ["^[!|！]\\w+"],
+  "showDrawDanmaku": true,
+
+  "showGift": true,
+  "showSilverGift": true,
+  "giftCoinUpperThan": {"gold": 0, "silver": 5000}
 }

@@ -1,24 +1,21 @@
-<div class="prefix">
-    <img class="prefixImg" src="../config/src/image/{{prefix_file_name}}" alt="">
+<div v-if="store.state.config.showGuardPrefix" class="prefix">
+    <img class="prefixImg" :src="`../config/src/image/${prefixFileName}`" alt="" />
 </div>
-<a href="https://space.bilibili.com/{{user_id}}">
+<a v-if="store.state.config.showUserHeadImg" :href="`https://space.bilibili.com/${userId}`">
     <div class="headImg">
-        <img src="{{user_head_img}}" alt=""
-             class="headImgImg">
+        <img :src="`${userHeadImg}`" alt="" class="headImgImg" />
     </div>
 </a>
 <div class="line">
-    {{#if medal_level}}
-    <span class="userMedal medalLevel-{{medal_level}}">
-                <span class="medalName">{{medal_name}}</span>
-                <span class="medalLevel">{{medal_level}}</span>
-            </span>
-    {{/if}}
-    <span class="ul ul-{{user_level}}">
-            UL {{user_level}}
-        </span>
-    <a href="https://space.bilibili.com/{{user_id}}">
-        <span class="userName" style="{{user_name_style}}">{{user_name}}&nbsp;:</span>
+    <span v-if="store.state.config.showUserMedal && medalLevel" :class="`userMedal medalLevel-${medalLevel}`">
+        <span class="medalName">{{medalName}}</span>
+        <span class="medalLevel">{{medalLevel}}</span>
+    </span>
+    <span v-if="store.state.config.showUserLevel" :class="`ul ul-${userLevel}`">
+        UL {{userLevel}}
+    </span>
+    <a v-if="store.state.config.showUserName" :href="`https://space.bilibili.com/${userId}`">
+        <span class="userName" :style="userNameStyle">{{userName}}&nbsp;:</span>
     </a>
     <span class="content">{{content}}</span>
 </div>

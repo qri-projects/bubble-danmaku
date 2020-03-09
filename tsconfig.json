@@ -53,7 +53,7 @@
     // "inlineSources": true,                 /* 在单个文件内发出源以及源映射；需要设置 "--inlineSourceMap" 或 "--sourceMap"。 */
 
     /* 实验性选项 */
-    // "experimentalDecorators": true,        /* 对 ES7 修饰器启用实验支持。 */
+     "experimentalDecorators": true,        /* 对 ES7 修饰器启用实验支持。 */
     // "emitDecoratorMetadata": true,         /* 对发出修饰器的类型元数据启用实验支持。 */
 
     /* 高级选项 */
