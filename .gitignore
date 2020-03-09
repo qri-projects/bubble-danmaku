@@ -117,3 +117,6 @@ cache/image/560dc5713c4f2221906045493154e87586c9cf9c.jpg
 
 thumbs.db
 !.gitkeep
+static/256x256.png
+static/icon-64.png
+src/renderer/assets/logo.png
