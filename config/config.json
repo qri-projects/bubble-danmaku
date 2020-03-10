@@ -1,5 +1,5 @@
 {
-  "roomId": 544893,
+  "roomId": 4767523,
   "showUserHeadImg": true,
   "showUserName": true,
   "showUserMedal": true,
@@ -43,5 +43,5 @@
 
   "showGift": true,
   "showSilverGift": true,
-  "giftCoinUpperThan": {"gold": 0, "silver": 5000}
+  "giftCoinUpperThan": {"gold": 0, "silver": 0}
 }

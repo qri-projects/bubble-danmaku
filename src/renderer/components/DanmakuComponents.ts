@@ -1,9 +1,9 @@
 import Vue from "vue";
-import store from "../store";
-import { Config } from "../../common/config/config";
-import { UserInDB } from "../scripts/db";
-import { Component, Model, Prop } from "vue-property-decorator";
-import { DanmakuWrapper } from "../scripts/DanmakuHandler";
+import store from "../store/index";
+import {Config} from "../../common/config/config";
+import {UserInDB} from "../scripts/db";
+import {Component, Model, Prop} from "vue-property-decorator";
+import {DanmakuWrapper} from "../scripts/DanmakuHandler";
 
 class DanmakuEl {
     constructor(danmakuJson: DANMU_MSG, userInDB: UserInDB) {
@@ -48,7 +48,7 @@ class DanmakuEl {
             let color: String =
                 store.state.config.userNameRandColors[
                     Math.floor(Math.random() * store.state.config.userNameRandColors.length)
-                ];
+                    ];
             this.userNameStyle = `color: ${color} !important`;
         }
     }
@@ -87,13 +87,13 @@ class DanmakuEl {
 // }
 let danmaku = Vue.extend({
     name: "danmaku",
-    template: `<div :class="outerDivClass">${store.state.templates.danmakuTemplate}</div>`,
+    template: store.state.templates.danmakuTemplate,
     props: {
         "data": DanmakuWrapper,
     },
     data() {
         return {
-            outerDivClass:"danmaku",
+            outerDivClass: "danmaku",
             prefixFileName: "",
             userId: 123,
             userName: "",
@@ -103,7 +103,7 @@ let danmaku = Vue.extend({
             medalRoomId: 336119,
             userLevel: 0,
             userNameStyle: "",
-            content:""
+            content: ""
         };
     },
     created() {
@@ -135,11 +135,11 @@ let danmaku = Vue.extend({
             let color: String =
                 store.state.config.userNameRandColors[
                     Math.floor(Math.random() * store.state.config.userNameRandColors.length)
-                ];
+                    ];
             this.userNameStyle = `color: ${color} !important`;
         }
         this.content = info[1]
     },
 });
 
-export { danmaku };
+export {danmaku};

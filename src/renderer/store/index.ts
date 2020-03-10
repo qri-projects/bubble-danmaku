@@ -15,7 +15,7 @@ const state = {
     templates: new Templates(),
     gifts: new Map<number, GiftInfo>(),
     comboMap: new Map<string, number>(),
-    popularNum: 0
+    popularNum: -1
 }
 
 const mutations = {
@@ -28,17 +28,36 @@ const mutations = {
     SET_GIFTS(state, gifts: Map<number, GiftInfo>) {
         state.gifts = gifts;
     },
-    SET_POPULAR_NUM(state, popularNum){
+    SET_POPULAR_NUM(state, popularNum) {
         state.popularNum = popularNum;
+    },
+    SET_COMBO_NUM(state, {comboId, num}){
+        state.comboMap[comboId] = num
     }
 }
 
-const actions = {}
+const getters = {
+    hasComboId: (state) => (comboId) => {
+        console.log(state.comboMap)
+        console.log(state.comboMap.has)
+        return state.comboMap.has(comboId)
+    }
+}
+
+const actions = {
+    setPopularNum({commit}, num) {
+        commit("SET_POPULAR_NUM", num);
+    },
+    setComboNum({commit}, payload){
+        commit("SET_COMBO_NUM", payload)
+    }
+}
 
 export default new Vuex.Store({
     state,
     mutations,
     actions,
+    getters,
     plugins: [
         createPersistedState(),
         createSharedMutations()

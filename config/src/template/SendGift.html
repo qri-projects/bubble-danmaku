@@ -1,16 +1,16 @@
-<div class="user">
-    <a href="https://space.bilibili.com/{{user_id}}">
-        <div class="headImg">
-            <img src="{{user_face_url}}" alt=""
-                 class="headImgImg">
-        </div>
-    </a>
-    <div class="userName">{{user_name}}</div>
-
-</div>
-<div class="send">赠送</div>
-<img class="giftImg" src="{{gift_img}}">
-<div class="giftNum">
-    <div class="mult">x&nbsp;</div>
-    <div class="giftNumNumber">{{gift_num}}</div>
+<div class="gift">
+    <div class="user">
+        <a :href="`https://space.bilibili.com/${userId}`">
+            <div class="headImg">
+                <img :src="`${userFaceUrl}`" alt="" class="headImgImg" />
+            </div>
+        </a>
+        <div class="userName">{{userName}}</div>
+    </div>
+    <div class="send">赠送</div>
+    <img class="giftImg" :src="`${giftImg}`" />
+    <div class="giftNum">
+        <div class="mult">x&nbsp;</div>
+        <div class="giftNumNumber">{{giftNumber}}</div>
+    </div>
 </div>

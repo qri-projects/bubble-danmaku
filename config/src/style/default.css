@@ -83,6 +83,8 @@ a {
 .danmaku .prefixImg {
   width: 20px;
   height: 20px;
+  user-select: none;
+  -webkit-user-select: none;
 }
 .danmaku .headImg {
   width: 36px;
@@ -91,6 +93,8 @@ a {
   box-shadow: 0 0 0 1px #4f7dff;
   display: var(--show-user-head-img);
   align-items: center;
+  user-select: none;
+  -webkit-user-select: none;
 }
 .danmaku .headImgImg {
   width: 36px;
@@ -125,13 +129,14 @@ a {
   font-weight: 400;
   width: 60px;
   display: var(--show-user-medal);
+  box-sizing: content-box;
   user-select: none;
   -webkit-user-select: none;
 }
 .danmaku .medalName {
   background-color: #5896de;
   color: white;
-  width: 40px;
+  width: 44px;
   padding: 0 2px;
   text-align: center;
   display: block;
