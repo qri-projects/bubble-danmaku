@@ -43,5 +43,5 @@
 
   "showGift": true,
   "showSilverGift": true,
-  "giftCoinUpperThan": {"gold": 0, "silver": 0}
+  "giftCoinUpperThan": {"gold": 0, "silver": 9900}
 }

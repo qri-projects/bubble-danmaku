@@ -1,9 +1,9 @@
 {
-  "name": "bili-danmaku-electron-vue",
+  "name": "bubble-danmaku",
   "version": "0.0.1",
   "author": "hhhhhg <va.qri@qq.com>",
-  "description": "An electron-vue project",
-  "license": null,
+  "description": "bubble-danmaku",
+  "license": "Other",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
@@ -17,8 +17,8 @@
     "postinstall": ""
   },
   "build": {
-    "productName": "bili-danmaku-electron-vue",
-    "appId": "com.ggemo.va.bili-danmaku-electron-vue",
+    "productName": "bubble弹幕使",
+    "appId": "com.ggemo.va.bubble-danmaku",
     "directories": {
       "output": "build"
     },
