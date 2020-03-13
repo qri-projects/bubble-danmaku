@@ -38,12 +38,6 @@ class Config {
     x = 0;
     y = 0;
     top = true;
-
-    // 登录账号类型, "null"表示不登录, 不使用发弹幕功能, "account"表示账号密码登录, "cookie"表示使用cookie
-    account = "null";
-    biliAccount = "";
-    biliPassword = "";
-    cookie = "";
 }
 
 class GuardUserNameColor {

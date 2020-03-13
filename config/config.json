@@ -1,10 +1,16 @@
 {
-  "roomId": 4767523,
+  "roomId": 336116,
   "showUserHeadImg": true,
   "showUserName": true,
   "showUserMedal": true,
   "showUserLevel": false,
   "showGuardPrefix": true,
+  "prefixFileName": {
+    "0": "guard0.png",
+    "1": "guard1.png",
+    "2": "guard2.png",
+    "3": "guard3.png"
+  },
   "userNameRandColors": [
     "#a068f1",
     "#5896de",
@@ -19,34 +25,30 @@
     "#ff86b2"
   ],
   "danmakuCacheLength": 200,
-  "styleFileName": "default.css",
-  "danmakuTemplateFileName": "Danmaku.html",
-  "sendGiftTemplateFileName": "SendGift.html",
-  "prefixFileName": {
-    "0": "guard0.png",
-    "1": "guard1.png",
-    "2": "guard2.png",
-    "3": "guard3.png"
-  },
-  "timerTemplate": "year-month-day hour:minute:second",
-  "userLevelUpperThan": -1,
-  "medalLevelUpperThan": -1,
-  "filterRe": [
-    "^[!|！]\\w+"
-  ],
-  "showDrawDanmaku": true,
+
   "showGift": true,
   "showSilverGift": true,
   "giftCoinUpperThan": {
     "gold": 0,
     "silver": 9900
   },
+
+  "styleFileName": "default.css",
+  "danmakuTemplateFileName": "Danmaku.html",
+  "sendGiftTemplateFileName": "SendGift.html",
+  "timerTemplate": "year-month-day hour:minute:second",
+
+  "userLevelUpperThan": -1,
+  "medalLevelUpperThan": -1,
+  "filterRe": [
+    "^[!|！]\\w+"
+  ],
+  "showDrawDanmaku": true,
+
+
   "width": 370,
   "height": 780,
   "x": 0,
   "y": 0,
-  "account": "null",
-  "biliAccount": "",
-  "biliPassword": "",
-  "cookie": ""
+  "top": true
 }

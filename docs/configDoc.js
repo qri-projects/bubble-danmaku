@@ -1,7 +1,4 @@
-配置文件为```bubble-danmaku/config/config.json```, 以下为该文件中选项的解释:  
-
-```js
-{
+export  default  {
     // 监听的房间号
     "roomId": 336116,
 
@@ -74,5 +71,4 @@
     "y": 0,
     // 窗口置顶
     "top": true,
-}
-```
+};
