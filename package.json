@@ -23,7 +23,8 @@
       "output": "build"
     },
     "files": [
-      "dist/electron/**/*"
+      "dist/electron/**/*",
+      "dist/electron/*"
     ],
     "dmg": {
       "contents": [
@@ -44,7 +45,8 @@
       "icon": "build/icons/icon.icns"
     },
     "win": {
-      "icon": "build/icons/icon.ico"
+      "icon": "build/icons/icon.ico",
+      "asar": false
     },
     "linux": {
       "icon": "build/icons"
