@@ -39,12 +39,11 @@ function initStyleVariable(config: Config) {
 }
 
 function addStyle(config: Config) {
-    const styleFilePath = path.resolve(`./config/src/style/${config.styleFileName}`);
     let s = document.createElement("link");
     s.rel = "stylesheet";
     s.type = "text/css";
     // s.href = `file:///${styleFilePath}`;
-    s.href = `./config/src/style/${config.styleFileName}`;
+    s.href = `${store.state.configPath}/src/style/${config.styleFileName}`
     s.disabled = false;
     let head = document.getElementsByTagName("head")[0];
     head.appendChild(s);

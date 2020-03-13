@@ -15,7 +15,9 @@ const state = {
     templates: new Templates(),
     gifts: new Map<number, GiftInfo>(),
     comboMap: new Map<string, number>(),
-    popularNum: -1
+    popularNum: -1,
+    dev: false,
+    configPath: "../../../../config"
 }
 
 const mutations = {
@@ -31,15 +33,19 @@ const mutations = {
     SET_POPULAR_NUM(state, popularNum) {
         state.popularNum = popularNum;
     },
-    SET_COMBO_NUM(state, {comboId, num}){
+    SET_COMBO_NUM(state, {comboId, num}) {
         state.comboMap[comboId] = num
+    },
+    SET_IF_DEV(state, dev) {
+        state.dev = dev;
+    },
+    SET_CONFIG_PATH(state, configPath) {
+        state.configPath = configPath;
     }
 }
 
 const getters = {
     hasComboId: (state) => (comboId) => {
-        console.log(state.comboMap)
-        console.log(state.comboMap.has)
         return state.comboMap.has(comboId)
     }
 }
@@ -48,7 +54,7 @@ const actions = {
     setPopularNum({commit}, num) {
         commit("SET_POPULAR_NUM", num);
     },
-    setComboNum({commit}, payload){
+    setComboNum({commit}, payload) {
         commit("SET_COMBO_NUM", payload)
     }
 }

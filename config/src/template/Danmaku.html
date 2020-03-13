@@ -1,6 +1,6 @@
 <div :class="`${outerDivClass}`">
     <div v-if="$store.state.config.showGuardPrefix" class="prefix">
-        <img class="prefixImg" :src="`../config/src/image/${prefixFileName}`" alt="" />
+        <img class="prefixImg" :src="`${$store.state.configPath}/src/image/${prefixFileName}`" alt="" />
     </div>
     <a v-if="$store.state.config.showUserHeadImg" :href="`https://space.bilibili.com/${userId}`">
         <div class="headImg">
