@@ -23,11 +23,6 @@ class Config {
     sendGiftTemplateFileName: String = "SendGift.html";
     prefixFileName: Prefix = new Prefix();
     timerTemplate: String = "year-month-day hour:minute:second";
-    width = 800;
-    height = 600;
-
-    biliAccount = "";
-    biliPassword = "";
 
     userLevelUpperThan = -1;
     medalLevelUpperThan = -1;
@@ -37,6 +32,17 @@ class Config {
     showGift: boolean = true;
     showSilverGift: boolean = true;
     giftCoinUpperThan:{gold:number, silver:number} = {gold: 0, silver: 5000}
+
+    width = 800;
+    height = 600;
+    x = 0;
+    y = 0;
+
+    // 登录账号类型, "null"表示不登录, 不使用发弹幕功能, "account"表示账号密码登录, "cookie"表示使用cookie
+    account = "null";
+    biliAccount = "";
+    biliPassword = "";
+    cookie = ""
 }
 
 class GuardUserNameColor {
@@ -77,7 +83,11 @@ async function loadConfigAsync(): Promise<Config> {
     return config;
 }
 
+async function saveConfigAsync(config){
+    return await fs.writeFileSync("./config/config.json", JSON.stringify(config));
+}
+
 let configWrapper = new ConfigWrapper();
 
 export default configWrapper;
-export {Config, loadConfigAsync};
+export {Config, loadConfigAsync, saveConfigAsync};

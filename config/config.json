@@ -5,7 +5,6 @@
   "showUserMedal": true,
   "showUserLevel": false,
   "showGuardPrefix": true,
-
   "userNameRandColors": [
     "#a068f1",
     "#5896de",
@@ -30,18 +29,24 @@
     "3": "guard3.png"
   },
   "timerTemplate": "year-month-day hour:minute:second",
-  "width": 370,
-  "height": 780,
-
-  "biliAccount": "",
-  "biliPassword": "",
-
-  "userLevelUpperThan" : -1,
-  "medalLevelUpperThan" : -1,
-  "filterRe": ["^[!|！]\\w+"],
+  "userLevelUpperThan": -1,
+  "medalLevelUpperThan": -1,
+  "filterRe": [
+    "^[!|！]\\w+"
+  ],
   "showDrawDanmaku": true,
-
   "showGift": true,
   "showSilverGift": true,
-  "giftCoinUpperThan": {"gold": 0, "silver": 9900}
+  "giftCoinUpperThan": {
+    "gold": 0,
+    "silver": 9900
+  },
+  "width": 370,
+  "height": 780,
+  "x": 0,
+  "y": 0,
+  "account": "null",
+  "biliAccount": "",
+  "biliPassword": "",
+  "cookie": ""
 }
