@@ -107,9 +107,9 @@ let danmaku = Vue.extend({
         let danmakuMsg = data.danmaku;
         let user = data.user;
         let info = danmakuMsg.info;
-        let privilegeType = info[7] || 0;
+        this.privilegeType = info[7] || 0;
 
-        this.prefixFileName = store.state.config.prefixFileName[`${privilegeType}`];
+        this.prefixFileName = store.state.config.prefixFileName[`${this.privilegeType}`];
         this.userId = user.id;
         this.userName = user.nickName ? user.nickName : user.name;
         this.userHeadImg = user.faceUrl;
@@ -122,8 +122,8 @@ let danmaku = Vue.extend({
         this.userLevel = info["4"]["0"];
         if (user.nickName) {
             this.userNameStyle = `color: ${store.state.config.favoriteUserNameColor} !important`;
-        } else if (privilegeType) {
-            this.userNameStyle = `color:${store.state.config.guardUserNameColor[privilegeType]} !important`;
+        } else if (this.privilegeType) {
+            this.userNameStyle = `color:${store.state.config.guardUserNameColor[this.privilegeType]} !important`;
         } else {
             let color: String =
                 store.state.config.userNameRandColors[
