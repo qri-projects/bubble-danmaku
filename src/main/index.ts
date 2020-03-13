@@ -1,4 +1,4 @@
-import {app, BrowserWindow} from "electron";
+import {app, BrowserWindow, Tray, Menu, MenuItem} from "electron";
 import {Config, loadConfigAsync, saveConfigAsync} from "../common/config/config";
 import {loadTemplateText} from "./loadTemplate";
 import {fetchGiftInfoAsync, GiftInfo, requestGiftInfoAsync} from "../renderer/scripts/@type/giftInfo";
@@ -49,6 +49,7 @@ loadConfigAndTemplatesAndGifts().then(() => {
 
 function tryCreateWindow() {
     if (configLoaded && ready) {
+        createTray();
         createWindow();
     }
 }
@@ -79,8 +80,16 @@ function createWindow() {
         width: dev ? config.width : config.width,
         x: config.x,
         y: config.y,
+
+        // 透明
         transparent: !dev,
+        // 是否有边框
         frame: dev,
+        // 任务栏隐藏
+        skipTaskbar: !dev,
+        // 窗口置顶
+        alwaysOnTop: config.top,
+
         useContentSize: true,
         webPreferences: {
             webSecurity: false,
@@ -113,6 +122,29 @@ function createWindow() {
         store.commit("SET_TEMPLATES", templates);
         mainWindow.webContents.send("configLoaded");
     });
+}
+
+function createTray(){
+    let tray = new Tray("./static/icon.ico");
+    const menu = new Menu();
+    const quitMenuItem = new MenuItem({
+        role:"quit",
+        label:"退出"
+    });
+    menu.append(quitMenuItem);
+    // const separatorMenuItem = new MenuItem({
+    //     type:"separator"
+    // });
+    // const configMenuItem = new MenuItem({
+    //     label:"设置",
+    //     click:()=>{}
+    // })
+    // menu.append(configMenuItem);
+    // menu.append(separatorMenuItem);
+
+    tray.setToolTip('Bubble弹幕使')
+    tray.setContextMenu(menu)
+    return tray;
 }
 
 /**
