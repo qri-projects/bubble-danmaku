@@ -98,7 +98,8 @@ let danmaku = Vue.extend({
             medalRoomId: 336119,
             userLevel: 0,
             userNameStyle: "",
-            content: ""
+            content: "",
+            privilegeType: 0
         };
     },
     created() {
