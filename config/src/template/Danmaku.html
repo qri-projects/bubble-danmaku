@@ -1,4 +1,4 @@
-<div :class="`${outerDivClass}`">
+<div :class="`danmaku user_id_${userId}${privilegeType?' guard' : ''}${this.favorite ? ' favorite' : ''}`">
     <div v-if="$store.state.config.showGuardPrefix" class="prefix">
         <img class="prefixImg" :src="`${$store.state.configPath}/src/image/${prefixFileName}`" alt="" />
     </div>
