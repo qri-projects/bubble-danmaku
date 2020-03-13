@@ -110,11 +110,11 @@ class DanmakuHandler {
     }
 
     async handleGuard(guardBuy: GUARD_BUY): Promise<void> {
-        let user = await getUserInfo(guardBuy.data.uid);
-        if (!user) {
-            user = getDefaultUser(guardBuy.data.uid, guardBuy.data.username);
-        }
-        this.danmakuQueue.push(new GuardBuyWrapper(guardBuy, user));
+        // let user = await getUserInfo(guardBuy.data.uid);
+        // if (!user) {
+        //     user = getDefaultUser(guardBuy.data.uid, guardBuy.data.username);
+        // }
+        // this.danmakuQueue.push(new GuardBuyWrapper(guardBuy, user));
     }
 
     handleSuperChat(superChat: SUPER_CHAT_MESSAGE): void {
