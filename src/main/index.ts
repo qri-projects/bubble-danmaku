@@ -125,7 +125,7 @@ function createWindow() {
 }
 
 function createTray(){
-    let tray = new Tray("./static/icon.ico");
+    let tray = new Tray(dev?"./static/icon.ico":"./resources/app/dist/electron/static/icon.ico");
     const menu = new Menu();
     const quitMenuItem = new MenuItem({
         role:"quit",
