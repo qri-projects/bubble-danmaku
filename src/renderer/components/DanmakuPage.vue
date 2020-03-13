@@ -33,6 +33,15 @@
     let danmakuQueue = new Array<DanmakuWrapper | SendGiftWrapper | GuardBuyWrapper>();
     const comboMap = new Map<string, number>();
     comboMap.set("-1", -1);
+    let emptyFunction = () => {};
+    if (!store.state.dev) {
+        window.console.debug = emptyFunction;
+        window.console.error = emptyFunction;
+        window.console.info = emptyFunction;
+        window.console.log = emptyFunction;
+        window.console.warn = emptyFunction;
+        window.console.dir = emptyFunction;
+    }
     export default Vue.extend({
         name: "DanmakuPage",
         data() {
