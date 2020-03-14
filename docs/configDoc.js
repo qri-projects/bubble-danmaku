@@ -15,12 +15,12 @@ export  default  {
     "showGuardPrefix": true,
     // 弹幕大航海标识文件名, 将对应图片放入bubble-danmaku/config/src/image中即可使用
     // 普通用户对应0, 默认为空白png; 1, 2, 3分别对应总督, 提督, 舰长
-    "prefixFileName": {
-        "0": "guard0.png",
-        "1": "guard1.png",
-        "2": "guard2.png",
-        "3": "guard3.png",
-    },
+    "prefixFileName": [
+        "guard0.png",
+        "guard1.png",
+        "guard2.png",
+        "guard3.png",
+    ],
     // 一般的弹幕用户名颜色, 随机从这几个颜色中取
     "userNameRandColors": ["#a068f1", "#5896de", "#61decb", "#ffc0cb"],
     // 弹幕 收藏的用户用户名颜色, 对用户设置昵称被认为收藏
