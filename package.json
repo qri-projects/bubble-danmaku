@@ -46,7 +46,7 @@
     },
     "win": {
       "icon": "build/icons/icon.ico",
-      "asar": false
+      "asar": true
     },
     "linux": {
       "icon": "build/icons"
