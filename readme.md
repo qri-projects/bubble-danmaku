@@ -1,5 +1,6 @@
 # Bubble Danmaku
-[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badge/)  
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/HHHHhgqcdxhg/bubble-danmaku/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/HHHHhgqcdxhg/bubble-danmaku/graphs/commit-activity) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/HHHHhgqcdxhg/bubble-danmaku/pulls)  
+
 
 Bubble弹幕使, 第三方bilibili弹幕姬桌面端.  
 本项目秉承高扩展性开发, 具备web前端基础即可轻易自定义样式及布局.  
