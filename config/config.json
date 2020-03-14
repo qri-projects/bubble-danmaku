@@ -5,12 +5,12 @@
   "showUserMedal": true,
   "showUserLevel": false,
   "showGuardPrefix": true,
-  "prefixFileName": {
-    "0": "guard0.png",
-    "1": "guard1.png",
-    "2": "guard2.png",
-    "3": "guard3.png"
-  },
+  "prefixFileName": [
+    "guard0.png",
+    "guard1.png",
+    "guard2.png",
+    "guard3.png"
+  ],
   "userNameRandColors": [
     "#a068f1",
     "#5896de",
@@ -44,7 +44,6 @@
     "^[!|！]\\w+"
   ],
   "showDrawDanmaku": true,
-
 
   "width": 370,
   "height": 780,

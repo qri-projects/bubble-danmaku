@@ -21,7 +21,7 @@ class Config {
     styleFileName: String = "default.css";
     danmakuTemplateFileName: String = "Danmaku.html";
     sendGiftTemplateFileName: String = "SendGift.html";
-    prefixFileName: Prefix = new Prefix();
+    prefixFileName: Array<string> = ["guard0.png", "guard1.png", "guard2.png", "guard3.png"];
     timerTemplate: String = "year-month-day hour:minute:second";
 
     userLevelUpperThan = -1;
@@ -45,13 +45,6 @@ class GuardUserNameColor {
     1: "#ff0000";
     2: "#f00000";
     3: "#e00000";
-}
-
-class Prefix {
-    0: String = "guard0.png";
-    1: String = "guard1.png";
-    2: String = "guard2.png";
-    3: String = "guard2.png";
 }
 
 class ConfigWrapper {

@@ -109,7 +109,7 @@ let danmaku = Vue.extend({
         let info = danmakuMsg.info;
         this.privilegeType = info[7] || 0;
 
-        this.prefixFileName = store.state.config.prefixFileName[`${this.privilegeType}`];
+        this.prefixFileName = store.state.config.prefixFileName[this.privilegeType];
         this.userId = user.id;
         this.userName = user.nickName ? user.nickName : user.name;
         this.userHeadImg = user.faceUrl;
