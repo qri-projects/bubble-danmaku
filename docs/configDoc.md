@@ -1,4 +1,7 @@
-配置文件为```bubble-danmaku/config/config.json```, 以下为该文件中选项的解释:  
+配置文件为```bubble-danmaku/config/config.json```  
+第一条roomId改为想要监听的房间号即可使用  
+
+以下为该文件中选项的详细解释:  
 
 ```js
 {
