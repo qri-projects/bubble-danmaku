@@ -72,7 +72,7 @@ async function loadConfigAsync(): Promise<Config> {
 }
 
 async function saveConfigAsync(config) {
-    return await fs.writeFileSync("./config/config.json", JSON.stringify(config));
+    return await fs.writeFileSync("./config/config.json", JSON.stringify(config, null, 4));
 }
 
 let configWrapper = new ConfigWrapper();
