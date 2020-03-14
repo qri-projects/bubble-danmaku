@@ -1,7 +1,8 @@
 # Bubble Danmaku
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badge/)  
 
-泡泡弹幕使, 第三方bilibili弹幕姬桌面端. 本项目秉承高扩展性开发, 具有web前端基础则可以轻易自定义样式及布局.  
+Bubble弹幕使, 第三方bilibili弹幕姬桌面端.  
+本项目秉承高扩展性开发, 具备web前端基础即可轻易自定义样式及布局.  
 
 ## Usage
 1. 前往[本项目Release页](https://github.com/HHHHhgqcdxhg/bubble-danmaku/releases)  
