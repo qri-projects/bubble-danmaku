@@ -143,7 +143,7 @@ function createTray() {
     // menu.append(configMenuItem);
     // menu.append(separatorMenuItem);
 
-    tray.setToolTip('Bubble弹幕使')
+    tray.setToolTip('bubble弹幕使')
     tray.setContextMenu(menu)
     return tray;
 }
