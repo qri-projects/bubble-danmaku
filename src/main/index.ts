@@ -23,6 +23,7 @@ let templates;
 let configLoaded = false;
 let ready = false;
 let gifts: Map<number, GiftInfo> = new Map<number, GiftInfo>();
+let tray;
 const winURL = dev ? `http://message.bilibili.com` : `file://${__dirname}/index.html`;
 
 async function loadConfigAndTemplates() {
@@ -49,7 +50,7 @@ loadConfigAndTemplatesAndGifts().then(() => {
 
 function tryCreateWindow() {
     if (configLoaded && ready) {
-        createTray();
+        tray = createTray();
         createWindow();
     }
 }
@@ -101,7 +102,7 @@ function createWindow() {
         mainWindow.webContents.openDevTools();
     }
 
-    mainWindow.on("close", ()=>{
+    mainWindow.on("close", () => {
         let bounds = mainWindow.getBounds();
         configRaw.x = bounds.x;
         configRaw.y = bounds.y;
@@ -124,12 +125,12 @@ function createWindow() {
     });
 }
 
-function createTray(){
-    let tray = new Tray(dev?"./static/icon.ico":"./resources/app/dist/electron/static/icon.ico");
+function createTray() {
+    let tray = new Tray(dev ? "./static/icon.ico" : "./resources/app.asar/dist/electron/static/icon.ico");
     const menu = new Menu();
     const quitMenuItem = new MenuItem({
-        role:"quit",
-        label:"退出"
+        role: "quit",
+        label: "退出"
     });
     menu.append(quitMenuItem);
     // const separatorMenuItem = new MenuItem({
