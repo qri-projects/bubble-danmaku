@@ -7,9 +7,9 @@
 </template>
 
 <script lang="ts">
-    import {danmaku} from "./DanmakuComponents";
-    import {sendGift} from "./SendGiftComponents"
-    import {DanmakuWrapper, GuardBuyWrapper, SendGiftWrapper} from '../scripts/DanmakuHandler';
+    import {danmaku} from "../../DanmakuComponents";
+    import {sendGift} from "../../SendGiftComponents"
+    import {DanmakuWrapper, GuardBuyWrapper, SendGiftWrapper} from '../../../scripts/DanmakuHandler';
     import Vue from "vue"
 
     export default Vue.extend({
