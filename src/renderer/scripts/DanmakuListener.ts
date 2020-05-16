@@ -1,6 +1,9 @@
 import DMclientRE from "../../common/bilive/dm_client_re";
 import {DanmakuHandler} from "./DanmakuHandler";
 import {DanmakuFilter} from "./DanmakuFilter";
+import electron from "electron";
+import {handleConfigLoaded} from "./configLoaded";
+import store from "../store/index"
 
 
 class Listener {
@@ -27,7 +30,13 @@ class Listener {
             })
             .on("online", this.danmakuHandler.handleOnline)
             .on("GUARD_BUY", this.danmakuHandler.handleGuard)
-            .on("SUPER_CHAT_MESSAGE", this.danmakuHandler.handleGuard)
+            .on("SUPER_CHAT_MESSAGE", this.danmakuHandler.handleGuard);
+        if (store.state.dev) {
+            electron.ipcRenderer.on("testSc", (event, scData) => {
+                this.danmakuHandler.handleSuperChat(scData);
+            });
+        }
+
     }
 
     listen() {

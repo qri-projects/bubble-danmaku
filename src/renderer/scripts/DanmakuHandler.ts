@@ -109,6 +109,8 @@ class DanmakuHandler {
     }
 
     async handleGuard(guardBuy: GUARD_BUY): Promise<void> {
+        console.log(guardBuy)
+        console.log(JSON.stringify(guardBuy))
         // let user = await getUserInfo(guardBuy.data.uid);
         // if (!user) {
         //     user = getDefaultUser(guardBuy.data.uid, guardBuy.data.username);
@@ -117,7 +119,7 @@ class DanmakuHandler {
     }
 
     handleSuperChat(superChat: SUPER_CHAT_MESSAGE): void {
-        throw new Error("Method not implemented.");
+        console.log(superChat);
     }
 
     handleOnline(num: number) {
