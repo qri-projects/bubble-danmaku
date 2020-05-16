@@ -1,5 +1,5 @@
 import path from "path";
-import { readfileAsync } from "../util";
+import {readfileAsync} from "../util";
 
 const fs = require("fs");
 
@@ -67,8 +67,7 @@ class ConfigWrapper {
 async function loadConfigAsync(): Promise<Config> {
     const configFilePath = path.resolve("./config/config.json");
     let configText: String = await readfileAsync(configFilePath);
-    let config = JSON.parse(<string>configText);
-    return config;
+    return JSON.parse(<string>configText);
 }
 
 async function saveConfigAsync(config) {
