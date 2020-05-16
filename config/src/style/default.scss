@@ -94,6 +94,7 @@ a {
 
     height: 1px;
   }
+  z-index: 1;
 }
 
 
@@ -320,4 +321,24 @@ a {
 
 #popularNum {
   width: 55px;
+}
+
+#scPanel {
+  width: calc(100vw - #{$resizeFixSize});
+  height: calc(100vh - #{$bottomHeight});
+  box-sizing: border-box;
+  overflow: scroll;
+
+  * {
+    overflow-anchor: none;
+    -webkit-overflow-anchor: none;
+  }
+
+  #danmakuPanelBottom {
+    overflow-anchor: auto;
+    -webkit-overflow-anchor: auto;
+
+    height: 1px;
+  }
+  z-index: 1;
 }
