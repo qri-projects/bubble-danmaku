@@ -3,6 +3,8 @@ import {readfileAsync} from "../util";
 
 const fs = require("fs");
 
+const configFilePath = path.resolve("./config/config.json");
+
 class Config {
     roomId: number = 336119;
 
@@ -19,6 +21,7 @@ class Config {
     danmakuCacheLength: number = 200;
 
     styleFileName: String = "default.css";
+    danmakuPanelComponentName: String = "default";
     danmakuTemplateFileName: String = "Danmaku.html";
     sendGiftTemplateFileName: String = "SendGift.html";
     prefixFileName: Array<string> = ["guard0.png", "guard1.png", "guard2.png", "guard3.png"];
@@ -65,7 +68,6 @@ class ConfigWrapper {
 }
 
 async function loadConfigAsync(): Promise<Config> {
-    const configFilePath = path.resolve("./config/config.json");
     let configText: String = await readfileAsync(configFilePath);
     return JSON.parse(<string>configText);
 }
@@ -77,4 +79,4 @@ async function saveConfigAsync(config) {
 let configWrapper = new ConfigWrapper();
 
 export default configWrapper;
-export { Config, loadConfigAsync, saveConfigAsync };
+export { Config, loadConfigAsync, saveConfigAsync, configFilePath };

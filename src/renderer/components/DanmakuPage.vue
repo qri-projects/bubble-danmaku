@@ -1,15 +1,8 @@
 <template>
     <div id="danmakuPanelHolder">
         <div id="danmakuPanelBg"></div>
-        <div id="danmakuPanel">
-            <inner-danmaku-panel
-                v-for="danmaku in danmakuQueue"
-                :key="danmaku.key"
-                :data="danmaku"
-                :gift-num="comboMap.get(danmaku.comboId)"
-            ></inner-danmaku-panel>
-            <div id="danmakuPanelBottom"></div>
-        </div>
+        <danmaku-panel :danmaku-queue="danmakuQueue" :combo-map="comboMap" />
+        <div id="scPanel"></div>
         <div id="bottom">
             <div id="popular">
                 气人值:
@@ -22,26 +15,19 @@
 
 <script lang="ts">
     import Vue from "vue";
-    import innerDanmakuPanel from "./InnerDanmakuPanel.vue";
+
     import Listener from "../scripts/DanmakuListener";
     import { DanmakuFilter } from "../scripts/DanmakuFilter";
     import { DanmakuHandler, DanmakuWrapper, GuardBuyWrapper, SendGiftWrapper } from "../scripts/DanmakuHandler";
     import store from "../store";
     import { timerTask, Task } from "../scripts/timerTask";
+    import DanmakuPanel from "./danmakuPanel/default/DanmakuPanel.vue";
 
     let roomId = store.state.config.roomId;
     let danmakuQueue = new Array<DanmakuWrapper | SendGiftWrapper | GuardBuyWrapper>();
     const comboMap = new Map<string, number>();
     comboMap.set("-1", -1);
-    let emptyFunction = () => {};
-    if (!store.state.dev) {
-        window.console.debug = emptyFunction;
-        window.console.error = emptyFunction;
-        window.console.info = emptyFunction;
-        window.console.log = emptyFunction;
-        window.console.warn = emptyFunction;
-        window.console.dir = emptyFunction;
-    }
+
     export default Vue.extend({
         name: "DanmakuPage",
         data() {
@@ -79,7 +65,7 @@
                 let vue = this;
 
                 timerTask.state["lastDate"] = new Date();
-                let timerTemplate = vue.$store.state.config.timerTemplate;
+                let timerTemplate = store.state.config.timerTemplate;
                 let setTimeTask = new Task(50, function() {
                     let current = new Date();
                     if (current.getSeconds() !== timerTask.state["lastDate"].getSeconds()) {
@@ -120,7 +106,14 @@
             this.listener.listen();
             this.addTask();
         },
-        components: { innerDanmakuPanel },
+        components: {
+            "DanmakuPanel": () => {
+                if (store.state.config.danmakuPanelComponentName == "default") {
+                    return import(`./danmakuPanel/default/DanmakuPanel.vue`);
+                }
+                alert("不存在的danmakuPanelComponent");
+            },
+        },
     });
 </script>
 
