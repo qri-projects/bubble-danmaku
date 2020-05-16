@@ -1,8 +1,8 @@
 import electron from "electron";
-import {Config} from "../../common/config/config";
-import {Templates} from "../../main/loadTemplate";
+import { Config } from "../../common/config/config";
+import { Templates } from "../../main/loadTemplate";
 import DB from "./db";
-import {fetchGiftInfoAsync, GiftInfo} from "./@type/giftInfo";
+import { fetchGiftInfoAsync, GiftInfo } from "./@type/giftInfo";
 
 const path = require("path");
 import store from "../store/index";
@@ -15,7 +15,6 @@ async function handleConfigLoaded() {
     addStyle(config);
     initStyleVariable(config);
     window.db = db;
-
 }
 
 function initStyleVariable(config: Config) {
@@ -43,10 +42,10 @@ function addStyle(config: Config) {
     s.rel = "stylesheet";
     s.type = "text/css";
     // s.href = `file:///${styleFilePath}`;
-    s.href = `${store.state.configPath}/src/style/${config.styleFileName}`
+    s.href = `${store.state.configPath}/src/style/${config.styleFileName}`;
     s.disabled = false;
     let head = document.getElementsByTagName("head")[0];
     head.appendChild(s);
 }
 
-export {handleConfigLoaded};
+export { handleConfigLoaded };
