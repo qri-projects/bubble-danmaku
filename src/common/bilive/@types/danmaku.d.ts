@@ -1765,6 +1765,9 @@ interface SEND_GIFT_Data {
     /** 高能 */
     super: 0 | 1;
     super_gift_num: number;
+    super_batch_gift_num:number
+    /** combo_id */
+    batch_combo_id:string
     /** 价值 */
     price: number;
     rnd: string;
@@ -1803,11 +1806,25 @@ interface SEND_GIFT_Data {
     effect_block: 0 | 1;
     coin_type: "gold" | "silver";
     total_coin: number;
+    combo_send:SEND_GIFT_Data_ComboSend;
     effect: number;
     tag_image: "";
     user_count: number;
     send_master: null;
 }
+
+interface SEND_GIFT_Data_ComboSend{
+    uid: 13496620
+    uname: "Yuki_QwQ"
+    gift_num: 1
+    combo_num: 1
+    gift_id: 30090
+    gift_name: "么么哒"
+    action: "投喂"
+    combo_id: "gift:combo_id:13496620:128912828:30090:1583499595.0587"
+    send_master: null
+}
+
 interface SEND_GIFT_Data_TopList {
     /** 用户uid */
     uid: number;
@@ -2191,4 +2208,62 @@ interface WISH_BOTTLE_Data_Wish {
     ctime: string;
     /** 礼物选择数量 */
     count_map: number[];
+}
+
+interface SUPER_CHAT_MESSAGE extends danmuJson {
+    data: SUPER_CHAT_MESSAGE_DATA
+}
+
+interface SUPER_CHAT_MESSAGE_DATA {
+    id: String;
+    uid: number;
+    price: number;
+    rate: number;
+    message: String;
+    message_jpn: String;
+    background_image: String;
+    background_color: String;
+    background_icon: String;
+    background_price_color: String;
+    background_bottom_color: String;
+    ts: number;
+    token: String;
+    medal_info: SUPER_CHAT_MESSAGE_DATA_MEDAL_INFO;
+    user_info: SUPER_CHAT_MESSAGE_DATA_USER_INFO;
+    time: number
+    start_time: number
+    end_time: number
+    gift: SUPER_CHAT_MESSAGE_DATA_GIFT
+}
+
+interface SUPER_CHAT_MESSAGE_DATA_MEDAL_INFO {
+    icon_id: number;
+    target_id: number;
+    special: String;
+    anchor_uname: String;
+    anchor_roomid: number;
+    medal_level: number;
+    medal_name: String;
+    medal_color: String;
+    user_info: SUPER_CHAT_MESSAGE_DATA_USER_INFO;
+}
+
+interface SUPER_CHAT_MESSAGE_DATA_USER_INFO {
+    uname: String;
+    face: String;
+    face_frame: String
+    guard_level: number
+    user_level: number
+    level_color: String
+    is_vip: number
+    is_svip: number
+    is_main_vip: number
+    title: String
+    manager: number
+}
+
+interface SUPER_CHAT_MESSAGE_DATA_GIFT {
+    num: number
+    gift_id: number
+    gift_name: String
 }
