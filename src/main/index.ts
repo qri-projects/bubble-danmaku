@@ -1,8 +1,9 @@
-import {app, BrowserWindow, Tray, Menu, MenuItem} from "electron";
-import {Config, loadConfigAsync, saveConfigAsync} from "../common/config/config";
-import {loadTemplateText} from "./loadTemplate";
-import {fetchGiftInfoAsync, GiftInfo, requestGiftInfoAsync} from "../renderer/scripts/@type/giftInfo";
+import { app, BrowserWindow, Tray, Menu, MenuItem, shell } from "electron";
+import { Config, loadConfigAsync, saveConfigAsync, configFilePath } from "../common/config/config";
+import { loadTemplateText } from "./loadTemplate";
+import { fetchGiftInfoAsync, GiftInfo, requestGiftInfoAsync } from "../renderer/scripts/@type/giftInfo";
 import store from "../renderer/store/index";
+import * as testData from "../common/const/TestData";
 
 let dev = process.env.NODE_ENV === "development";
 
@@ -28,7 +29,7 @@ const winURL = dev ? `http://message.bilibili.com` : `file://${__dirname}/index.
 
 async function loadConfigAndTemplates() {
     config = await loadConfigAsync();
-    configRaw = {...config}
+    configRaw = { ...config };
     templates = await loadTemplateText(config);
 }
 
@@ -109,13 +110,13 @@ function createWindow() {
         configRaw.width = bounds.width;
         configRaw.height = bounds.height;
         saveConfigAsync(configRaw);
-    })
+    });
 
     mainWindow.on("closed", () => {
         // @ts-ignore
         mainWindow = null;
     });
-    mainWindow.webContents.on("did-finish-load", function () {
+    mainWindow.webContents.on("did-finish-load", function() {
         store.commit("SET_IF_DEV", dev);
         store.commit("SET_CONFIG_PATH", dev ? "../config" : "../../../../config");
         store.commit("SET_GIFTS", gifts);
@@ -130,21 +131,43 @@ function createTray() {
     const menu = new Menu();
     const quitMenuItem = new MenuItem({
         role: "quit",
-        label: "退出"
+        label: "退出",
     });
-    menu.append(quitMenuItem);
-    // const separatorMenuItem = new MenuItem({
-    //     type:"separator"
-    // });
-    // const configMenuItem = new MenuItem({
-    //     label:"设置",
-    //     click:()=>{}
-    // })
-    // menu.append(configMenuItem);
-    // menu.append(separatorMenuItem);
 
-    tray.setToolTip('bubble弹幕使')
-    tray.setContextMenu(menu)
+    const separatorMenuItem = new MenuItem({
+        type: "separator",
+    });
+    const configMenuItem = new MenuItem({
+        label: "编辑设置文件",
+        click: () => {
+            shell.openItem(configFilePath);
+        },
+    });
+
+    if (dev) {
+        const testEventMenu = new Menu();
+        const testScMenuItem = new MenuItem({
+            label: "sc",
+            click: () => {
+                mainWindow.webContents.send("testSc", testData.scData);
+            },
+        });
+        testEventMenu.append(testScMenuItem);
+        const testEventMenuItem = new MenuItem({
+            type: "submenu",
+            label: "test event",
+            submenu: testEventMenu,
+        });
+        menu.append(testEventMenuItem);
+    }
+
+    menu.append(configMenuItem);
+
+    menu.append(separatorMenuItem);
+    menu.append(quitMenuItem);
+
+    tray.setToolTip("bubble弹幕使");
+    tray.setContextMenu(menu);
     return tray;
 }
 
