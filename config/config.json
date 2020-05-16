@@ -1,5 +1,5 @@
 {
-    "roomId": 336116,
+    "roomId": 336119,
     "showUserHeadImg": true,
     "showUserName": true,
     "showUserMedal": true,
@@ -32,6 +32,7 @@
         "silver": 9900
     },
     "styleFileName": "default.css",
+    "danmakuPanelComponentName": "default",
     "danmakuTemplateFileName": "Danmaku.html",
     "sendGiftTemplateFileName": "SendGift.html",
     "timerTemplate": "year-month-day hour:minute:second",
