@@ -1,53 +1,49 @@
 {
-  "roomId": 336116,
-  "showUserHeadImg": true,
-  "showUserName": true,
-  "showUserMedal": true,
-  "showUserLevel": false,
-  "showGuardPrefix": true,
-  "prefixFileName": [
-    "guard0.png",
-    "guard1.png",
-    "guard2.png",
-    "guard3.png"
-  ],
-  "userNameRandColors": [
-    "#a068f1",
-    "#5896de",
-    "#61decb",
-    "#ffc0cb"
-  ],
-  "favoriteUserNameColor": "gold",
-  "guardUserNameColor": [
-    "#ff0000",
-    "#ff86b2",
-    "#ff86b2",
-    "#ff86b2"
-  ],
-  "danmakuCacheLength": 200,
-
-  "showGift": true,
-  "showSilverGift": true,
-  "giftCoinUpperThan": {
-    "gold": 0,
-    "silver": 9900
-  },
-
-  "styleFileName": "default.css",
-  "danmakuTemplateFileName": "Danmaku.html",
-  "sendGiftTemplateFileName": "SendGift.html",
-  "timerTemplate": "year-month-day hour:minute:second",
-
-  "userLevelUpperThan": -1,
-  "medalLevelUpperThan": -1,
-  "filterRe": [
-    "^[!|！]\\w+"
-  ],
-  "showDrawDanmaku": true,
-
-  "width": 370,
-  "height": 780,
-  "x": 0,
-  "y": 0,
-  "top": true
+    "roomId": 336116,
+    "showUserHeadImg": true,
+    "showUserName": true,
+    "showUserMedal": true,
+    "showUserLevel": false,
+    "showGuardPrefix": true,
+    "prefixFileName": [
+        "guard0.png",
+        "guard1.png",
+        "guard2.png",
+        "guard3.png"
+    ],
+    "userNameRandColors": [
+        "#a068f1",
+        "#5896de",
+        "#61decb",
+        "#ffc0cb"
+    ],
+    "favoriteUserNameColor": "gold",
+    "guardUserNameColor": [
+        "#ff0000",
+        "#ff86b2",
+        "#ff86b2",
+        "#ff86b2"
+    ],
+    "danmakuCacheLength": 200,
+    "showGift": true,
+    "showSilverGift": true,
+    "giftCoinUpperThan": {
+        "gold": 0,
+        "silver": 9900
+    },
+    "styleFileName": "default.css",
+    "danmakuTemplateFileName": "Danmaku.html",
+    "sendGiftTemplateFileName": "SendGift.html",
+    "timerTemplate": "year-month-day hour:minute:second",
+    "userLevelUpperThan": -1,
+    "medalLevelUpperThan": -1,
+    "filterRe": [
+        "^[!|！]\\w+"
+    ],
+    "showDrawDanmaku": true,
+    "width": 1150,
+    "height": 898,
+    "x": 2155,
+    "y": 95,
+    "top": true
 }
