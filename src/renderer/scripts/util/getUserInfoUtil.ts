@@ -1,8 +1,15 @@
 import {fetchAsync} from "../../../common/util";
 import {UserInDB} from "../db";
 
-async function getUserInfo(userId:number) {
+async function getUserInfo(userId:number, danmakuUserName:string):Promise<UserInDB> {
     let user = await window.db.readUserByIdAsync(userId);
+    if(user){
+        if (user.name != danmakuUserName) {
+            // db里的name和danmaku的user的name不同
+            user.name = danmakuUserName;
+            window.db.updateUserAsync(user);
+        }
+    }
     if (!user) {
         try {
             let response = await fetchAsync(`http://api.bilibili.com/x/space/acc/info?mid=${userId}&jsonp=jsonp`, {
@@ -25,6 +32,7 @@ async function getUserInfo(userId:number) {
             window.db.addUserAsync(user);
         }catch (ignored) {}
     }
+
     return user;
 }
 

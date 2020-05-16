@@ -77,7 +77,7 @@ class DanmakuHandler {
     }
 
     async handleDanmaku(danmaku: DANMU_MSG): Promise<void> {
-        let user = await getUserInfo(danmaku.info["2"]["0"]);
+        let user = await getUserInfo(danmaku.info["2"]["0"], danmaku.info["2"]["1"]);
         if (!user) {
             user = getDefaultUser(danmaku.info["2"]["0"], danmaku.info["2"]["1"]);
         }
@@ -86,7 +86,7 @@ class DanmakuHandler {
     }
 
     async handleGift(sendGift: SEND_GIFT): Promise<void> {
-        let user = await getUserInfo(sendGift.data.uid);
+        let user = await getUserInfo(sendGift.data.uid, sendGift.data.uname);
         if (!user) {
             user = getDefaultUser(sendGift.data.uid, sendGift.data.uname);
             user.faceUrl = sendGift.data.face;

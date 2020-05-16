@@ -65,7 +65,7 @@ class DB {
 
     addAsync(storeName: string, object: Object): Promise<Event> {
         return new Promise((resolve, reject) => {
-            var request = this.db.transaction([storeName], 'readwrite')
+            let request = this.db.transaction([storeName], 'readwrite')
                 .objectStore(storeName)
                 .add(object);
 
@@ -81,9 +81,9 @@ class DB {
 
     readAsync(storeName: string, key: string | number) {
         return new Promise((resolve, reject) => {
-            var transaction = this.db.transaction([storeName]);
-            var objectStore = transaction.objectStore(storeName);
-            var request = objectStore.get(key);
+            let transaction = this.db.transaction([storeName]);
+            let objectStore = transaction.objectStore(storeName);
+            let request = objectStore.get(key);
 
             request.onerror = function (event) {
                 reject(event)
@@ -95,12 +95,31 @@ class DB {
         })
     }
 
+    updateAsync(storeName:string, object:Object){
+        return new Promise(((resolve, reject) => {
+            let request = this.db.transaction([storeName], 'readwrite')
+                .objectStore(storeName)
+                .put(object);
+            request.onerror = function (event) {
+                reject(event)
+            };
+
+            request.onsuccess = function (event) {
+                resolve(request.result)
+            };
+        }))
+    }
+
     async addUserAsync(user: UserInDB) {
         return await this.addAsync("user", user);
     }
 
     async readUserByIdAsync(userId: number): Promise<UserInDB> {
         return <UserInDB>await this.readAsync("user", userId);
+    }
+
+    async updateUserAsync(user:UserInDB){
+        return await this.updateAsync("user", user);
     }
 }
 
