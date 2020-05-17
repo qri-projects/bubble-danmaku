@@ -20,9 +20,15 @@
         components:{InnerDanmakuPanel}
     })
     export default class extends Vue {
+        // 消息一收到, 就往outerDanmakuQueue里填.
+        // 因为b站推送的弹幕消息, 是一波一波的
+        // 一波可能会有一大片, 如果收到消息就往view层填, 会显得极其不顺滑.
+        // 所以按一定速率把outerDanmakuQueue里的消息填到danmakuQueue里
+        // danmakuQueue里的消息会反应到view层
         outerDanmakuQueue = new Array<DanmakuWrapper | SendGiftWrapper | GuardBuyWrapper>();
-        comboMap = new Map<string, number>();
         danmakuQueue = new Array<DanmakuWrapper | SendGiftWrapper | GuardBuyWrapper>();
+
+        comboMap = new Map<string, number>();
 
         async handleDanmaku(danmaku: DANMU_MSG): Promise<void> {
             console.log(danmaku)
@@ -41,6 +47,7 @@
         }
 
         addTask(){
+            // 按一定速率把outerDanmakuQueue中的消息往danmakuQueue中填
             let vue = this;
             timerTask.state["perIntervalInsertDanmakuNum"] = 1;
             let launchTask = new Task(50, function() {
