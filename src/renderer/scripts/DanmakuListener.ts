@@ -30,7 +30,7 @@ class Listener {
             })
             .on("online", this.danmakuHandler.handleOnline)
             .on("GUARD_BUY", this.danmakuHandler.handleGuard)
-            .on("SUPER_CHAT_MESSAGE", this.danmakuHandler.handleGuard);
+            .on("SUPER_CHAT_MESSAGE", this.danmakuHandler.handleSuperChat);
         if (store.state.dev) {
             electron.ipcRenderer.on("testSc", (event, scData) => {
                 this.danmakuHandler.handleSuperChat(scData);

@@ -6,7 +6,7 @@ import {createPersistedState, createSharedMutations} from 'vuex-electron'
 import {Config} from "../../common/config/config";
 import {Templates} from "../../main/loadTemplate";
 import {GiftInfo} from "../scripts/@type/giftInfo";
-import {DanmakuWrapper, SendGiftWrapper} from "../scripts/DanmakuHandler";
+import {DanmakuHandler, DanmakuWrapper, SendGiftWrapper} from "../scripts/DanmakuHandler";
 
 Vue.use(Vuex)
 
@@ -41,7 +41,7 @@ const mutations = {
     },
     SET_CONFIG_PATH(state, configPath) {
         state.configPath = configPath;
-    }
+    },
 }
 
 const getters = {
@@ -56,7 +56,7 @@ const actions = {
     },
     setComboNum({commit}, payload) {
         commit("SET_COMBO_NUM", payload)
-    }
+    },
 }
 
 export default new Vuex.Store({

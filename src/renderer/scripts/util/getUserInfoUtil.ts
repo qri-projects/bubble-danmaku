@@ -1,12 +1,20 @@
 import {fetchAsync} from "../../../common/util";
 import {UserInDB} from "../db";
 
-async function getUserInfo(userId:number, danmakuUserName:string):Promise<UserInDB> {
+async function getUserInfo(userId: number, danmakuUserName: String, danmakuUserFace: String): Promise<UserInDB> {
     let user = await window.db.readUserByIdAsync(userId);
-    if(user){
+    if (user) {
+        let userUpdated = false;
         if (user.name != danmakuUserName) {
             // db里的name和danmaku的user的name不同
             user.name = danmakuUserName;
+            userUpdated = true;
+        }
+        if (danmakuUserFace && danmakuUserFace != user.faceUrl) {
+            user.faceUrl = danmakuUserFace;
+            userUpdated = true;
+        }
+        if (userUpdated) {
             window.db.updateUserAsync(user);
         }
     }
@@ -30,17 +38,18 @@ async function getUserInfo(userId:number, danmakuUserName:string):Promise<UserIn
                 topPhotoFileName: data.top_photo
             };
             window.db.addUserAsync(user);
-        }catch (ignored) {}
+        } catch (ignored) {
+        }
     }
 
     return user;
 }
 
-function getDefaultUser(userId:number, userName:string):UserInDB {
+function getDefaultUser(userId: number, userName: String, userFace: String = "https://i0.hdslb.com/bfs/face/member/noface.jpg"): UserInDB {
     return {
         birthday: "",
         description: "",
-        faceUrl: "",
+        faceUrl: userFace,
         id: userId,
         name: userName,
         nickName: "",

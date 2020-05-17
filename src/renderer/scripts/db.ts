@@ -1,8 +1,8 @@
 interface UserInDB {
     id: number;
-    name: string;
+    name: String;
     nickName: string;
-    faceUrl: string;
+    faceUrl: String;
     description: string;
     topPhotoFileName: string;
     birthday: string;

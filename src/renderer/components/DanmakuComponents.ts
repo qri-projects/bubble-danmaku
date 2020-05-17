@@ -91,8 +91,8 @@ let danmaku = Vue.extend({
         return {
             prefixFileName: "",
             userId: 123,
-            userName: "",
-            userHeadImg: "",
+            userName: new String(),
+            userHeadImg: new String(),
             medalLevel: 0,
             medalName: "小黄瓜",
             medalRoomId: 336119,

@@ -35,6 +35,7 @@
     "danmakuPanelComponentName": "default",
     "danmakuTemplateFileName": "Danmaku.html",
     "sendGiftTemplateFileName": "SendGift.html",
+    "superChatPanelComponentName": "default",
     "timerTemplate": "year-month-day hour:minute:second",
     "userLevelUpperThan": -1,
     "medalLevelUpperThan": -1,
