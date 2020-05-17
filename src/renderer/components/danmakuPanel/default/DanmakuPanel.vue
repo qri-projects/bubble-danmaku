@@ -39,6 +39,28 @@
             this.danmakuQueue.push(new DanmakuWrapper(danmaku, user));
         }
 
+        async handleGift(sendGift: SEND_GIFT): Promise<void> {
+            let user = await getUserInfo(sendGift.data.uid, sendGift.data.uname, sendGift.data.face);
+            if (!user) {
+                user = getDefaultUser(sendGift.data.uid, sendGift.data.uname, sendGift.data.face);
+            }
+            console.log(sendGift);
+            let comboId = sendGift.data.batch_combo_id;
+            if (comboId) {
+                if (!this.comboMap.has(comboId)) {
+                    this.danmakuQueue.push(new SendGiftWrapper(sendGift, user, comboId));
+                }
+                if (sendGift.data.super_gift_num) {
+                    this.comboMap.set(comboId, sendGift.data.super_gift_num);
+                } else {
+                    this.comboMap.set(comboId, sendGift.data.num);
+                }
+                console.log(this.comboMap);
+            } else {
+                this.danmakuQueue.push(new SendGiftWrapper(sendGift, user, "-1"));
+            }
+        }
+
         consumeDanmaku() {
             let danmaku = this.outerDanmakuQueue.shift();
             if (danmaku != null) {
@@ -73,8 +95,9 @@
             this.comboMap.set("-1", -1);
             this.addTask();
 
-            // 此步必需, 向父组件注册handleDanmaku方法; 此行之外的皆为内部实现
+            // 此步必需, 向父组件注册handleDanmaku方法; 这两行之外的皆为内部实现可随意调整
             this.$emit("set-handle-danmaku", {"handleDanmaku":this.handleDanmaku})
+            this.$emit("set-handle-gift", {"handleGift":this.handleGift})
         }
     }
 </script>

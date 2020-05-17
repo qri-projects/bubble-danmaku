@@ -1,7 +1,7 @@
-import store from "../store";
+import store from "../../../store";
 import Vue from "vue";
-import { SendGiftWrapper } from "../scripts/DanmakuHandler";
-import { GiftInfo } from "../scripts/@type/giftInfo";
+import { SendGiftWrapper } from "../../../scripts/DanmakuHandler";
+import { GiftInfo } from "../../../scripts/@type/giftInfo";
 
 let sendGift = Vue.extend({
     name: "sendGift",

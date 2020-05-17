@@ -14,8 +14,6 @@ const state = {
     config: new Config(),
     templates: new Templates(),
     gifts: new Map<number, GiftInfo>(),
-    comboMap: new Map<string, number>(),
-    popularNum: -1,
     dev: false,
     configPath: "../../../../config"
 }
@@ -29,12 +27,6 @@ const mutations = {
     },
     SET_GIFTS(state, gifts: Map<number, GiftInfo>) {
         state.gifts = gifts;
-    },
-    SET_POPULAR_NUM(state, popularNum) {
-        state.popularNum = popularNum;
-    },
-    SET_COMBO_NUM(state, {comboId, num}) {
-        state.comboMap[comboId] = num
     },
     SET_IF_DEV(state, dev) {
         state.dev = dev;
@@ -51,12 +43,6 @@ const getters = {
 }
 
 const actions = {
-    setPopularNum({commit}, num) {
-        commit("SET_POPULAR_NUM", num);
-    },
-    setComboNum({commit}, payload) {
-        commit("SET_COMBO_NUM", payload)
-    },
 }
 
 export default new Vuex.Store({

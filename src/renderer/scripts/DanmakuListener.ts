@@ -28,7 +28,9 @@ class Listener {
                     this.danmakuHandler.handleGift(data)
                 }
             })
-            .on("online", this.danmakuHandler.handleOnline)
+            .on("online", (num:number)=>{
+                this.danmakuHandler.handleOnline(num)
+            })
             .on("GUARD_BUY", this.danmakuHandler.handleGuard)
             .on("SUPER_CHAT_MESSAGE", this.danmakuHandler.handleSuperChat);
         if (store.state.dev) {
