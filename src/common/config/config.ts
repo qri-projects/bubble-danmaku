@@ -1,5 +1,5 @@
 import path from "path";
-import {readfileAsync} from "../util";
+import {readfileAsync} from "../utils/util";
 
 const fs = require("fs");
 

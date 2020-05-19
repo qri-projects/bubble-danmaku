@@ -1,8 +1,10 @@
 <template>
     <div id="danmakuPanelHolder">
         <div id="danmakuPanelBg"></div>
-        <danmaku-panel :ref="`danmakuPanel`" @set-handle-danmaku="setHandleDanmaku" @set-handle-gift="setHandleGift" />
-        <super-chat-panel />
+        <div id="mainPanel">
+        <danmaku-panel :ref="`danmakuPanel`" @set-handle-danmaku="setHandleDanmaku" @set-handle-gift="setHandleGift" @set-add-danmaku="setAddDanmaku" />
+        <super-chat-panel @add-to-danmaku-panel="addSuperChatToDanmakuPanel" @set-handle-super-chat="setHandleSuperChat" />
+        </div>
         <extend-panel @set-handle-online="setHandleOnline" />
     </div>
 </template>
@@ -31,6 +33,7 @@
             return {
                 danmakuHandler: danmakuHandler,
                 listener: new Listener(roomId, new DanmakuFilter(), danmakuHandler),
+                addDanmaku: (danmaku:DanmakuWrapper | SendGiftWrapper | GuardBuyWrapper | SuperChatWrapper)=>{}
             };
         },
         methods: {
@@ -45,6 +48,13 @@
             },
             setHandleOnline({handleOnline = (num:number)=>{}}){
                 this.danmakuHandler.handleOnline = handleOnline;
+            },
+            setAddDanmaku({addDanmaku = (danmaku:DanmakuWrapper | SendGiftWrapper | GuardBuyWrapper | SuperChatWrapper)=>{}}){
+                this.addDanmaku = addDanmaku;
+            },
+
+            addSuperChatToDanmakuPanel(payload : {superChatWrapper:SuperChatWrapper}){
+                this.addDanmaku(payload.superChatWrapper);
             }
         },
         created() {

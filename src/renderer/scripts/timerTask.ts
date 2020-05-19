@@ -1,18 +1,20 @@
 class Task{
     interval: number;
     run;
+    name;
 
-    constructor(interval: number, run) {
+    constructor(interval: number, run, name:String) {
         this.interval = interval;
         this.run = run;
+        this.name = name;
     }
 }
 
 class TimerTask{
-    tasks:Array<Task>;
+    tasks:Map<String,Task>;
     state:Map<string, any>;
     constructor() {
-        this.tasks = new Array<Task>()
+        this.tasks = new Map<String, Task>()
         this.state = new Map<string, any>();
     }
 
@@ -21,7 +23,7 @@ class TimerTask{
         setInterval(()=>{
             i += 1;
 
-            for (const task of this.tasks) {
+            for (const task of this.tasks.values()) {
                 if(i % task.interval == 0) {
                     task.run()
                 }
@@ -30,7 +32,13 @@ class TimerTask{
     }
 
     addTask(task:Task){
-        this.tasks.push(task);
+        this.tasks.set(task.name, task);
+    }
+
+    removeTask(task:Task){
+        if (this.tasks.has(task.name)) {
+            this.tasks.delete(task.name);
+        }
     }
 }
 

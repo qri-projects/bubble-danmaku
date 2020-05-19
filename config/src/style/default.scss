@@ -77,9 +77,25 @@ a {
   z-index: -1;
 }
 
-#danmakuPanel {
+#mainPanel{
   width: calc(100vw - #{$resizeFixSize});
   height: calc(100vh - #{$bottomHeight});
+}
+
+#superChatPanel{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  margin-top: calc(#{$bottomHeight} - 100vh);
+}
+
+#danmakuPanel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+
   box-sizing: border-box;
   overflow: scroll;
 
@@ -323,22 +339,4 @@ a {
   width: 55px;
 }
 
-#scPanel {
-  width: calc(100vw - #{$resizeFixSize});
-  height: calc(100vh - #{$bottomHeight});
-  box-sizing: border-box;
-  overflow: scroll;
 
-  * {
-    overflow-anchor: none;
-    -webkit-overflow-anchor: none;
-  }
-
-  #danmakuPanelBottom {
-    overflow-anchor: auto;
-    -webkit-overflow-anchor: auto;
-
-    height: 1px;
-  }
-  z-index: 1;
-}

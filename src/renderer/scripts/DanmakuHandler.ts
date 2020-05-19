@@ -60,12 +60,14 @@ class GuardBuyWrapper {
 class SuperChatWrapper {
     superChat: SUPER_CHAT_MESSAGE;
     user: UserInDB;
+    remainTime: number;
     key: string;
 
     constructor(superChat: SUPER_CHAT_MESSAGE, user: UserInDB) {
         this.superChat = superChat;
         this.user = user;
-        this.key = `superchat-${superChat.data.uid}-${superChat.data.time}`;
+        this.key = `superchat-${superChat.data.uid}-${superChat.data.start_time}`;
+        this.remainTime = superChat.data.time;
     }
 }
 

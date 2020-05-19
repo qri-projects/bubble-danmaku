@@ -1,4 +1,4 @@
-import {fetchAsync, requestGetAsync} from "../../../common/util";
+import {fetchAsync, requestGetAsync} from "../../../common/utils/util";
 import get = Reflect.get;
 
 interface GiftInfo {

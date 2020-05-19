@@ -1,7 +1,7 @@
 import {Config} from "../common/config/config";
 
 import path from "path";
-import {readfileAsync} from "../common/util";
+import {readfileAsync} from "../common/utils/util";
 
 class Templates {
     "danmakuTemplate";

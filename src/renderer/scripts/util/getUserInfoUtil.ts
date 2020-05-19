@@ -1,4 +1,4 @@
-import {fetchAsync} from "../../../common/util";
+import {fetchAsync} from "../../../common/utils/util";
 import {UserInDB} from "../db";
 
 async function getUserInfo(userId: number, danmakuUserName: String, danmakuUserFace: String): Promise<UserInDB> {

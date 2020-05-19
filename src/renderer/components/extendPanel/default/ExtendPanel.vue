@@ -36,7 +36,7 @@
                         .replace("second", (tmp = current.getSeconds()) < 10 ? "0" + tmp : tmp.toString());
                 }
                 timerTask.state["lastDate"] = current;
-            });
+            }, "timerTask");
             timerTask.addTask(setTimeTask);
         }
 

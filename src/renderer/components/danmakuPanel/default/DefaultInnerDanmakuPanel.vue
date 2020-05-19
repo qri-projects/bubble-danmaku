@@ -3,13 +3,14 @@
         <danmaku v-if="dataType == 0" :data="data"></danmaku>
         <sendGift v-else-if="dataType == 1" :data="data" :giftNum="giftNum"></sendGift>
         <danmaku v-else-if="dataType == 2"></danmaku>
+        <div v-else-if="dataType == 3">superchat</div>
     </div>
 </template>
 
 <script lang="ts">
     import {danmaku} from "./DanmakuComponents";
     import {sendGift} from "./SendGiftComponents"
-    import {DanmakuWrapper, GuardBuyWrapper, SendGiftWrapper} from '../../../scripts/DanmakuHandler';
+    import {DanmakuWrapper, GuardBuyWrapper, SendGiftWrapper, SuperChatWrapper} from '../../../scripts/DanmakuHandler';
     import Vue from "vue"
 
     export default Vue.extend({
@@ -23,6 +24,8 @@
                     return 1
                 } else if (this.data instanceof GuardBuyWrapper) {
                     return 2
+                } else if(this.data instanceof SuperChatWrapper){
+                    return 3;
                 }
                 return -1;
             }

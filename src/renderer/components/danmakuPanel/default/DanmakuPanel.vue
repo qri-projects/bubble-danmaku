@@ -14,7 +14,7 @@
     import {Component, Prop, Vue} from "vue-property-decorator"
     import InnerDanmakuPanel from "./DefaultInnerDanmakuPanel.vue";
     import {Task, timerTask} from "../../../scripts/timerTask";
-    import {DanmakuWrapper, GuardBuyWrapper, SendGiftWrapper} from "../../../scripts/DanmakuHandler";
+    import {DanmakuWrapper, GuardBuyWrapper, SendGiftWrapper, SuperChatWrapper} from "../../../scripts/DanmakuHandler";
     import {getDefaultUser, getUserInfo} from "../../../scripts/util/getUserInfoUtil";
     @Component({
         components:{InnerDanmakuPanel}
@@ -26,9 +26,13 @@
         // 所以按一定速率把outerDanmakuQueue里的消息填到danmakuQueue里
         // danmakuQueue里的消息会反应到view层
         outerDanmakuQueue = new Array<DanmakuWrapper | SendGiftWrapper | GuardBuyWrapper>();
-        danmakuQueue = new Array<DanmakuWrapper | SendGiftWrapper | GuardBuyWrapper>();
+        danmakuQueue = new Array<DanmakuWrapper | SendGiftWrapper | GuardBuyWrapper | SuperChatWrapper>();
 
         comboMap = new Map<string, number>();
+
+        addDanmaku(danmaku:DanmakuWrapper | SendGiftWrapper | GuardBuyWrapper | SuperChatWrapper){
+            this.danmakuQueue.push(danmaku);
+        }
 
         async handleDanmaku(danmaku: DANMU_MSG): Promise<void> {
             console.log(danmaku)
@@ -36,7 +40,7 @@
             if (!user) {
                 user = getDefaultUser(danmaku.info["2"]["0"], danmaku.info["2"]["1"]);
             }
-            this.danmakuQueue.push(new DanmakuWrapper(danmaku, user));
+            this.addDanmaku(new DanmakuWrapper(danmaku, user));
         }
 
         async handleGift(sendGift: SEND_GIFT): Promise<void> {
@@ -76,8 +80,8 @@
                 for (let j = 0; j < timerTask.state["perIntervalInsertDanmakuNum"]; j++) {
                     vue.consumeDanmaku();
                 }
-            });
-            let ajustLaunchSpeenTask = new Task(50, function() {
+            }, "consumeDanmakuTask");
+            let adjustLaunchSpeedTask = new Task(50, function() {
                 // 调整速度, 使3秒消耗完
                 let speed = vue.outerDanmakuQueue.length / 3;
                 speed = Math.max(speed, 1);
@@ -86,9 +90,9 @@
                 launchTask.interval = Math.floor(
                     1000 / (speed / timerTask.state["perIntervalInsertDanmakuNum"]) / 20
                 );
-            });
+            }, "adjustLaunchSpeedTask");
             timerTask.addTask(launchTask);
-            timerTask.addTask(ajustLaunchSpeenTask);
+            timerTask.addTask(adjustLaunchSpeedTask);
         }
 
         created(): void {
@@ -98,6 +102,7 @@
             // 此步必需, 向父组件注册handleDanmaku方法; 这两行之外的皆为内部实现可随意调整
             this.$emit("set-handle-danmaku", {"handleDanmaku":this.handleDanmaku})
             this.$emit("set-handle-gift", {"handleGift":this.handleGift})
+            this.$emit("set-add-danmaku", {"addDanmaku": this.addDanmaku});
         }
     }
 </script>
