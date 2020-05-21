@@ -1,6 +1,5 @@
 import DB, { UserInDB } from "./db";
 import { Config } from "../../common/config/config";
-import { Templates } from "../../main/loadTemplate";
 import { GiftInfo } from "./@type/giftInfo";
 import store from "../store";
 import { getDefaultUser, getUserInfo } from "./util/getUserInfoUtil";

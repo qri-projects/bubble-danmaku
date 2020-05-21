@@ -35,6 +35,8 @@
     "danmakuPanelComponentName": "default",
     "danmakuTemplateFileName": "Danmaku.html",
     "sendGiftTemplateFileName": "SendGift.html",
+    "superChatTemplateFileName": "SuperChat.html",
+    "superChatQueueItemTemplateFileName": "SuperChatQueueItem.html",
     "superChatPanelComponentName": "default",
     "extendChatPanelComponentName": "default",
     "timerTemplate": "year-month-day hour:minute:second",
@@ -44,9 +46,9 @@
         "^[!|！]\\w+"
     ],
     "showDrawDanmaku": true,
-    "width": 1150,
-    "height": 898,
-    "x": 2155,
-    "y": 95,
+    "width": 1246,
+    "height": 918,
+    "x": 76,
+    "y": 392,
     "top": true
 }

@@ -1,9 +1,10 @@
 <template>
     <div id="superChatPanel">
+        <div id="superChatQueueHolder">
+            <super-chat-queue-item v-for="superChatData in superChatQueue" :super-chat-data="superChatData" @mouseenter.native="focusSuperChat(superChatData)" @mouseleave.native="clearFocusedSuperChat"></super-chat-queue-item>
+        </div>
         <div v-if="displaySuperChat" id="displaySuperChatHolder">
-            <div>
-                {{ displaySuperChat.superChat.data.message }}
-            </div>
+            <super-chat :super-chat-data="displaySuperChat"></super-chat>
         </div>
     </div>
 </template>
@@ -13,8 +14,12 @@
     import { SuperChatWrapper } from "../../../scripts/DanmakuHandler";
     import { getDefaultUser, getUserInfo } from "../../../scripts/util/getUserInfoUtil";
     import { Task, timerTask } from "../../../scripts/timerTask";
+    import {SuperChat} from "./SuperChatComponent";
+    import {SuperChatQueueItem} from "./SuperChatQueueItemComponent";
 
-    @Component
+    @Component({
+        components:{SuperChat,SuperChatQueueItem}
+    })
     export default class extends Vue {
         superChatQueue = new Array<SuperChatWrapper>();
         displaySuperChat: null|SuperChatWrapper = null;
@@ -43,20 +48,25 @@
             let superChatWrapper = new SuperChatWrapper(superChat, user);
 
             // 切换展示的SuperChat
-            this.displaySuperChat = superChatWrapper;
+            this.focusSuperChat(superChatWrapper);
 
             // 5秒后取消展示, 并在弹幕栏添加
             setTimeout(()=>{
-                vue.displaySuperChat = null;
+                if (this.displaySuperChat == superChatWrapper) {
+                    vue.clearFocusedSuperChat()
+                }
                 this.$emit("add-to-danmaku-panel", {superChatWrapper});
             }, 5000)
 
             // 添加到superChatQueue中, 按剩余时长排序
-            for (let i = 0; i < this.superChatQueue.length; i++) {
-                let innerSuperChat = this.superChatQueue[i];
-                innerSuperChat.remainTime < superChatWrapper.remainTime;
-                this.superChatQueue.splice(i, 0, superChatWrapper);
+            let insertIndex = 0;
+            for (; insertIndex < this.superChatQueue.length; insertIndex++) {
+                let innerSuperChat = this.superChatQueue[insertIndex];
+                if (innerSuperChat.remainTime < superChatWrapper.remainTime) {
+                    break;
+                }
             }
+            this.superChatQueue.splice(insertIndex, 0, superChatWrapper);
 
             // 添加task, 每秒减少remainTime
             let task = new Task(
@@ -81,6 +91,19 @@
                 }
             }, superChat.data.time * 1000);
         }
+
+        focusSuperChat(superChat:SuperChatWrapper){
+            this.displaySuperChat = superChat;
+            console.log("focusaaaaaaa")
+        }
+
+        clearFocusedSuperChat(){
+            this.displaySuperChat = null;
+        }
+        ccc(){
+            console.log(123321123123123)
+        }
+
     }
 </script>
 

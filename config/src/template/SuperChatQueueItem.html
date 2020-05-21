@@ -1,0 +1,22 @@
+<div
+    class="superChatQueueItem"
+    :style="`background-color: ${superChatData.superChat.data.background_bottom_color};
+    border-color:${superChatData.superChat.data.background_bottom_color}`"
+>
+    <div class="headImgHolder">
+        <outer-link :href="`https://space.bilibili.com/${superChatData.superChat.data.uid}`">
+            <img class="headImg" :src="superChatData.superChat.data.user_info.face" />
+        </outer-link>
+    </div>
+    <div class="priceAndTimeHolder">
+        <div class="priceHolder">
+            ￥{{superChatData.superChat.data.price}}
+        </div>
+        <div class="remainTimeHolder">
+            {{superChatData.remainTime}}s
+        </div>
+    </div>
+    <div class="remainTimeClockHolder" :style="`background-color:${superChatData.superChat.data.background_color};border-color:${superChatData.superChat.data.background_color}`">
+            <circle-process :value="superChatData.superChat.data.time - superChatData.remainTime" :max="superChatData.superChat.data.time" width="100%" :bg-color="superChatData.superChat.data.background_color" :color="superChatData.superChat.data.background_bottom_color"></circle-process>
+    </div>
+</div>

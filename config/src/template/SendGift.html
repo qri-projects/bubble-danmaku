@@ -1,10 +1,10 @@
 <div class="gift">
     <div class="user">
-        <a :href="`https://space.bilibili.com/${userId}`">
+        <outer-link :href="`https://space.bilibili.com/${userId}`">
             <div class="headImg">
                 <img :src="`${userFaceUrl}`" alt="" class="headImgImg" />
             </div>
-        </a>
+        </outer-link>
         <div class="userName">{{userName}}</div>
     </div>
     <div class="send">赠送</div>

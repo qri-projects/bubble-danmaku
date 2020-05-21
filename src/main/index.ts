@@ -1,6 +1,6 @@
 import { app, BrowserWindow, Tray, Menu, MenuItem, shell } from "electron";
 import { Config, loadConfigAsync, saveConfigAsync, configFilePath } from "../common/config/config";
-import { loadTemplateText } from "./loadTemplate";
+import {loadTemplateText, TemplatesText} from "./loadTemplate";
 import { fetchGiftInfoAsync, GiftInfo, requestGiftInfoAsync } from "../renderer/scripts/@type/giftInfo";
 import store from "../renderer/store/index";
 import * as testData from "../common/const/TestData";
@@ -20,7 +20,7 @@ if (!dev) {
 let mainWindow: BrowserWindow;
 let config: Config;
 let configRaw: Config;
-let templates;
+let templates:TemplatesText;
 let configLoaded = false;
 let ready = false;
 let gifts: Map<number, GiftInfo> = new Map<number, GiftInfo>();

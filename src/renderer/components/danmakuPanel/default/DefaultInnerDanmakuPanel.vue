@@ -8,8 +8,8 @@
 </template>
 
 <script lang="ts">
-    import {danmaku} from "./DanmakuComponents";
-    import {sendGift} from "./SendGiftComponents"
+    import {danmaku} from "./DanmakuComponent";
+    import {sendGift} from "./SendGiftComponent"
     import {DanmakuWrapper, GuardBuyWrapper, SendGiftWrapper, SuperChatWrapper} from '../../../scripts/DanmakuHandler';
     import Vue from "vue"
 

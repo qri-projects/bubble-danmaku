@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 import {createPersistedState, createSharedMutations} from 'vuex-electron'
 
 import {Config} from "../../common/config/config";
-import {Templates} from "../../main/loadTemplate";
+import {TemplatesText} from "../../main/loadTemplate";
 import {GiftInfo} from "../scripts/@type/giftInfo";
 import {DanmakuHandler, DanmakuWrapper, SendGiftWrapper} from "../scripts/DanmakuHandler";
 
@@ -12,7 +12,7 @@ Vue.use(Vuex)
 
 const state = {
     config: new Config(),
-    templates: new Templates(),
+    templates: new TemplatesText(),
     gifts: new Map<number, GiftInfo>(),
     dev: false,
     configPath: "../../../../config"
@@ -22,7 +22,7 @@ const mutations = {
     SET_CONFIG(state, config: Config) {
         state.config = config;
     },
-    SET_TEMPLATES(state, templates: Templates) {
+    SET_TEMPLATES(state, templates: TemplatesText) {
         state.templates = templates;
     },
     SET_GIFTS(state, gifts: Map<number, GiftInfo>) {

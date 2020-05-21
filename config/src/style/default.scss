@@ -4,7 +4,7 @@ $prefixWidth: 20px;
 $headImgSize: 36px;
 $bottomHeight: 20px;
 
-$giftHeadImgSize:36px;
+$giftHeadImgSize: 36px;
 $giftHeight: 50px;
 
 $medalColors: (1:#61decb, 2:#5896de, 3:#a068f1, 4:#ff86b2, 5:#f6be18);
@@ -77,12 +77,12 @@ a {
   z-index: -1;
 }
 
-#mainPanel{
+#mainPanel {
   width: calc(100vw - #{$resizeFixSize});
   height: calc(100vh - #{$bottomHeight});
 }
 
-#superChatPanel{
+#superChatPanel {
   position: relative;
   width: 100%;
   height: 100%;
@@ -110,6 +110,7 @@ a {
 
     height: 1px;
   }
+
   z-index: 1;
 }
 
@@ -166,7 +167,7 @@ a {
     text-shadow: 0 0 4px white;
   }
 
-  .content{
+  .content {
     font-weight: 700;
     text-shadow: 0 0 4px white;
   }
@@ -251,7 +252,7 @@ a {
 
 }
 
-.gift{
+.gift {
   display: flex;
   flex-direction: row;
   margin-top: 8px;
@@ -268,7 +269,7 @@ a {
   background-color: rgba(81, 167, 255, 0.38);
   box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.25);
 
-  .user{
+  .user {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -276,7 +277,7 @@ a {
     max-width: 84px
   }
 
-  .userName{
+  .userName {
     color: white;
     font-weight: bold;
     text-shadow: 0 0 4px black;
@@ -295,21 +296,23 @@ a {
     box-shadow: 2px 2px 3px 0px #00000078;
   }
 
-  .giftImg{
+  .giftImg {
     width: $giftHeight;
     height: $giftHeight;
   }
 
   $sendTextTextShadow: 1px black;
-  .send{
+
+  .send {
     font-size: 16px;
     font-weight: bolder;
     color: white;
     text-shadow: 1px 0px $sendTextTextShadow, -1px 0px $sendTextTextShadow, 0px -1px $sendTextTextShadow, 0px 1px $sendTextTextShadow;
   }
 
-  $giftTextTextShadow:2px black;
-  .giftNum{
+  $giftTextTextShadow: 2px black;
+
+  .giftNum {
     min-width: 40px;
     color: white;
     text-shadow: 1px 0px $giftTextTextShadow, -1px 0px $giftTextTextShadow, 0px -1px $giftTextTextShadow, 0px 1px $giftTextTextShadow;
@@ -339,4 +342,174 @@ a {
   width: 55px;
 }
 
+.card-detail {
+  position: relative;
+  margin: 0px 8px 10px 20px;
+  z-index: 2;
+  min-height: 88px;
+}
+.card-item-middle-top {
+  border-radius: 6px 6px 0 0;
+  height: 50px;
+  background-position: 130%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 8px 10px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.card-detail .card-item-middle-top .card-item-middle-top-left .icon-face-frame, .card-detail .card-item-middle-top .card-item-middle-top-left .icon-face{
+  width: 30px;
+  height: 30px;
+  border-radius: 17px;
+  background-size: cover;
+  background-position: 50%;
+  background-repeat: no-repeat;
+}
+.card-detail .card-item-middle-top .card-item-middle-top-left .icon-face-frame{
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  top: 9px;
+  left: 9px;
+}
 
+.card-detail .card-item-middle-top .card-item-middle-top-right {
+  margin: 2px 0 0 6px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  color: #333;
+  width: 100%;
+}
+.card-detail .card-item-middle-top .card-item-middle-top-right .name {
+  opacity: .78;
+  font-size: 12px;
+}
+.card-detail .card-item-middle-top .card-item-middle-top-right .content-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+}
+.card-detail .card-item-middle-top .card-item-middle-top-right  {
+  margin: 2px 0 0 6px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  color: #333;
+  width: 100%;
+}
+.card-detail .card-item-middle-top .card-item-middle-top-right .content-bottom .price span {
+  font-size: 12px;
+  color: #999;
+}
+.card-detail .card-item-middle-bottom {
+  position: relative;
+  padding: 8px 10px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 0px 0px 6px 6px;
+  min-height: 38px;
+}
+.card-detail .card-item-middle-bottom .input-contain, .card-detail .card-item-middle-bottom .input-trans-contain {
+  position: relative;
+  min-height: 12px;
+  word-wrap: break-word;
+}
+.card-detail .card-item-middle-bottom .input-contain .text, .card-detail .card-item-middle-bottom .input-trans-contain .text {
+  font-size: 12px;
+  color: #fff;
+  text-align: left;
+  line-height: 20px;
+}
+.card-detail .card-item-middle-bottom .bottom-background {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 16px;
+  height: 16px;
+  background-position: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+$superChatQueueItemHeight: 38px;
+$superChatQueueItemBorder: 2px;
+$superChatQueueItemRemainTimeClockWidth:$superChatQueueItemHeight - 4px;
+#superChatQueueHolder {
+  width: 100%;
+  height: $superChatQueueItemHeight;
+  user-select: none;
+
+  .superChatQueueItem {
+    height: $superChatQueueItemHeight;
+    border-radius: $superChatQueueItemHeight/2;
+    border: 2px solid red;
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    float: left;
+    .headImgHolder {
+      width: $superChatQueueItemHeight - 2 * $superChatQueueItemBorder;
+      height: $superChatQueueItemHeight - 2 * $superChatQueueItemBorder;
+      border-radius: ($superChatQueueItemHeight - 2 * $superChatQueueItemBorder)/2;
+    }
+    .headImg {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+
+    .priceAndTimeHolder {
+      display: flex;
+      flex-direction: column;
+      margin-left: 5px;
+      margin-right: 5px;
+      width: 30px;
+
+      .priceHolder{
+        color: white;
+        cursor: default;
+      }
+      .remainTimeHolder {
+        font-size: 11px;
+        color: #ccc;
+        text-align: end;
+        cursor: default;
+      }
+    }
+
+    .remainTimeClockHolder{
+      width: $superChatQueueItemRemainTimeClockWidth;
+      height: $superChatQueueItemRemainTimeClockWidth;
+      border: 2px solid white;
+      border-radius: $superChatQueueItemRemainTimeClockWidth / 2;
+      margin-right: 1px;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+  }
+}

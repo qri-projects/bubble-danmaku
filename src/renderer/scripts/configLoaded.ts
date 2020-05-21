@@ -1,6 +1,5 @@
 import electron from "electron";
 import { Config } from "../../common/config/config";
-import { Templates } from "../../main/loadTemplate";
 import DB from "./db";
 import { fetchGiftInfoAsync, GiftInfo } from "./@type/giftInfo";
 
