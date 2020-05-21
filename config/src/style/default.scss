@@ -348,6 +348,9 @@ a {
   z-index: 2;
   min-height: 88px;
 }
+.danmakuPanel .card-detail{
+  margin: 0px 0px 10px 20px;
+}
 .card-item-middle-top {
   border-radius: 6px 6px 0 0;
   height: 50px;
@@ -457,14 +460,20 @@ a {
 }
 
 $superChatQueueItemHeight: 38px;
+$superCHatQueueItemHolderFixScrollHeight: 7px;
 $superChatQueueItemBorder: 2px;
-$superChatQueueItemRemainTimeClockWidth:$superChatQueueItemHeight - 4px;
+$superChatQueueItemCircleWidth:$superChatQueueItemHeight - 4px;
 #superChatQueueHolder {
-  width: 100%;
-  height: $superChatQueueItemHeight;
+  width: calc(100% - #{($prefixWidth + $scrollBarWidth)});;
+  height: $superChatQueueItemHeight + $superCHatQueueItemHolderFixScrollHeight;
   user-select: none;
+  margin: 0 8px 2px 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
 
   .superChatQueueItem {
+    margin-right: 4px;
     height: $superChatQueueItemHeight;
     border-radius: $superChatQueueItemHeight/2;
     border: 2px solid red;
@@ -472,6 +481,7 @@ $superChatQueueItemRemainTimeClockWidth:$superChatQueueItemHeight - 4px;
     align-items: center;
     display: flex;
     float: left;
+
     .headImgHolder {
       width: $superChatQueueItemHeight - 2 * $superChatQueueItemBorder;
       height: $superChatQueueItemHeight - 2 * $superChatQueueItemBorder;
@@ -503,10 +513,10 @@ $superChatQueueItemRemainTimeClockWidth:$superChatQueueItemHeight - 4px;
     }
 
     .remainTimeClockHolder{
-      width: $superChatQueueItemRemainTimeClockWidth;
-      height: $superChatQueueItemRemainTimeClockWidth;
+      width: $superChatQueueItemCircleWidth;
+      height: $superChatQueueItemCircleWidth;
       border: 2px solid white;
-      border-radius: $superChatQueueItemRemainTimeClockWidth / 2;
+      border-radius: $superChatQueueItemCircleWidth / 2;
       margin-right: 1px;
       overflow: hidden;
       box-sizing: border-box;

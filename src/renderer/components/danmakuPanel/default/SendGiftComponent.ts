@@ -3,7 +3,7 @@ import Vue from "vue";
 import { SendGiftWrapper } from "../../../scripts/DanmakuHandler";
 import { GiftInfo } from "../../../scripts/@type/giftInfo";
 
-let sendGift = Vue.extend({
+let SendGift = Vue.extend({
     name: "sendGift",
     template: store.state.templates.sendGiftTemplate,
     props: {
@@ -40,4 +40,4 @@ let sendGift = Vue.extend({
     },
 });
 
-export {sendGift};
+export default SendGift;

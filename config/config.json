@@ -37,6 +37,7 @@
     "sendGiftTemplateFileName": "SendGift.html",
     "superChatTemplateFileName": "SuperChat.html",
     "superChatQueueItemTemplateFileName": "SuperChatQueueItem.html",
+    "innerSuperChatTemplateFileName": "InnerSuperChat.html",
     "superChatPanelComponentName": "default",
     "extendChatPanelComponentName": "default",
     "timerTemplate": "year-month-day hour:minute:second",
@@ -46,9 +47,9 @@
         "^[!|！]\\w+"
     ],
     "showDrawDanmaku": true,
-    "width": 1246,
-    "height": 918,
-    "x": 76,
-    "y": 392,
+    "width": 1001,
+    "height": 899,
+    "x": 455,
+    "y": 113,
     "top": true
 }

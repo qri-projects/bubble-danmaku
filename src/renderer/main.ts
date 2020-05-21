@@ -12,13 +12,7 @@ Vue.config.productionTip = false
 
 declare global {
   interface Window { db: DB; }
-  interface Vue {
-    "$shell":Shell
-  }
 }
-
-Vue.prototype.$shell = shell
-
 
 Vue.component("outer-link", OuterLink);
 

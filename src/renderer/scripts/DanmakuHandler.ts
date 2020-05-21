@@ -65,7 +65,7 @@ class SuperChatWrapper {
     constructor(superChat: SUPER_CHAT_MESSAGE, user: UserInDB) {
         this.superChat = superChat;
         this.user = user;
-        this.key = `superchat-${superChat.data.uid}-${superChat.data.start_time}`;
+        this.key = `superchat-${superChat.data.uid}-${superChat.data.start_time}-${Math.random()}`;
         this.remainTime = superChat.data.time;
     }
 }

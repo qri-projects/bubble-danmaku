@@ -6,7 +6,8 @@ import CircleProcess from "./CircleProcess.vue";
     template: store.state.templates.superChatTemplate
 })
 class SuperChat extends Vue {
-    @Prop({type:SuperChatWrapper}) superChatData;
+    @Prop({type: SuperChatWrapper}) superChatData;
 }
+
 
 export {SuperChat};

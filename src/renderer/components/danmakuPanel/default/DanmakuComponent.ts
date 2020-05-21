@@ -5,7 +5,7 @@ import {UserInDB} from "../../../scripts/db";
 import {Component, Model, Prop} from "vue-property-decorator";
 import {DanmakuWrapper} from "../../../scripts/DanmakuHandler";
 
-let danmaku = Vue.extend({
+let Danmaku = Vue.extend({
     name: "danmaku",
     template: store.state.templates.danmakuTemplate,
     props: {
@@ -59,4 +59,4 @@ let danmaku = Vue.extend({
     },
 });
 
-export {danmaku};
+export default Danmaku;

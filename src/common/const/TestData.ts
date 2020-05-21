@@ -38,7 +38,7 @@ const scData = {
             "title": "title-179-1",
             "manager": 0
         },
-        "time": 60,
+        "time": 7200,
         "start_time": 1589636618,
         "end_time": 1589636678,
         "gift": {"num": 1, "gift_id": 12000, "gift_name": "醒目留言"}

@@ -1,0 +1,43 @@
+<div class="card-detail">
+    <div
+            class="card-item-middle-top"
+            :style='`border: 1px solid ${data.superChat.data.background_bottom_color}; background-image: url("${data.superChat.data.background_image}"); background-color: ${data.superChat.data.background_color};`'
+    >
+        <div class="card-item-middle-top-left">
+            <div
+                    class="icon-face"
+                    :style='`background-image: url("${data.superChat.data.user_info.face}");`'
+            ></div>
+            <div
+                    class="icon-face-frame"
+                    :style='`background-image: url("${data.superChat.data.user_info.face_frame}");`'
+            ></div>
+        </div>
+        <div class="card-item-middle-top-right">
+            <div class="name isVip">{{data.superChat.data.user_info.uname}}</div>
+            <div class="content-bottom">
+                <div class="price">
+                    ￥{{data.superChat.data.price}}
+                    <span class="exp">（{{data.superChat.data.price/10}}万金瓜子）</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div
+            class="card-item-middle-bottom"
+            :style="`background-color: ${data.superChat.data.background_bottom_color};`"
+    >
+        <div class="input-contain">
+            <span class="text">
+                {{data.superChat.data.message}}
+            </span>
+        </div>
+        <!---->
+        <div
+                class="bottom-background"
+                :style='`background-image: url("${data.superChat.data.background_icon}");`'
+        ></div>
+    </div>
+    <div class="more"></div>
+    <!---->
+</div>

@@ -26,6 +26,7 @@ class Config {
     sendGiftTemplateFileName: String = "SendGift.html";
     superChatTemplateFileName: String = "SuperChat.html";
     superChatQueueItemTemplateFileName: String = "SuperChatQueueItem.html";
+    innerSuperChatTemplateFileName: String = "InnerSuperChat.html";
     superChatPanelComponentName:string = "default";
     extendPanelComponentName:string = "default";
     prefixFileName: Array<string> = ["guard0.png", "guard1.png", "guard2.png", "guard3.png"];

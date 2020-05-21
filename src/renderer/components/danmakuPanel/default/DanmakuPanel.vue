@@ -12,7 +12,7 @@
 
 <script lang="ts">
     import {Component, Prop, Vue} from "vue-property-decorator"
-    import InnerDanmakuPanel from "./DefaultInnerDanmakuPanel.vue";
+    import InnerDanmakuPanel from "./InnerDanmakuPanel.vue";
     import {Task, timerTask} from "../../../scripts/timerTask";
     import {DanmakuWrapper, GuardBuyWrapper, SendGiftWrapper, SuperChatWrapper} from "../../../scripts/DanmakuHandler";
     import {getDefaultUser, getUserInfo} from "../../../scripts/util/getUserInfoUtil";
