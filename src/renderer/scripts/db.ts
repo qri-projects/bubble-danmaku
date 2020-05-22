@@ -1,4 +1,4 @@
-interface UserInDB {
+class UserInDB {
     id: number;
     name: String;
     nickName: string;
@@ -6,6 +6,16 @@ interface UserInDB {
     description: string;
     topPhotoFileName: string;
     birthday: string;
+
+    constructor(id: number, name: String, nickName: string, faceUrl: String, description: string, topPhotoFileName: string, birthday: string) {
+        this.id = id;
+        this.name = name;
+        this.nickName = nickName;
+        this.faceUrl = faceUrl;
+        this.description = description;
+        this.topPhotoFileName = topPhotoFileName;
+        this.birthday = birthday;
+    }
 }
 
 let dbConst = {

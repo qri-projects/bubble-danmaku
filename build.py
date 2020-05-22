@@ -30,7 +30,7 @@ os.rename(f"{path}/build/win-unpacked", targetPath)
 
 with open(configFilePath, "r", encoding="utf8") as f:
     config = json.load(f)
-    config["roomId"] = 336119
+
 with open(configFilePath, "w", encoding="utf8") as f:
     json.dump(config, f,indent=4,separators=(', ',': '))
 

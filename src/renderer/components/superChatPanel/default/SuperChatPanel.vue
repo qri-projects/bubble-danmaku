@@ -32,6 +32,7 @@
         displaySuperChat: null | SuperChatWrapper = null;
 
         created(): void {
+
             this.$emit("set-handle-super-chat", { "handleSuperChat": this.handleSuperChat });
         }
 
