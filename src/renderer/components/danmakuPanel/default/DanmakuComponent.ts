@@ -1,70 +1,43 @@
-import Vue from "vue";
+import {Component, Prop, Vue} from "vue-property-decorator";
 import store from "../../../store";
-import {Config} from "../../../../common/config/config";
-import {UserInDB} from "../../../scripts/db";
-import {Component, Model, Prop} from "vue-property-decorator";
-import {DanmakuWrapper} from "../../../scripts/DanmakuHandler";
-import {getDefaultUser} from "../../../scripts/util/getUserInfoUtil";
+import {DanmakuWrapper, SuperChatWrapper} from "../../../scripts/DanmakuHandler";
+import {getUserInfo} from "../../../scripts/util/getUserInfoUtil";
 
-let Danmaku = Vue.extend({
-    name: "danmaku",
+@Component({
     template: store.state.templates.danmakuTemplate,
-    props: {
-        "data": DanmakuWrapper,
-    },
-    data() {
-        return {
-            prefixFileName: "",
-            userId: 123,
-            userName: new String(),
-            userHeadImg: new String(),
-            medalLevel: 0,
-            medalName: "小黄瓜",
-            medalRoomId: 336119,
-            userLevel: 0,
-            userNameStyle: "",
-            content: "",
-            privilegeType: 0,
-            user: getDefaultUser()
-        };
-    },
-    methods:{
-        focusUser(){
-            store.dispatch("SET_FOCUS_USER", {"userInDB":this.user});
-        }
-    },
-    created() {
-        let data: DanmakuWrapper = this.data;
-        let danmakuMsg = data.danmaku;
-        let user = data.user;
-        this.user = user;
-        let info = danmakuMsg.info;
-        this.privilegeType = info[7] || 0;
+})
+class Danmaku extends Vue {
+    @Prop({ type: DanmakuWrapper }) data;
 
-        this.prefixFileName = store.state.config.prefixFileName[this.privilegeType];
-        this.userId = user.id;
-        this.userName = user.nickName ? user.nickName : user.name;
-        this.userHeadImg = user.faceUrl;
-        let medal = info["3"];
-        if (medal != null && medal.length !== 0) {
-            this.medalName = medal[1];
-            this.medalRoomId = parseInt(`${medal[3]}`);
-            this.medalLevel = medal[0];
-        }
-        this.userLevel = info["4"]["0"];
-        if (user.nickName) {
-            this.userNameStyle = `color: ${store.state.config.favoriteUserNameColor} !important`;
+    get user(){
+        return this.$store.getters.getUser(this.data.user.id);
+    }
+
+    get privilegeType(){
+        return this.data.danmaku.info[7] || 0;
+    }
+
+    get prefixFileName() {
+        return store.state.config.prefixFileName[this.privilegeType];
+    }
+
+    get userNameStyle(){
+        if (this.user.nickName) {
+            return `color: ${store.state.config.favoriteUserNameColor} !important`;
         } else if (this.privilegeType) {
-            this.userNameStyle = `color:${store.state.config.guardUserNameColor[this.privilegeType]} !important`;
+            return `color:${store.state.config.guardUserNameColor[this.privilegeType]} !important`;
         } else {
             let color: String =
                 store.state.config.userNameRandColors[
                     Math.floor(Math.random() * store.state.config.userNameRandColors.length)
                     ];
-            this.userNameStyle = `color: ${color} !important`;
+            return `color: ${color} !important`;
         }
-        this.content = info[1]
-    },
-});
+    }
+
+    focusUser(){
+        this.$store.dispatch("SET_FOCUS_USER", {"userInDB":this.user});
+    }
+}
 
 export default Danmaku;

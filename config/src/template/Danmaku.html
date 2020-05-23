@@ -1,21 +1,21 @@
-<div :class="`danmaku user_id_${userId}${privilegeType?` guard guard_${privilegeType}` : ''}${this.favorite ? ' favorite' : ''}`">
+<div :class="`danmaku user_id_${user.id}${privilegeType?` guard guard_${privilegeType}` : ''}${user.nickName ? ' favorite' : ''}`">
     <div v-if="$store.state.config.showGuardPrefix" class="prefix">
         <img class="prefixImg" :src="`${$store.state.configPath}/src/image/${prefixFileName}`" alt="" />
     </div>
-        <div class="headImg" v-if="$store.state.config.showUserHeadImg" @click="focusUser">
-            <img :src="`${userHeadImg}`" alt="" class="headImgImg" />
-        </div>
+    <div class="headImg" v-if="$store.state.config.showUserHeadImg" @click="focusUser">
+        <img :src="`${user.faceUrl}`" alt="" class="headImgImg" />
+    </div>
     <div class="line">
-        <span v-if="$store.state.config.showUserMedal && medalLevel" :class="`userMedal medalLevel-${medalLevel}`">
-            <span class="medalName">{{medalName}}</span>
-            <span class="medalLevel">{{medalLevel}}</span>
+        <span v-if="$store.state.config.showUserMedal && user.medal.medalLevel" :class="`userMedal medalLevel-${user.medal.medalLevel}`">
+            <span class="medalName">{{user.medal.medalName}}</span>
+            <span class="medalLevel">{{user.medal.medalLevel}}</span>
         </span>
-        <span v-if="$store.state.config.showUserLevel" :class="`ul ul-${userLevel}`">
-            UL {{userLevel}}
+        <span v-if="$store.state.config.showUserLevel" :class="`ul ul-${user.userLevel}`">
+            UL {{user.userLevel}}
         </span>
-        <outer-link v-if="$store.state.config.showUserName" :href="`https://space.bilibili.com/${userId}`">
-            <span class="userName" :style="userNameStyle">{{userName}}&nbsp;:</span>
+        <outer-link v-if="$store.state.config.showUserName" :href="`https://space.bilibili.com/${user.id}`">
+            <span class="userName" :style="userNameStyle">{{user.nickName?user.nickName:user.name}}&nbsp;:</span>
         </outer-link>
-        <span class="content">{{content}}</span>
+        <span class="content">{{data.danmaku.info["1"]}}</span>
     </div>
 </div>

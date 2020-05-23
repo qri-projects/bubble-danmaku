@@ -45,13 +45,15 @@ const mutations = {
         state.focusUser.nickName = nickName;
     },
     SET_USER_IN_CACHE(state, user:UserInDB){
-        state.usersCache[user.id] = user;
+        let usersCache = {...state.usersCache};
+        usersCache[user.id] = user;
+        state.usersCache = usersCache;
     }
 }
 
 const getters = {
-    hasComboId: (state) => (comboId) => {
-        return state.comboMap.has(comboId)
+    getUser: (state) => (userId) => {
+        return state.usersCache[userId]
     }
 }
 

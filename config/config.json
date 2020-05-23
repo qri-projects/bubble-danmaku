@@ -47,9 +47,9 @@
         "^[!|！]\\w+"
     ],
     "showDrawDanmaku": true,
-    "width": 747,
-    "height": 651,
-    "x": 566,
-    "y": 265,
+    "width": 1089,
+    "height": 769,
+    "x": 161,
+    "y": 729,
     "top": true
 }

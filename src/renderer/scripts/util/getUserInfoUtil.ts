@@ -2,11 +2,13 @@ import {fetchAsync} from "../../../common/utils/util";
 import {UserInDB, UserInDBMedal, userInDBMedalEqual} from "../db";
 import store from "../../store";
 
-async function getUserInfo(userId: number, danmakuUserName: String = "", danmakuUserFace: String = "", medal: UserInDBMedal | null = null, userLevel: Number | null = null, guardLevel:Number|null): Promise<UserInDB> {
+async function getUserInfo(userId: number, danmakuUserName: String = "", danmakuUserFace: String = "", medal: UserInDBMedal | null = null, userLevel: Number | null = null, guardLevel: Number | null): Promise<UserInDB> {
+    let user: UserInDB;
     if (store.state.usersCache.hasOwnProperty(userId)) {
-        return store.state.usersCache[userId];
+        user = store.state.usersCache[userId];
+    } else {
+        user = await window.db.readUserByIdAsync(userId);
     }
-    let user = await window.db.readUserByIdAsync(userId);
     if (user) {
         let userUpdated = false;
         if (danmakuUserName && user.name != danmakuUserName) {
@@ -26,12 +28,13 @@ async function getUserInfo(userId: number, danmakuUserName: String = "", danmaku
             user.userLevel = userLevel;
             userUpdated = true;
         }
-        if(guardLevel != user.guardLevel){
+        if (guardLevel != user.guardLevel) {
             user.guardLevel = guardLevel;
             userUpdated = true;
         }
         if (userUpdated) {
             window.db.updateUserAsync(user);
+            store.dispatch("SET_USER_IN_CACHE", {user});
         }
     }
     if (!user) {
@@ -57,10 +60,10 @@ async function getUserInfo(userId: number, danmakuUserName: String = "", danmaku
                 guardLevel: guardLevel
             };
             window.db.addUserAsync(user);
+            store.dispatch("SET_USER_IN_CACHE", {user});
         } catch (ignored) {
         }
     }
-    store.dispatch("SET_USER_IN_CACHE", {user});
     return user;
 }
 
@@ -80,7 +83,7 @@ function getDefaultUser(userId: number = 13578650, userName: String = "完美潇
             roomId: 4767523
         },
         userLevel: 16,
-        guardLevel:1
+        guardLevel: 1
     };
 }
 
