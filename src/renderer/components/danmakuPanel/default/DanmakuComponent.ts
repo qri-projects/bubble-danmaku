@@ -4,6 +4,7 @@ import {Config} from "../../../../common/config/config";
 import {UserInDB} from "../../../scripts/db";
 import {Component, Model, Prop} from "vue-property-decorator";
 import {DanmakuWrapper} from "../../../scripts/DanmakuHandler";
+import {getDefaultUser} from "../../../scripts/util/getUserInfoUtil";
 
 let Danmaku = Vue.extend({
     name: "danmaku",
@@ -23,13 +24,20 @@ let Danmaku = Vue.extend({
             userLevel: 0,
             userNameStyle: "",
             content: "",
-            privilegeType: 0
+            privilegeType: 0,
+            user: getDefaultUser()
         };
+    },
+    methods:{
+        focusUser(){
+            store.dispatch("SET_FOCUS_USER", {"userInDB":this.user});
+        }
     },
     created() {
         let data: DanmakuWrapper = this.data;
         let danmakuMsg = data.danmaku;
         let user = data.user;
+        this.user = user;
         let info = danmakuMsg.info;
         this.privilegeType = info[7] || 0;
 

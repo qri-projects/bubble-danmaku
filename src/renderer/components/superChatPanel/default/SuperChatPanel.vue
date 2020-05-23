@@ -1,5 +1,5 @@
 <template>
-    <div id="superChatPanel">
+    <div id="superChatPanel" v-show="superChatQueue.length">
         <div id="superChatQueueHolder" :ref="`superChatQueueHolder`">
             <super-chat-queue-item
                 v-for="superChatData in superChatQueue"
@@ -23,6 +23,7 @@
     import { Task, timerTask } from "../../../scripts/timerTask";
     import { SuperChat } from "./SuperChatComponent";
     import { SuperChatQueueItem } from "./SuperChatQueueItemComponent";
+    import {UserInDBMedal} from "../../../scripts/db";
 
     @Component({
         components: { SuperChat, SuperChatQueueItem },
@@ -38,12 +39,16 @@
 
         async handleSuperChat(superChat: SUPER_CHAT_MESSAGE) {
             let vue = this;
+            let userInDBMedal:UserInDBMedal = new UserInDBMedal(superChat.data.medal_info.medal_level, superChat.data.medal_info.medal_name, superChat.data.medal_info.anchor_uname, superChat.data.medal_info.anchor_roomid);
 
             // 构造superChatWrapper
             let user = await getUserInfo(
                 superChat.data.uid,
                 superChat.data.user_info.uname,
-                superChat.data.user_info.face
+                superChat.data.user_info.face,
+                userInDBMedal,
+                superChat.data.user_info.user_level,
+                superChat.data.user_info.guard_level
             );
             if (!user) {
                 user = getDefaultUser(

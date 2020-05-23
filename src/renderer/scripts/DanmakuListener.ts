@@ -31,11 +31,14 @@ class Listener {
             .on("online", (num:number)=>{
                 this.danmakuHandler.handleOnline(num)
             })
-            .on("GUARD_BUY", this.danmakuHandler.handleGuard)
+            .on("GUARD_BUY", (guardBuy:GUARD_BUY)=>{this.danmakuHandler.handleGuard(guardBuy)})
             .on("SUPER_CHAT_MESSAGE", (superChat:SUPER_CHAT_MESSAGE)=>{this.danmakuHandler.handleSuperChat(superChat)});
         if (store.state.dev) {
-            electron.ipcRenderer.on("testSc", (event, scData) => {
-                this.danmakuHandler.handleSuperChat(scData);
+            electron.ipcRenderer.on("testSuperChat", (event, superChatData) => {
+                this.danmakuHandler.handleSuperChat(superChatData);
+            });
+            electron.ipcRenderer.on("testGuardBuy", (event, guardBuyData) => {
+                this.danmakuHandler.handleGuard(guardBuyData);
             });
         }
 

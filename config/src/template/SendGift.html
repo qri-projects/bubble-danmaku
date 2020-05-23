@@ -1,11 +1,9 @@
 <div class="gift">
     <div class="user">
+        <img :src="`${userFaceUrl}`" alt="" class="headImgImg" @click="focusUser" />
         <outer-link :href="`https://space.bilibili.com/${userId}`">
-            <div class="headImg">
-                <img :src="`${userFaceUrl}`" alt="" class="headImgImg" />
-            </div>
+            <div class="userName">{{userName}}</div>
         </outer-link>
-        <div class="userName">{{userName}}</div>
     </div>
     <div class="send">赠送</div>
     <img class="giftImg" :src="`${giftImg}`" />

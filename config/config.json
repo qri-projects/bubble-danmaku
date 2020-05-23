@@ -1,5 +1,5 @@
 {
-    "roomId": 876396,
+    "roomId": 336116,
     "showUserHeadImg": true,
     "showUserName": true,
     "showUserMedal": true,
@@ -47,9 +47,9 @@
         "^[!|！]\\w+"
     ],
     "showDrawDanmaku": true,
-    "width": 704,
-    "height": 895,
-    "x": 792,
-    "y": 209,
+    "width": 747,
+    "height": 651,
+    "x": 566,
+    "y": 265,
     "top": true
 }

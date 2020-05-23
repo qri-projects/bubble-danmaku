@@ -5,10 +5,8 @@
     :style="`background-color: ${superChatData.superChat.data.background_bottom_color};
     border-color:${superChatData.superChat.data.background_bottom_color}`"
 >
-    <div class="headImgHolder">
-        <outer-link :href="`https://space.bilibili.com/${superChatData.superChat.data.uid}`">
-            <img class="headImg" :src="superChatData.superChat.data.user_info.face" />
-        </outer-link>
+    <div class="headImgHolder" @click="focusUser">
+        <img class="headImg" :src="superChatData.superChat.data.user_info.face" />
     </div>
     <div class="priceAndTimeHolder">
         <div class="priceHolder">

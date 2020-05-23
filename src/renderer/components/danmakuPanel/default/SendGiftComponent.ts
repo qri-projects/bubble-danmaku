@@ -19,6 +19,11 @@ let SendGift = Vue.extend({
             giftNumber:1
         };
     },
+    methods:{
+        focusUser(){
+            store.dispatch("SET_FOCUS_USER", {"userInDB":this.data.user});
+        }
+    },
     created() {
         let data: SendGiftWrapper = this.data;
         let sendGift = data.sendGift;

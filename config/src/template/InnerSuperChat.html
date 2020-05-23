@@ -3,7 +3,7 @@
             class="card-item-middle-top"
             :style='`border: 1px solid ${data.superChat.data.background_bottom_color}; background-image: url("${data.superChat.data.background_image}"); background-color: ${data.superChat.data.background_color};`'
     >
-        <div class="card-item-middle-top-left">
+        <div class="card-item-middle-top-left" @click="focusUser">
             <div
                     class="icon-face"
                     :style='`background-image: url("${data.superChat.data.user_info.face}");`'
@@ -14,7 +14,9 @@
             ></div>
         </div>
         <div class="card-item-middle-top-right">
-            <div class="name isVip">{{data.superChat.data.user_info.uname}}</div>
+            <outer-link :href="`https://space.bilibili.com/${data.superChat.data.uid}`">
+                <div class="name isVip">{{data.superChat.data.user_info.uname}}</div>
+            </outer-link>
             <div class="content-bottom">
                 <div class="price">
                     ￥{{data.superChat.data.price}}

@@ -14,6 +14,9 @@ class SuperChatQueueItem extends Vue {
         // @ts-ignore
         this.$emit("set-holder-scoll",this.$el.offsetLeft - 20);
     }
+    focusUser(){
+        store.dispatch("SET_FOCUS_USER", {"userInDB":this.superChatData.user});
+    }
 }
 
 export { SuperChatQueueItem };

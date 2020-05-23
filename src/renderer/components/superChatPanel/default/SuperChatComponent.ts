@@ -7,6 +7,9 @@ import CircleProcess from "./CircleProcess.vue";
 })
 class SuperChat extends Vue {
     @Prop({type: SuperChatWrapper}) superChatData;
+    focusUser(){
+        store.dispatch("SET_FOCUS_USER", {"userInDB":this.superChatData.user});
+    }
 }
 
 

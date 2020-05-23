@@ -5,7 +5,6 @@ class DanmakuFilter {
         let reStrings = store.state.config.filterRe;
         this.res = [];
         for (let re of reStrings) {
-            console.log("re",re)
             this.res.push(new RegExp(re));
         }
         this.roomId = store.state.config.roomId;

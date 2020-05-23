@@ -1,5 +1,6 @@
-const scData = {
-    "cmd": "SUPER_CHAT_MESSAGE", "data": {
+const SUPER_CHAT_DATA = {
+    "cmd": "SUPER_CHAT_MESSAGE",
+    "data": {
         "id": "308797",
         "uid": 26549632,
         "price": 30,
@@ -23,7 +24,7 @@ const scData = {
             "anchor_roomid": 947447,
             "medal_level": 11,
             "medal_name": "D65",
-            "medal_color": "#a068f1"
+            "medal_color": "#a068f1",
         },
         "user_info": {
             "uname": "歌を好きsan",
@@ -36,13 +37,30 @@ const scData = {
             "is_svip": 0,
             "is_main_vip": 1,
             "title": "title-179-1",
-            "manager": 0
+            "manager": 0,
         },
         "time": 7200,
         "start_time": 1589636618,
         "end_time": 1589636678,
-        "gift": {"num": 1, "gift_id": 12000, "gift_name": "醒目留言"}
-    }, "_roomid": 947447
+        "gift": { "num": 1, "gift_id": 12000, "gift_name": "醒目留言" },
+    },
+    "_roomid": 947447,
 };
 
-export {scData}
+const GUARD_BUY_DATA = {
+    "cmd": "GUARD_BUY",
+    "data": {
+        "uid": 6028177,
+        "username": "zhongshanB",
+        "guard_level": 3,
+        "num": 1,
+        "price": 198000,
+        "role_name": 10003,
+        "gift_name": "舰长",
+        "start_time": 1590210694,
+        "end_time": 1590210694,
+    },
+    "_roomid": 4767523,
+};
+
+export { SUPER_CHAT_DATA, GUARD_BUY_DATA };

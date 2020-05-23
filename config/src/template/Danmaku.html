@@ -2,11 +2,9 @@
     <div v-if="$store.state.config.showGuardPrefix" class="prefix">
         <img class="prefixImg" :src="`${$store.state.configPath}/src/image/${prefixFileName}`" alt="" />
     </div>
-    <outer-link v-if="$store.state.config.showUserHeadImg" :href="`https://space.bilibili.com/${userId}`">
-        <div class="headImg">
+        <div class="headImg" v-if="$store.state.config.showUserHeadImg" @click="focusUser">
             <img :src="`${userHeadImg}`" alt="" class="headImgImg" />
         </div>
-    </outer-link>
     <div class="line">
         <span v-if="$store.state.config.showUserMedal && medalLevel" :class="`userMedal medalLevel-${medalLevel}`">
             <span class="medalName">{{medalName}}</span>

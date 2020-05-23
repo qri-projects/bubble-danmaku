@@ -43,6 +43,10 @@ html, body {
 
 a {
   text-decoration: none;
+  color: black;
+}
+a:visited{
+  color: black;
 }
 
 *::-webkit-scrollbar {
@@ -90,6 +94,8 @@ a {
   margin-top: calc(#{$bottomHeight} - 100vh);
 }
 
+$danmakuMarginTop: 8px;
+
 #danmakuPanel {
   position: relative;
   width: 100%;
@@ -111,15 +117,18 @@ a {
     height: 1px;
   }
 
-  z-index: 1;
+  .card-detail{
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-top: $danmakuMarginTop;
+  }
 }
-
 
 .danmaku {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  margin-top: 8px;
+  margin-top: $danmakuMarginTop;
 
   .prefix {
     display: var(--show-guard-prefix);
@@ -143,6 +152,7 @@ a {
     align-items: center;
     user-select: none;
     -webkit-user-select: none;
+    cursor: pointer;
   }
 
   .headImgImg {
@@ -171,85 +181,88 @@ a {
     font-weight: 700;
     text-shadow: 0 0 4px white;
   }
+}
 
-  .userMedal {
-    border: 1px solid #5896de;
-    border-left: 0;
-    height: 14px;
-    line-height: 14px;
-    font-size: 12px;
-    border-radius: 2px;
-    font-weight: 400;
-    width: 60px;
-    display: var(--show-user-medal);
-    box-sizing: content-box;
+.userMedal {
+  border: 1px solid #5896de;
+  border-left: 0;
+  height: 14px;
+  line-height: 14px;
+  font-size: 12px;
+  border-radius: 2px;
+  font-weight: 400;
+  width: 60px;
+  min-width: 60px;
+  display: var(--show-user-medal);
+  box-sizing: content-box;
+  cursor: default;
 
-    user-select: none;
-    -webkit-user-select: none;
-  }
+  user-select: none;
+  -webkit-user-select: none;
+}
 
-  .medalName {
-    background-color: #5896de;
-    color: white;
-    width: 44px;
-    box-sizing: border-box;
-    padding: 0 2px;
-    text-align: center;
-    display: block;
-    float: left;
-    line-height: 14px;
-    white-space: nowrap;
-  }
+.medalName {
+  background-color: #5896de;
+  color: white;
+  width: 44px;
+  box-sizing: border-box;
+  padding: 0 2px;
+  text-align: center;
+  display: block;
+  float: left;
+  line-height: 14px;
+  white-space: nowrap;
+}
 
-  .medalLevel {
-    border-color: #5896de;
-    background-color: white;
-    width: 16px;
-    display: inline-block;
-    text-align: center;
-  }
+.medalLevel {
+  border-color: #5896de;
+  background-color: white;
+  width: 16px;
+  display: inline-block;
+  text-align: center;
+}
 
-  @for $i from 1 through 5 {
-    .medalLevel-#{$i * 4 - 3}, .medalLevel-#{$i * 4 - 2}, .medalLevel-#{$i * 4 - 1}, .medalLevel-#{$i * 4},
-    {
-      border-color: map.get($medalColors, $i);
+.ul {
+  color: map.get($ulColors, 1);
+  display: var(--show-user-level);
+  height: 14px;
+  line-height: 14px;
+  border: 1px solid map.get($ulColors, 1);
+  width: 40px;
+  min-width: 40px;
+  border-radius: 2px;
+  text-align: center;
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 400;
+  cursor: default;
 
-      .medalName {
-        background-color: map.get($medalColors, $i);
-      }
+  user-select: none;
+  -webkit-user-select: none;
+}
 
-      .medalLevel {
-        color: map.get($medalColors, $i);
-      }
+@for $i from 1 through 5 {
+  .medalLevel-#{$i * 4 - 3}, .medalLevel-#{$i * 4 - 2}, .medalLevel-#{$i * 4 - 1}, .medalLevel-#{$i * 4},
+  {
+    border-color: map.get($medalColors, $i);
+
+    .medalName {
+      background-color: map.get($medalColors, $i);
+    }
+
+    .medalLevel {
+      color: map.get($medalColors, $i);
     }
   }
+}
 
-  .ul {
-    color: map.get($ulColors, 1);
-    display: var(--show-user-level);
-    height: 14px;
-    line-height: 14px;
-    border: 1px solid map.get($ulColors, 1);
-    width: 40px;
-    border-radius: 2px;
-    text-align: center;
-    font-style: normal;
-    font-size: 12px;
-    font-weight: 400;
-
-    user-select: none;
-    -webkit-user-select: none;
-  }
-
-  @for $i from 1 through 6 {
-    @for $j from 0 through 9 {
-      .ul-#{$i * 10 - $j } {
-        border-color:map.get($ulColors, $i);
-        color:map.get($ulColors, $i);
-      }
+@for $i from 1 through 6 {
+  @for $j from 0 through 9 {
+    .ul-#{$i * 10 - $j } {
+      border-color:map.get($ulColors, $i);
+      color:map.get($ulColors, $i);
     }
   }
-
 }
 
 .gift {
@@ -294,6 +307,7 @@ a {
     height: $giftHeadImgSize;
     border-radius: 50%;
     box-shadow: 2px 2px 3px 0px #00000078;
+    cursor: pointer;
   }
 
   .giftImg {
@@ -369,6 +383,9 @@ a {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+.card-detail .card-item-middle-top-left{
+  cursor: pointer;
 }
 .card-detail .card-item-middle-top .card-item-middle-top-left .icon-face-frame, .card-detail .card-item-middle-top .card-item-middle-top-left .icon-face{
   width: 30px;
@@ -486,6 +503,7 @@ $superChatQueueItemCircleWidth:$superChatQueueItemHeight - 4px;
       width: $superChatQueueItemHeight - 2 * $superChatQueueItemBorder;
       height: $superChatQueueItemHeight - 2 * $superChatQueueItemBorder;
       border-radius: ($superChatQueueItemHeight - 2 * $superChatQueueItemBorder)/2;
+      cursor: pointer;
     }
     .headImg {
       width: 100%;
@@ -520,6 +538,140 @@ $superChatQueueItemCircleWidth:$superChatQueueItemHeight - 4px;
       margin-right: 1px;
       overflow: hidden;
       box-sizing: border-box;
+    }
+  }
+}
+$userCardTopBgHeight: 85px;
+$userCardContentHeight: 110px;
+$userCardHeadImgSize: 64px;
+$userCardDiscriptionFontSize: 12px;
+$userCardDiscriptionLineHeight: 17px;
+$userCardDiscriptionLineCount: 2;
+$userCardBadgeHeight: 20px;
+$userCardMarginTop: $superChatQueueItemHeight + $superCHatQueueItemHolderFixScrollHeight;
+$userCardBasicInfoHeight: $userCardHeadImgSize * 0.5;
+
+#userDetailHolder {
+  width: calc(100% - #{$prefixWidth + $scrollBarWidth + $resizeFixSize});
+  margin-left: $prefixWidth;
+  height: 100%;
+  position: fixed;
+  z-index: 200;
+
+  #userDetailMask{
+    width: 100%;
+    height: calc(100% - #{$bottomHeight});
+    margin-top: -1 * ($userCardTopBgHeight + $userCardContentHeight + $userCardMarginTop);
+    background-color: rgba(0,0,0,0.55);
+    z-index: 210;
+    position: relative;
+  }
+  #userDetail {
+    width: 100%;
+    height: $userCardTopBgHeight + $userCardContentHeight;
+    background-color: #f7f9ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 1px 1px 7px 0 #9a9a9a;
+    z-index: 220;
+    position: relative;
+    margin-top: $userCardMarginTop;
+
+    #topBg {
+      width: 100%;
+      height: $userCardTopBgHeight;
+      display: flex;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      box-shadow: 0px -4px 8px 0 #737373 inset;
+    }
+
+    #basicInfo{
+      margin-top: -0.5 * $userCardHeadImgSize;
+      height: $userCardBasicInfoHeight;
+      align-self: start;
+      font-size: 10px;
+      color: #c5c5c5;
+      box-sizing: border-box;
+      padding-top: 5px;
+      padding-left: 5px;
+    }
+
+    #headImgHolder {
+      width: $userCardHeadImgSize;
+      height: $userCardHeadImgSize;
+      border-radius: $userCardHeadImgSize / 2;
+      margin-top: -1 * $userCardHeadImgSize / 2;
+      user-select: none;
+
+      img {
+        width: $userCardHeadImgSize;
+        height: $userCardHeadImgSize;
+        border-radius: $userCardHeadImgSize / 2;
+      }
+    }
+
+    #descriptionHolder {
+      max-height: $userCardDiscriptionLineHeight * $userCardDiscriptionLineCount;
+      width: calc(100% + #{$userCardDiscriptionLineHeight * $userCardDiscriptionLineCount});
+      display: flex;
+      justify-content: center;
+
+      .quote {
+        width: $userCardDiscriptionLineHeight * $userCardDiscriptionLineCount;
+        height: $userCardDiscriptionLineHeight * $userCardDiscriptionLineCount;
+        line-height: $userCardDiscriptionLineHeight * $userCardDiscriptionLineCount;
+        font-size: $userCardDiscriptionLineHeight * $userCardDiscriptionLineCount;
+        float: left;
+        color: #dedede;
+        font-weight: bold;
+        justify-content: center;
+        user-select: none;
+      }
+
+      #description {
+        color: #b76eff;
+        float: left;
+        font-size: $userCardDiscriptionFontSize;
+        max-width: calc(100% - #{$userCardDiscriptionLineHeight * $userCardDiscriptionLineCount * 2});
+        max-height: $userCardDiscriptionLineHeight * $userCardDiscriptionLineCount;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        //display: -webkit-box;
+        display: flex;
+        -webkit-line-clamp: $userCardDiscriptionLineCount;
+        -webkit-box-orient: vertical;
+        align-items: center;
+      }
+    }
+
+    #badgesHolder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      .badge {
+      }
+
+      .guardBadge {
+        width: $userCardBadgeHeight;
+
+        img {
+          height: $userCardBadgeHeight;
+          width: $userCardBadgeHeight;
+        }
+      }
+
+      .userMedalBadge{
+        cursor: pointer;
+      }
+
+      & > * + * {
+        margin-left: 5px;
+      }
     }
   }
 }

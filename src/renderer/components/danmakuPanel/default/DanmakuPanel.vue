@@ -1,6 +1,6 @@
 <template>
     <div id="danmakuPanel">
-        <user-detail :user="focusUser"></user-detail>
+        <user-detail></user-detail>
         <inner-danmaku-panel
                 v-for="danmaku in danmakuQueue"
                 :key="danmaku.key"
@@ -18,7 +18,7 @@
     import {DanmakuWrapper, GuardBuyWrapper, SendGiftWrapper, SuperChatWrapper} from "../../../scripts/DanmakuHandler";
     import {getDefaultUser, getUserInfo} from "../../../scripts/util/getUserInfoUtil";
     import UserDetail from "./UserDetail.vue";
-    import {UserInDB} from "../../../scripts/db";
+    import {UserInDB, UserInDBMedal} from "../../../scripts/db";
 
     @Component({
         components: {
@@ -44,7 +44,8 @@
         }
 
         async handleDanmaku(danmaku: DANMU_MSG): Promise<void> {
-            let user = await getUserInfo(danmaku.info["2"]["0"], danmaku.info["2"]["1"], "");
+            let medal:UserInDBMedal = new UserInDBMedal(danmaku.info["3"]["0"], danmaku.info["3"]["1"], danmaku.info["3"]["2"], danmaku.info["3"]["3"]);
+            let user = await getUserInfo(danmaku.info["2"]["0"], danmaku.info["2"]["1"], "", medal, danmaku.info["4"]["0"], danmaku.info["6"]);
             if (!user) {
                 user = getDefaultUser(danmaku.info["2"]["0"], danmaku.info["2"]["1"]);
             }
@@ -52,7 +53,7 @@
         }
 
         async handleGift(sendGift: SEND_GIFT): Promise<void> {
-            let user = await getUserInfo(sendGift.data.uid, sendGift.data.uname, sendGift.data.face);
+            let user = await getUserInfo(sendGift.data.uid, sendGift.data.uname, sendGift.data.face, null, null, sendGift.data.guard_level);
             if (!user) {
                 user = getDefaultUser(sendGift.data.uid, sendGift.data.uname, sendGift.data.face);
             }

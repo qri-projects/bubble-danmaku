@@ -82,6 +82,7 @@ class DanmakuHandler {
     handleGuard = (guardBuy: GUARD_BUY) => {
         console.log("default handleGuard");
         console.log(guardBuy);
+        console.log(JSON.stringify(guardBuy))
     };
     handleSuperChat = (superChat: SUPER_CHAT_MESSAGE) => {
         console.log("default handleSuperChat");

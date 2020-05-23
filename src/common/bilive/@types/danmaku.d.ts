@@ -1776,7 +1776,7 @@ interface SEND_GIFT_Data {
     /** 是否获取到新头衔 */
     newTitle: 0 | 1;
     /** 新徽章 */
-    medal: SEND_GIFT_Data_Medal | [];
+    medal: SEND_GIFT_Data_Medal|[];
     /** 新头衔 */
     title: string;
     /** 节奏风暴内容id \d | u\d+ */

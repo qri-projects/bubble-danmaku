@@ -1,13 +1,16 @@
 class UserInDB {
     id: number;
     name: String;
-    nickName: string;
+    nickName: String;
     faceUrl: String;
     description: string;
     topPhotoFileName: string;
     birthday: string;
+    medal: UserInDBMedal|null;
+    userLevel: Number|null;
+    guardLevel: Number|null;
 
-    constructor(id: number, name: String, nickName: string, faceUrl: String, description: string, topPhotoFileName: string, birthday: string) {
+    constructor(id: number, name: String, nickName: string, faceUrl: String, description: string, topPhotoFileName: string, birthday: string, medal:UserInDBMedal|null = null, userLevel: Number|null = null, guardLevel: Number|null = null) {
         this.id = id;
         this.name = name;
         this.nickName = nickName;
@@ -15,13 +18,56 @@ class UserInDB {
         this.description = description;
         this.topPhotoFileName = topPhotoFileName;
         this.birthday = birthday;
+        this.medal = medal;
+        this.userLevel = userLevel;
+        this.guardLevel = guardLevel;
     }
+}
+
+class UserInDBMedal{
+    /** 徽章等级 */
+    medalLevel: number;
+    /** 勋章名 */
+    medalName: String;
+    /** 主播名 */
+    liverName: String;
+    /** 直播间, 字符串的貌似是原始房间号 */
+    roomId: number | String;
+
+    constructor(medalLevel: number, medalName: String, liverName: String, roomId: number | String) {
+        this.medalLevel = medalLevel;
+        this.medalName = medalName;
+        this.liverName = liverName;
+        this.roomId = roomId;
+    }
+}
+
+function userInDBMedalEqual(medal0:UserInDBMedal|null, medal1:UserInDBMedal|null){
+    if (!medal0 && !medal1) {
+        return true;
+    }
+    if (medal0 && medal1) {
+        if (medal0.medalLevel != medal1.medalLevel) {
+            return false;
+        }
+        if (medal0.medalName != medal1.medalName) {
+            return false;
+        }
+        if (medal0.liverName != medal1.liverName) {
+            return false;
+        }
+        if (medal0.roomId != medal1.roomId) {
+            return false;
+        }
+        return true;
+    }
+    return false;
 }
 
 let dbConst = {
     "db": {
         "name": "db",
-        "version": 2,
+        "version": 2.2,
         stores: {
             "user": {
                 storeName: "user",
@@ -111,10 +157,12 @@ class DB {
                 .objectStore(storeName)
                 .put(object);
             request.onerror = function (event) {
+                console.log("err")
                 reject(event)
             };
 
             request.onsuccess = function (event) {
+                console.log("success")
                 resolve(request.result)
             };
         }))
@@ -134,4 +182,4 @@ class DB {
 }
 
 export default DB;
-export {UserInDB};
+export {UserInDB, UserInDBMedal, userInDBMedalEqual};
