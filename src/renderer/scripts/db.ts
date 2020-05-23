@@ -157,12 +157,10 @@ class DB {
                 .objectStore(storeName)
                 .put(object);
             request.onerror = function (event) {
-                console.log("err")
                 reject(event)
             };
 
             request.onsuccess = function (event) {
-                console.log("success")
                 resolve(request.result)
             };
         }))

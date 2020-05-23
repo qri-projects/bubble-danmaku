@@ -37,30 +37,32 @@
 
         comboMap = new Map<string, number>();
 
-        focusUser:UserInDB|null = getDefaultUser();
+        focusUser: UserInDB | null = getDefaultUser();
 
         addDanmaku(danmaku: DanmakuWrapper | SendGiftWrapper | GuardBuyWrapper | SuperChatWrapper) {
             this.outerDanmakuQueue.push(danmaku);
         }
 
         async handleDanmaku(danmaku: DANMU_MSG): Promise<void> {
-            let medal:UserInDBMedal = new UserInDBMedal(danmaku.info["3"]["0"], danmaku.info["3"]["1"], danmaku.info["3"]["2"], danmaku.info["3"]["3"]);
+            let medal: UserInDBMedal = new UserInDBMedal(danmaku.info["3"]["0"], danmaku.info["3"]["1"], danmaku.info["3"]["2"], danmaku.info["3"]["3"]);
             let user = await getUserInfo(danmaku.info["2"]["0"], danmaku.info["2"]["1"], "", medal, danmaku.info["4"]["0"], danmaku.info["6"]);
-            if (!user) {
-                user = getDefaultUser(danmaku.info["2"]["0"], danmaku.info["2"]["1"]);
+            if (user == null) {
+                console.error("danmaku user null, data: ", danmaku);
+            } else {
+                this.addDanmaku(new DanmakuWrapper(danmaku, user));
             }
-            this.addDanmaku(new DanmakuWrapper(danmaku, user));
         }
 
         async handleGift(sendGift: SEND_GIFT): Promise<void> {
             let user = await getUserInfo(sendGift.data.uid, sendGift.data.uname, sendGift.data.face, null, null, sendGift.data.guard_level);
-            if (!user) {
-                user = getDefaultUser(sendGift.data.uid, sendGift.data.uname, sendGift.data.face);
-            }
             let comboId = sendGift.data.batch_combo_id;
             if (comboId) {
                 if (!this.comboMap.has(comboId)) {
-                    this.danmakuQueue.push(new SendGiftWrapper(sendGift, user, comboId));
+                    if (user == null) {
+                        console.error("gift user null, data: ", sendGift);
+                    } else {
+                        this.outerDanmakuQueue.push(new SendGiftWrapper(sendGift, user, comboId));
+                    }
                 }
                 if (sendGift.data.super_gift_num) {
                     this.comboMap.set(comboId, sendGift.data.super_gift_num);
@@ -68,7 +70,11 @@
                     this.comboMap.set(comboId, sendGift.data.num);
                 }
             } else {
-                this.danmakuQueue.push(new SendGiftWrapper(sendGift, user, "-1"));
+                if (user == null) {
+                    console.error("gift user null, data: ", sendGift);
+                } else {
+                    this.outerDanmakuQueue.push(new SendGiftWrapper(sendGift, user, "-1"));
+                }
             }
         }
 

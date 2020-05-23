@@ -195,7 +195,7 @@ $danmakuMarginTop: 8px;
   min-width: 60px;
   display: var(--show-user-medal);
   box-sizing: content-box;
-  cursor: default;
+  cursor: pointer;
 
   user-select: none;
   -webkit-user-select: none;
@@ -273,6 +273,7 @@ $danmakuMarginTop: 8px;
   margin-left: $prefixWidth;
   //height: $giftHeight;
   padding: 0 8% 0 6%;
+  padding-top: 3px;
   box-sizing: border-box;
 
   flex-wrap: nowrap;
