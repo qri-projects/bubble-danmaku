@@ -45,9 +45,10 @@ const mutations = {
         state.focusUser.nickName = nickName;
     },
     SET_USER_IN_CACHE(state, user:UserInDB){
-        let usersCache = {...state.usersCache};
-        usersCache[user.id] = user;
-        state.usersCache = usersCache;
+        // let usersCache = {...state.usersCache};
+        // usersCache[user.id] = user;
+        // state.usersCache = usersCache;
+        state.usersCache[user.id] = user
     }
 }
 

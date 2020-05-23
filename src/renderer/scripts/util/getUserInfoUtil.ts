@@ -3,13 +3,15 @@ import {UserInDB, UserInDBMedal, userInDBMedalEqual} from "../db";
 import store from "../../store";
 
 async function getUserInfo(userId: number, danmakuUserName: String = "", danmakuUserFace: String = "", medal: UserInDBMedal | null = null, userLevel: Number | null = null, guardLevel: Number | null): Promise<UserInDB> {
-    let user: UserInDB;
+    let userRaw: UserInDB;
     if (store.state.usersCache.hasOwnProperty(userId)) {
-        user = store.state.usersCache[userId];
+        userRaw = store.state.usersCache[userId];
     } else {
-        user = await window.db.readUserByIdAsync(userId);
+        userRaw = await window.db.readUserByIdAsync(userId);
     }
-    if (user) {
+    let user: UserInDB;
+    if (userRaw) {
+        user = {...userRaw};
         let userUpdated = false;
         if (danmakuUserName && user.name != danmakuUserName) {
             // db里的name和danmaku的user的name不同
@@ -36,8 +38,7 @@ async function getUserInfo(userId: number, danmakuUserName: String = "", danmaku
             window.db.updateUserAsync(user);
             store.dispatch("SET_USER_IN_CACHE", {user});
         }
-    }
-    if (!user) {
+    } else {
         try {
             let response = await fetchAsync(`http://api.bilibili.com/x/space/acc/info?mid=${userId}&jsonp=jsonp`, {
                 method: "get",
@@ -62,6 +63,7 @@ async function getUserInfo(userId: number, danmakuUserName: String = "", danmaku
             window.db.addUserAsync(user);
             store.dispatch("SET_USER_IN_CACHE", {user});
         } catch (ignored) {
+            user = getDefaultUser();
         }
     }
     return user;

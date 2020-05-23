@@ -29,7 +29,7 @@
     "showSilverGift": true,
     "giftCoinUpperThan": {
         "gold": 0,
-        "silver": 9900
+        "silver": 0
     },
     "styleFileName": "default.css",
     "danmakuPanelComponentName": "default",
@@ -47,9 +47,9 @@
         "^[!|！]\\w+"
     ],
     "showDrawDanmaku": true,
-    "width": 1089,
-    "height": 769,
-    "x": 161,
-    "y": 729,
+    "width": 787,
+    "height": 828,
+    "x": 434,
+    "y": 268,
     "top": true
 }

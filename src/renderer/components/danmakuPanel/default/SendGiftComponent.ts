@@ -1,48 +1,44 @@
+import {Component, Prop, Vue} from "vue-property-decorator";
+import {SendGiftWrapper} from "../../../scripts/DanmakuHandler";
+import {GiftInfo} from "../../../scripts/@type/giftInfo";
 import store from "../../../store";
-import Vue from "vue";
-import { SendGiftWrapper } from "../../../scripts/DanmakuHandler";
-import { GiftInfo } from "../../../scripts/@type/giftInfo";
 
-let SendGift = Vue.extend({
-    name: "sendGift",
+@Component({
     template: store.state.templates.sendGiftTemplate,
-    props: {
-        data: SendGiftWrapper,
-        giftNum: Number,
-    },
-    data() {
-        return {
-            userId: 123321,
-            userFaceUrl: "",
-            userName: "",
-            giftImg: "",
-            giftNumber:1
-        };
-    },
-    methods:{
-        focusUser(){
-            store.dispatch("SET_FOCUS_USER", {"userInDB":this.data.user});
-        }
-    },
-    created() {
-        let data: SendGiftWrapper = this.data;
-        let sendGift = data.sendGift;
-        let giftData = sendGift.data;
-        this.userId = data.user.id;
-        this.userFaceUrl = sendGift.data.face;
-        this.userName = giftData.uname;
-        let gift: GiftInfo = store.state.gifts[giftData.giftId];
-        if (gift.gif) {
-            this.giftImg = gift.gif;
-        } else {
-            this.giftImg = gift.img_basic;
-        }
-        if (this.giftNum == -1) {
-            this.giftNumber = giftData.num;
-        }else{
-            this.giftNumber = this.giftNum;
-        }
-    },
-});
+    }
+)
+export default class extends Vue {
+    @Prop({type: SendGiftWrapper}) data;
+    @Prop({type: Number}) giftNum;
 
-export default SendGift;
+    get user(){
+        return this.$store.getters.getUser(this.data.user.id);
+    }
+
+    get giftData(){
+        let sendGift = this.data.sendGift;
+        return sendGift.data;
+    }
+
+    get giftImg(){
+
+        let gift: GiftInfo = store.state.gifts[this.giftData.giftId];
+        if (gift.gif) {
+            return gift.gif;
+        } else {
+            return gift.img_basic;
+        }
+    }
+
+    get giftNumber(){
+        if (this.giftNum == -1) {
+            return this.giftData.num;
+        }else{
+            return this.giftNum;
+        }
+    }
+
+    focusUser(){
+        store.dispatch("SET_FOCUS_USER", {"userInDB":this.user});
+    }
+}
