@@ -9,8 +9,9 @@ class UserInDB {
     medal: UserInDBMedal|null;
     userLevel: Number|null;
     guardLevel: Number|null;
+    updateTime:number;
 
-    constructor(id: number, name: String, nickName: string, faceUrl: String, description: string, topPhotoFileName: string, birthday: string, medal:UserInDBMedal|null = null, userLevel: Number|null = null, guardLevel: Number|null = null) {
+    constructor(id: number, name: String, nickName: string, faceUrl: String, description: string, topPhotoFileName: string, birthday: string, medal:UserInDBMedal|null = null, userLevel: Number|null = null, guardLevel: Number|null = null, updateTime:number=0) {
         this.id = id;
         this.name = name;
         this.nickName = nickName;
@@ -21,6 +22,7 @@ class UserInDB {
         this.medal = medal;
         this.userLevel = userLevel;
         this.guardLevel = guardLevel;
+        this.updateTime = updateTime;
     }
 }
 

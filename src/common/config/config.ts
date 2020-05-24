@@ -4,6 +4,7 @@ import {readfileAsync} from "../utils/util";
 const fs = require("fs");
 
 const configFilePath = path.resolve("./config/config.json");
+const windowLocationFilePath = path.resolve("./config/windowLocation.json");
 
 class Config {
     roomId: number = 336119;
@@ -41,12 +42,15 @@ class Config {
     showSilverGift: boolean = true;
     giftCoinUpperThan: { gold: number; silver: number } = { gold: 0, silver: 5000 };
     guardBuyGiftImgFileName: Array<string> = ["guard0.png", "guard1.png", "guard2.png", "guard3.png"];
+    top = true;
+    userExpireTime = 24 * 60 * 60 * 1000;
+}
 
+class WindowLocation{
     width = 800;
     height = 600;
     x = 0;
     y = 0;
-    top = true;
 }
 
 class GuardUserNameColor {
@@ -59,11 +63,16 @@ class GuardUserNameColor {
 
 async function loadConfigAsync(): Promise<Config> {
     let configText: String = await readfileAsync(configFilePath);
-    return JSON.parse(<string>configText);
+    return <Config>JSON.parse(<string>configText);
 }
 
-async function saveConfigAsync(config) {
-    return await fs.writeFileSync("./config/config.json", JSON.stringify(config, null, 4));
+async function loadWindowLocation():Promise<WindowLocation> {
+    let text:String = await readfileAsync(windowLocationFilePath)
+    return <WindowLocation>JSON.parse(<string>text);
 }
 
-export { Config, loadConfigAsync, saveConfigAsync, configFilePath };
+async function saveWindowLocationAsync(windowLocation) {
+    return await fs.writeFileSync(windowLocationFilePath, JSON.stringify(windowLocation, null, 4));
+}
+
+export { Config, WindowLocation, loadConfigAsync, loadWindowLocation, saveWindowLocationAsync, configFilePath };

@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from "vue"
 import Vuex, {ActionTree} from 'vuex'
 
 import {createPersistedState, createSharedMutations} from 'vuex-electron'

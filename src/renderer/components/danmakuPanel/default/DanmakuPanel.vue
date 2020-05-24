@@ -37,7 +37,7 @@
 
         comboMap = new Map<string, number>();
 
-        focusUser: UserInDB | null = getDefaultUser();
+        focusUser: UserInDB | null = null;
 
         addDanmaku(danmaku: DanmakuWrapper | SendGiftWrapper | GuardBuyWrapper | SuperChatWrapper) {
             this.outerDanmakuQueue.push(danmaku);

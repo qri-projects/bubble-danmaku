@@ -1,5 +1,11 @@
 import { app, BrowserWindow, Tray, Menu, MenuItem, shell } from "electron";
-import { Config, loadConfigAsync, saveConfigAsync, configFilePath } from "../common/config/config";
+import {
+    Config,
+    loadConfigAsync,
+    saveWindowLocationAsync,
+    configFilePath,
+    WindowLocation, loadWindowLocation
+} from "../common/config/config";
 import {loadTemplateText, TemplatesText} from "./loadTemplate";
 import { fetchGiftInfoAsync, GiftInfo, requestGiftInfoAsync } from "../renderer/scripts/@type/giftInfo";
 import store from "../renderer/store/index";
@@ -19,7 +25,7 @@ if (!dev) {
 
 let mainWindow: BrowserWindow;
 let config: Config;
-let configRaw: Config;
+let windowLocation:WindowLocation;
 let templates:TemplatesText;
 let configLoaded = false;
 let ready = false;
@@ -29,7 +35,7 @@ const winURL = dev ? `http://message.bilibili.com` : `file://${__dirname}/index.
 
 async function loadConfigAndTemplates() {
     config = await loadConfigAsync();
-    configRaw = { ...config };
+    windowLocation = await loadWindowLocation();
     templates = await loadTemplateText(config);
 }
 
@@ -78,10 +84,10 @@ function createWindow() {
      * Initial window options
      */
     mainWindow = new BrowserWindow({
-        height: config.height,
-        width: dev ? config.width : config.width,
-        x: config.x,
-        y: config.y,
+        height: windowLocation.height,
+        width: dev ? windowLocation.width : windowLocation.width,
+        x: windowLocation.x,
+        y: windowLocation.y,
 
         // 透明
         transparent: !dev,
@@ -105,11 +111,11 @@ function createWindow() {
 
     mainWindow.on("close", () => {
         let bounds = mainWindow.getBounds();
-        configRaw.x = bounds.x;
-        configRaw.y = bounds.y;
-        configRaw.width = bounds.width;
-        configRaw.height = bounds.height;
-        saveConfigAsync(configRaw);
+        windowLocation.x = bounds.x;
+        windowLocation.y = bounds.y;
+        windowLocation.width = bounds.width;
+        windowLocation.height = bounds.height;
+        saveWindowLocationAsync(windowLocation);
     });
 
     mainWindow.on("closed", () => {

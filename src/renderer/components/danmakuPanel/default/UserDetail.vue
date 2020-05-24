@@ -19,9 +19,8 @@
                 <div class="badge guardBadge" v-if="user.guardLevel > 0">
                     <img :src="`./config/src/image/guard${user.guardLevel}.png`" />
                 </div>
-                <outer-link :href="`https://live.bilibili.com/${user.medal.roomId}`">
+                <outer-link v-if="user.medal && user.medal.medalLevel" :href="`https://live.bilibili.com/${user.medal.roomId}`">
                     <div
-                        v-if="user.medal && user.medal.medalLevel"
                         :class="`badge userMedalBadge userMedal medalLevel-${user.medal.medalLevel}`"
                         :title="`主播: ${user.medal.liverName}`"
                     >
@@ -36,8 +35,10 @@
                 <div id="description" :title="user.description">{{ user.description }}</div>
                 <div class="quote">」</div>
             </div>
+            <div @click="refreshUser">SHUAXIN</div>
         </div>
         <div id="userDetailMask" @click="closeUserDetail"></div>
+
     </div>
 </template>
 
@@ -45,13 +46,14 @@
     import { Component, Prop, Vue } from "vue-property-decorator";
     import { UserInDB } from "../../../scripts/db";
     import store from "../../../store";
+    import {refreshUserInfo} from "../../../scripts/util/getUserInfoUtil";
 
     @Component
     export default class extends Vue {
         editingNickName: boolean = false;
         nickName:String = "";
-        get user(): UserInDB | null {
-            return this.$store.state.focusUser;
+        get user(){
+            return this.$store.state.focusUser?this.$store.getters.getUser(this.$store.state.focusUser.id):null;
         }
 
         closeUserDetail() {
@@ -82,6 +84,10 @@
                     this.setUserNickName(this.user, this.nickName);
                 }
             }
+        }
+
+        refreshUser(){
+            refreshUserInfo(this.user);
         }
     }
 </script>
