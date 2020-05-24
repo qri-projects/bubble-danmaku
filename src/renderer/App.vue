@@ -27,9 +27,6 @@
             }
         },
         created(): void {
-            electron.ipcRenderer.on("configLoaded", (event) => {
-                handleConfigLoaded()
-            });
         }
     });
 </script>

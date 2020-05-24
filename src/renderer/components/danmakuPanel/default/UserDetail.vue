@@ -1,7 +1,9 @@
 <template>
     <div id="userDetailHolder" v-if="!!user">
         <div id="userDetail">
-            <div id="topBg" :style="`background-image:url('${user.topPhotoFileName}')`"></div>
+            <div id="topBg" :style="`background-image:url('${user.topPhotoFileName}')`">
+                <div @click="refreshUser" title="刷新用户信息">刷新</div>
+            </div>
             <outer-link :href="`https://space.bilibili.com/${user.id}`">
                 <div id="headImgHolder">
                     <img :src="user.faceUrl" />
@@ -35,7 +37,6 @@
                 <div id="description" :title="user.description">{{ user.description }}</div>
                 <div class="quote">」</div>
             </div>
-            <div @click="refreshUser">SHUAXIN</div>
         </div>
         <div id="userDetailMask" @click="closeUserDetail"></div>
 

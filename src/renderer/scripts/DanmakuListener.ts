@@ -45,6 +45,7 @@ class Listener {
     }
 
     listen() {
+        console.log("connect room: ", this.roomId)
         this.client.Connect()
     }
 }

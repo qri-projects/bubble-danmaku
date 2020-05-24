@@ -2,8 +2,17 @@
     <div id="danmakuPanelHolder">
         <div id="danmakuPanelBg"></div>
         <div id="mainPanel">
-        <danmaku-panel :ref="`danmakuPanel`" @set-handle-danmaku="setHandleDanmaku" @set-handle-gift="setHandleGift" @set-handle-guard-buy="setHandleGuardBuy" @set-add-danmaku="setAddDanmaku" />
-        <super-chat-panel @add-to-danmaku-panel="addSuperChatToDanmakuPanel" @set-handle-super-chat="setHandleSuperChat" />
+            <danmaku-panel
+                :ref="`danmakuPanel`"
+                @set-handle-danmaku="setHandleDanmaku"
+                @set-handle-gift="setHandleGift"
+                @set-handle-guard-buy="setHandleGuardBuy"
+                @set-add-danmaku="setAddDanmaku"
+            />
+            <super-chat-panel
+                @add-to-danmaku-panel="addSuperChatToDanmakuPanel"
+                @set-handle-super-chat="setHandleSuperChat"
+            />
         </div>
         <extend-panel @set-handle-online="setHandleOnline" />
     </div>
@@ -23,8 +32,9 @@
     } from "../scripts/DanmakuHandler";
     import store from "../store";
     import { timerTask, Task } from "../scripts/timerTask";
+    import electron from "electron";
+    import { handleConfigLoaded } from "../scripts/configLoaded";
 
-    let roomId = store.state.config.roomId;
     const danmakuHandler = new DanmakuHandler();
 
     export default Vue.extend({
@@ -32,8 +42,8 @@
         data() {
             return {
                 danmakuHandler: danmakuHandler,
-                listener: new Listener(roomId, new DanmakuFilter(), danmakuHandler),
-                addDanmaku: (danmaku:DanmakuWrapper | SendGiftWrapper | GuardBuyWrapper | SuperChatWrapper)=>{}
+                listener: new Listener(336119, new DanmakuFilter(), danmakuHandler),
+                addDanmaku: (danmaku: DanmakuWrapper | SendGiftWrapper | GuardBuyWrapper | SuperChatWrapper) => {},
             };
         },
         methods: {
@@ -46,21 +56,25 @@
             setHandleSuperChat({ handleSuperChat = (superchat: SUPER_CHAT_MESSAGE) => {} }) {
                 this.danmakuHandler.handleSuperChat = handleSuperChat;
             },
-            setHandleOnline({handleOnline = (num:number)=>{}}){
+            setHandleOnline({ handleOnline = (num: number) => {} }) {
                 this.danmakuHandler.handleOnline = handleOnline;
             },
-            setAddDanmaku({addDanmaku = (danmaku:DanmakuWrapper | SendGiftWrapper | GuardBuyWrapper | SuperChatWrapper)=>{}}){
+            setAddDanmaku({
+                addDanmaku = (danmaku: DanmakuWrapper | SendGiftWrapper | GuardBuyWrapper | SuperChatWrapper) => {},
+            }) {
                 this.addDanmaku = addDanmaku;
             },
-            setHandleGuardBuy({handleGuardBuy = (guardBuy:GUARD_BUY)=>{}}){
+            setHandleGuardBuy({ handleGuardBuy = (guardBuy: GUARD_BUY) => {} }) {
                 this.danmakuHandler.handleGuardBuy = handleGuardBuy;
             },
 
-            addSuperChatToDanmakuPanel(payload : {superChatWrapper:SuperChatWrapper}){
+            addSuperChatToDanmakuPanel(payload: { superChatWrapper: SuperChatWrapper }) {
                 this.addDanmaku(payload.superChatWrapper);
-            }
+            },
         },
-        created() {
+        async created() {
+            await handleConfigLoaded();
+            this.listener = new Listener(store.state.config.roomId, new DanmakuFilter(), danmakuHandler);
             this.listener.listen();
         },
         components: {
