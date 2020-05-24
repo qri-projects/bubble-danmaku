@@ -147,18 +147,19 @@ function createTray() {
     if (dev) {
         const testEventMenu = new Menu();
         const testSuperChatMenuItem = new MenuItem({
-            label: "sc",
+            label: "superChat",
             click: () => {
                 mainWindow.webContents.send("testSuperChat", testData.SUPER_CHAT_DATA);
             },
         });
         const testGuardBuyMenuItem = new MenuItem({
-            label: "sc",
+            label: "guardBuy",
             click: () => {
-                mainWindow.webContents.send("testGuardBuy", testData.SUPER_CHAT_DATA);
+                mainWindow.webContents.send("testGuardBuy", testData.GUARD_BUY_DATA);
             },
         });
         testEventMenu.append(testSuperChatMenuItem);
+        testEventMenu.append(testGuardBuyMenuItem);
         const testEventMenuItem = new MenuItem({
             type: "submenu",
             label: "test event",

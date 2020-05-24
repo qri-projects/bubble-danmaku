@@ -78,6 +78,16 @@
             }
         }
 
+        async handleGuardBuy(guardBuy: GUARD_BUY) {
+            let user = await getUserInfo(guardBuy.data.uid, guardBuy.data.username, "", null, null, null);
+            if (user == null) {
+                console.error("guard user null, data: ", guardBuy);
+            } else {
+                let guardBuyWrapper = new GuardBuyWrapper(guardBuy, user);
+                this.outerDanmakuQueue.push(guardBuyWrapper);
+            }
+        }
+
         consumeDanmaku() {
             let danmaku = this.outerDanmakuQueue.shift();
             if (danmaku != null) {
@@ -112,9 +122,10 @@
             this.comboMap.set("-1", -1);
             this.addTask();
 
-            // 此步必需, 向父组件注册handleDanmaku方法; 这两行之外的皆为内部实现可随意调整
+            // 此步必需, 向父组件注册方法; 这几行之外的皆为内部实现可随意调整
             this.$emit("set-handle-danmaku", {"handleDanmaku": this.handleDanmaku})
             this.$emit("set-handle-gift", {"handleGift": this.handleGift})
+            this.$emit("set-handle-guard-buy", {"handleGuardBuy": this.handleGuardBuy});
             this.$emit("set-add-danmaku", {"addDanmaku": this.addDanmaku});
         }
     }

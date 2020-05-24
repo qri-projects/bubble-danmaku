@@ -79,7 +79,7 @@ class DanmakuHandler {
         console.log("default handleGift");
         console.log(sendGift);
     };
-    handleGuard = (guardBuy: GUARD_BUY) => {
+    handleGuardBuy = (guardBuy: GUARD_BUY) => {
         console.log("default handleGuard");
         console.log(guardBuy);
         console.log(JSON.stringify(guardBuy))

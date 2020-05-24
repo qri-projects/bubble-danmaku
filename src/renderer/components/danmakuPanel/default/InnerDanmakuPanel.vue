@@ -2,7 +2,7 @@
     <div>
         <danmaku v-if="dataType == 0" :data="data"></danmaku>
         <send-gift v-else-if="dataType == 1" :data="data" :giftNum="giftNum"></send-gift>
-        <danmaku v-else-if="dataType == 2"></danmaku>
+        <guard-buy v-else-if="dataType == 2" :data="data"></guard-buy>
         <inner-super-chat v-else-if="dataType == 3" :data="data"></inner-super-chat>
     </div>
 </template>
@@ -11,6 +11,7 @@
     import Danmaku from "./DanmakuComponent";
     import SendGift from "./SendGiftComponent"
     import InnerSuperChat from "./InnerSuperChatComponent";
+    import GuardBuy from "./GuardBuyComponent.vue";
     import {DanmakuWrapper, GuardBuyWrapper, SendGiftWrapper, SuperChatWrapper} from '../../../scripts/DanmakuHandler';
     import Vue from "vue"
 
@@ -39,7 +40,8 @@
         components: {
             Danmaku,
             SendGift,
-            InnerSuperChat
+            InnerSuperChat,
+            GuardBuy
         }
     })
 </script>

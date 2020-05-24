@@ -2,7 +2,7 @@
     <div id="danmakuPanelHolder">
         <div id="danmakuPanelBg"></div>
         <div id="mainPanel">
-        <danmaku-panel :ref="`danmakuPanel`" @set-handle-danmaku="setHandleDanmaku" @set-handle-gift="setHandleGift" @set-add-danmaku="setAddDanmaku" />
+        <danmaku-panel :ref="`danmakuPanel`" @set-handle-danmaku="setHandleDanmaku" @set-handle-gift="setHandleGift" @set-handle-guard-buy="setHandleGuardBuy" @set-add-danmaku="setAddDanmaku" />
         <super-chat-panel @add-to-danmaku-panel="addSuperChatToDanmakuPanel" @set-handle-super-chat="setHandleSuperChat" />
         </div>
         <extend-panel @set-handle-online="setHandleOnline" />
@@ -51,6 +51,9 @@
             },
             setAddDanmaku({addDanmaku = (danmaku:DanmakuWrapper | SendGiftWrapper | GuardBuyWrapper | SuperChatWrapper)=>{}}){
                 this.addDanmaku = addDanmaku;
+            },
+            setHandleGuardBuy({handleGuardBuy = (guardBuy:GUARD_BUY)=>{}}){
+                this.danmakuHandler.handleGuardBuy = handleGuardBuy;
             },
 
             addSuperChatToDanmakuPanel(payload : {superChatWrapper:SuperChatWrapper}){

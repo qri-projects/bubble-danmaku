@@ -40,6 +40,7 @@ class Config {
     showGift: boolean = true;
     showSilverGift: boolean = true;
     giftCoinUpperThan: { gold: number; silver: number } = { gold: 0, silver: 5000 };
+    guardBuyGiftImgFileName: Array<string> = ["guard0.png", "guard1.png", "guard2.png", "guard3.png"];
 
     width = 800;
     height = 600;
@@ -55,22 +56,6 @@ class GuardUserNameColor {
     3: "#e00000";
 }
 
-class ConfigWrapper {
-    config: Config = new Config();
-
-    loadConfig(callback: (config: Config) => void) {
-        const configFilePath = path.resolve("./config/config.json");
-        fs.readFile(configFilePath, "utf-8", (err, data) => {
-            if (err) {
-                console.error("读取配置文件失败");
-                callback(this.config);
-            } else {
-                this.config = JSON.parse(data);
-                callback(this.config);
-            }
-        });
-    }
-}
 
 async function loadConfigAsync(): Promise<Config> {
     let configText: String = await readfileAsync(configFilePath);
@@ -81,7 +66,4 @@ async function saveConfigAsync(config) {
     return await fs.writeFileSync("./config/config.json", JSON.stringify(config, null, 4));
 }
 
-let configWrapper = new ConfigWrapper();
-
-export default configWrapper;
 export { Config, loadConfigAsync, saveConfigAsync, configFilePath };

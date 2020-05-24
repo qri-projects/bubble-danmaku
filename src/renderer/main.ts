@@ -5,7 +5,7 @@ import router from './router'
 import store from './store'
 import DB from "./scripts/db";
 import {Shell, shell} from "electron";
-import OuterLink from "./components/OuterLink.vue";
+import OuterLink from "./components/common/OuterLink.vue";
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.config.productionTip = false

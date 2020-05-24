@@ -1,0 +1,14 @@
+<div class="gift">
+    <div class="user">
+        <img :src="user.faceUrl" alt="" class="headImgImg" @click="focusUser" />
+        <outer-link :href="`https://space.bilibili.com/${user.id}`">
+            <div class="userName">{{user.nickName?user.nickName:user.name}}</div>
+        </outer-link>
+    </div>
+    <div class="send">开通</div>
+    <img class="giftImg" :src="`${giftImg}`" />
+    <div class="giftNum">
+        <div class="mult">x&nbsp;</div>
+        <div class="giftNumNumber">{{data.guardBuy.data.num}}</div>
+    </div>
+</div>
