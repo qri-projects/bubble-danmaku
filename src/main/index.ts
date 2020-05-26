@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Tray, Menu, MenuItem, shell } from "electron";
+import { app, BrowserWindow, Tray, Menu, MenuItem, shell, ipcMain, session } from "electron";
 import {
     Config,
     loadConfigAsync,
@@ -10,8 +10,12 @@ import {loadTemplateText, TemplatesText} from "./loadTemplate";
 import { fetchGiftInfoAsync, GiftInfo, requestGiftInfoAsync } from "../renderer/scripts/@type/giftInfo";
 import store from "../renderer/store/index";
 import * as testData from "../common/const/TestData";
+import {readfileAsync} from "../common/utils/util";
+import path from "path";
+import {SendDanmakuUtil} from "./SendDanmakuUtil";
 
 let dev = process.env.NODE_ENV === "development";
+// let dev = true;
 
 /**
  * Set `__static` path to static files in production
@@ -31,7 +35,11 @@ let configLoaded = false;
 let ready = false;
 let gifts: Map<number, GiftInfo> = new Map<number, GiftInfo>();
 let tray;
+let cookie: String;
+let sendDanmakuUtil: SendDanmakuUtil;
+const cookieFilePath = path.resolve("./config/cookie.txt");
 const winURL = dev ? `http://message.bilibili.com` : `file://${__dirname}/index.html`;
+// const winURL = `file://${__dirname}/index.html`;
 
 async function loadConfigAndTemplates() {
     config = await loadConfigAsync();
@@ -46,8 +54,12 @@ async function loadGiftsAsync() {
     }
 }
 
+async function loadCookieAsync(){
+    cookie = await readfileAsync(cookieFilePath);
+}
+
 async function loadConfigAndTemplatesAndGifts() {
-    await Promise.all([loadConfigAndTemplates(), loadGiftsAsync()]);
+    await Promise.all([loadConfigAndTemplates(), loadGiftsAsync(), loadCookieAsync()]);
 }
 
 loadConfigAndTemplatesAndGifts().then(() => {
@@ -65,6 +77,14 @@ function tryCreateWindow() {
 app.on("ready", () => {
     ready = true;
     tryCreateWindow();
+
+    ipcMain.on("createSendDanmaku",(e, {roomId, cookie})=>{
+        const { net } = require('electron')
+        sendDanmakuUtil = new SendDanmakuUtil(net, roomId, cookie);
+    })
+    ipcMain.on("sendDanmaku", async (e, {msg})=>{
+        await sendDanmakuUtil.sendDanmaku(msg);
+    })
 });
 
 app.on("window-all-closed", () => {
@@ -128,6 +148,7 @@ function createWindow() {
         store.commit("SET_GIFTS", gifts);
         store.commit("SET_CONFIG", config);
         store.commit("SET_TEMPLATES", templates);
+        store.commit("SET_COOKIE", cookie);
         mainWindow.webContents.send("configLoaded");
     });
 }
