@@ -1,6 +1,6 @@
 const path = require("path");
 const fs = require("fs");
-let generatedPath = "../build/win-unpacked";
+let generatedPath = "./build/win-unpacked";
 function copyDirectory(src, dest) {
     if (!fs.existsSync(dest)) {
         fs.mkdirSync(dest);
@@ -22,10 +22,10 @@ function copyDirectory(src, dest) {
     });
 }
 
-copyDirectory("../config", path.join(generatedPath, "config"))
-copyDirectory("../static", path.join(generatedPath, "static"))
-fs.copyFileSync("../LICENSE", path.join(generatedPath, "LICENSE"));
+copyDirectory("./config", path.join(generatedPath, "config"))
+copyDirectory("./static", path.join(generatedPath, "static"))
+fs.copyFileSync("./LICENSE", path.join(generatedPath, "LICENSE"));
 let d = new Date();
-let targetDirectory = `../build/bubble弹幕使/bubble弹幕使-${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()} ${d.getHours()}-${d.getMinutes()}-${d.getSeconds()}/`
+let targetDirectory = `./build/bubble弹幕使/bubble弹幕使-${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()} ${d.getHours()}-${d.getMinutes()}-${d.getSeconds()}/`
 
 fs.renameSync(generatedPath, targetDirectory)
