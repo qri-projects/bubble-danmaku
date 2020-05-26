@@ -13,6 +13,7 @@
                 @add-to-danmaku-panel="addSuperChatToDanmakuPanel"
                 @set-handle-super-chat="setHandleSuperChat"
             />
+            <send-danmaku-panel v-if="$store.state.config.enableSendDanmaku && $store.state.cookie"></send-danmaku-panel>
         </div>
         <extend-panel @set-handle-online="setHandleOnline" />
     </div>
@@ -95,6 +96,11 @@
                     return import("./extendPanel/default/ExtendPanel.vue");
                 }
             },
+            "SendDanmakuPanel": () =>{
+                if(store.state.config.sendDanmakuPanelComponentName == "default") {
+                    return import("./sendDanmakuPanel/default/SendDanmakuPanel.vue");
+                }
+            }
         },
     });
 </script>

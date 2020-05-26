@@ -1,5 +1,5 @@
 import path from "path";
-import {readfileAsync} from "../utils/util";
+import { readfileAsync } from "../utils/util";
 
 const fs = require("fs");
 
@@ -22,14 +22,15 @@ class Config {
     danmakuCacheLength: number = 200;
 
     styleFileName: String = "default.css";
-    danmakuPanelComponentName: String = "default";
     danmakuTemplateFileName: String = "Danmaku.html";
     sendGiftTemplateFileName: String = "SendGift.html";
     superChatTemplateFileName: String = "SuperChat.html";
     superChatQueueItemTemplateFileName: String = "SuperChatQueueItem.html";
     innerSuperChatTemplateFileName: String = "InnerSuperChat.html";
-    superChatPanelComponentName:string = "default";
-    extendPanelComponentName:string = "default";
+    danmakuPanelComponentName: String = "default";
+    superChatPanelComponentName: string = "default";
+    extendPanelComponentName: string = "default";
+    sendDanmakuPanelComponentName: string = "default";
     prefixFileName: Array<string> = ["guard0.png", "guard1.png", "guard2.png", "guard3.png"];
     timerTemplate: String = "year-month-day hour:minute:second";
 
@@ -44,9 +45,10 @@ class Config {
     guardBuyGiftImgFileName: Array<string> = ["guard0.png", "guard1.png", "guard2.png", "guard3.png"];
     top = true;
     userExpireTime = 24 * 60 * 60 * 1000;
+    enableSendDanmaku = true;
 }
 
-class WindowLocation{
+class WindowLocation {
     width = 800;
     height = 600;
     x = 0;
@@ -60,14 +62,13 @@ class GuardUserNameColor {
     3: "#e00000";
 }
 
-
 async function loadConfigAsync(): Promise<Config> {
     let configText: String = await readfileAsync(configFilePath);
     return <Config>JSON.parse(<string>configText);
 }
 
-async function loadWindowLocation():Promise<WindowLocation> {
-    let text:String = await readfileAsync(windowLocationFilePath)
+async function loadWindowLocation(): Promise<WindowLocation> {
+    let text: String = await readfileAsync(windowLocationFilePath);
     return <WindowLocation>JSON.parse(<string>text);
 }
 

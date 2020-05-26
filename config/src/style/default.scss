@@ -676,3 +676,36 @@ $userCardBasicInfoHeight: $userCardHeadImgSize * 0.5;
     }
   }
 }
+
+$sendDanmakuInputHeight: 44px;
+#sendDanmakuPanel {
+  position: fixed;
+  top: 20px;
+  z-index: 300;
+  width: calc(100% - #{$scrollBarWidth + $resizeFixSize + $prefixWidth});
+  margin-left: $prefixWidth;
+  overflow: hidden;
+  #sendDanmakuInput {
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    font-size: 16px;
+    margin-left: calc(100% - 26px);
+    transition-duration: 0.1s;
+    background-color: rgba(255,255,255,0.5);
+    padding-left: 4px;
+    padding-top: 4px;
+    height: $sendDanmakuInputHeight;
+    border-radius: $sendDanmakuInputHeight / 2;
+
+    &:focus {
+      outline-width: 0 !important;
+
+    }
+    &:hover {
+      margin-left: 0;
+      background-color: white;
+      border-radius: 10px;
+    }
+  }
+}

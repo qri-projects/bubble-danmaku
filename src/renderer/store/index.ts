@@ -18,7 +18,8 @@ const state = {
     dev: false,
     configPath: "../../../../config",
     focusUser:null,
-    usersCache:new Map<Number, UserInDB>()
+    usersCache:new Map<Number, UserInDB>(),
+    cookie:""
 }
 
 const mutations = {
@@ -39,13 +40,15 @@ const mutations = {
     },
     SET_FOCUS_USER(state, focusUser){
         state.focusUser = focusUser;
-        console.log("mutations")
     },
     SET_FOCUSED_USER_NICKNAME(state, nickName){
         state.focusUser.nickName = nickName;
     },
     SET_USER_IN_CACHE(state, user:UserInDB){
         state.usersCache[user.id] = user
+    },
+    SET_COOKIE(state, cookie:String){
+        state.cookie = cookie;
     }
 }
 

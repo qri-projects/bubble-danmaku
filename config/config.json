@@ -38,14 +38,15 @@
         "guard3.png"
     ],
     "styleFileName": "default.css",
-    "danmakuPanelComponentName": "default",
     "danmakuTemplateFileName": "Danmaku.html",
     "sendGiftTemplateFileName": "SendGift.html",
     "superChatTemplateFileName": "SuperChat.html",
     "superChatQueueItemTemplateFileName": "SuperChatQueueItem.html",
     "innerSuperChatTemplateFileName": "InnerSuperChat.html",
+    "danmakuPanelComponentName": "default",
     "superChatPanelComponentName": "default",
-    "extendChatPanelComponentName": "default",
+    "extendPanelComponentName": "default",
+    "sendDanmakuPanelComponentName": "default",
     "timerTemplate": "year-month-day hour:minute:second",
     "userLevelUpperThan": -1,
     "medalLevelUpperThan": -1,
@@ -54,5 +55,6 @@
     ],
     "showDrawDanmaku": true,
     "top": true,
-    "userExpireTime": 86400000
+    "userExpireTime": 86400000,
+    "enableSendDanmaku": true
 }
