@@ -45,7 +45,12 @@ const mutations = {
         state.focusUser.nickName = nickName;
     },
     SET_USER_IN_CACHE(state, user:UserInDB){
-        state.usersCache[user.id] = user
+        // state.usersCache[user.id] = user
+        let usersCacheNew = {
+            ...state.usersCache,
+        }
+        usersCacheNew[user.id] = user
+        state.usersCache = usersCacheNew
     },
     SET_COOKIE(state, cookie:String){
         state.cookie = cookie;

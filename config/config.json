@@ -47,7 +47,7 @@
     "superChatPanelComponentName": "default",
     "extendPanelComponentName": "default",
     "sendDanmakuPanelComponentName": "default",
-    "timerTemplate": "year-month-day hour:minute:second",
+    "timerTemplate": "hour:minute:second",
     "userLevelUpperThan": -1,
     "medalLevelUpperThan": -1,
     "filterRe": [

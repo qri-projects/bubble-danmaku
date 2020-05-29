@@ -56,6 +56,9 @@ async function loadGiftsAsync() {
 
 async function loadCookieAsync(){
     cookie = await readfileAsync(cookieFilePath);
+    cookie = cookie.replace(/\n/g, "")
+    cookie = cookie.replace(/\r/g, "")
+    cookie = cookie.replace(/ /g, "")
 }
 
 async function loadConfigAndTemplatesAndGifts() {
@@ -83,7 +86,10 @@ app.on("ready", () => {
         sendDanmakuUtil = new SendDanmakuUtil(net, roomId, cookie);
     })
     ipcMain.on("sendDanmaku", async (e, {msg})=>{
-        await sendDanmakuUtil.sendDanmaku(msg);
+        let res = await sendDanmakuUtil.sendDanmaku(msg);
+        res.on("data", (chunk => {
+            // console.log(`chunk: ${chunk}`)
+        }))
     })
 });
 

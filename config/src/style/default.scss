@@ -551,6 +551,7 @@ $userCardDiscriptionLineCount: 2;
 $userCardBadgeHeight: 20px;
 $userCardMarginTop: $superChatQueueItemHeight + $superCHatQueueItemHolderFixScrollHeight;
 $userCardBasicInfoHeight: $userCardHeadImgSize * 0.5;
+$userCardRefreshButtonSize: 24px;
 
 #userDetailHolder {
   width: calc(100% - #{$prefixWidth + $scrollBarWidth + $resizeFixSize});
@@ -587,6 +588,14 @@ $userCardBasicInfoHeight: $userCardHeadImgSize * 0.5;
       background-repeat: no-repeat;
       background-position: 50%;
       box-shadow: 0px -4px 8px 0 #737373 inset;
+
+      #refreshButton{
+        width: $userCardRefreshButtonSize;
+        height: $userCardRefreshButtonSize;
+        cursor: pointer;
+        background-size: cover;
+        background-color: rgba(0,0,0,0.2);
+      }
     }
 
     #basicInfo{
@@ -598,19 +607,25 @@ $userCardBasicInfoHeight: $userCardHeadImgSize * 0.5;
       box-sizing: border-box;
       padding-top: 5px;
       padding-left: 5px;
+      z-index: 325;
     }
-
+    a#headImgHolderLink{
+      z-index: 330;
+    }
     #headImgHolder {
       width: $userCardHeadImgSize;
       height: $userCardHeadImgSize;
       border-radius: $userCardHeadImgSize / 2;
       margin-top: -1 * $userCardHeadImgSize / 2;
       user-select: none;
+      box-sizing: border-box;
+      border: 3px solid #ffffff;
+      box-shadow: 0px 0 5px 0px rgba(0, 0, 0, 0.45);
 
       img {
-        width: $userCardHeadImgSize;
-        height: $userCardHeadImgSize;
-        border-radius: $userCardHeadImgSize / 2;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
       }
     }
 
@@ -619,6 +634,7 @@ $userCardBasicInfoHeight: $userCardHeadImgSize * 0.5;
       width: calc(100% + #{$userCardDiscriptionLineHeight * $userCardDiscriptionLineCount});
       display: flex;
       justify-content: center;
+      margin-top: 3px;
 
       .quote {
         width: $userCardDiscriptionLineHeight * $userCardDiscriptionLineCount;
@@ -640,8 +656,9 @@ $userCardBasicInfoHeight: $userCardHeadImgSize * 0.5;
         max-height: $userCardDiscriptionLineHeight * $userCardDiscriptionLineCount;
         overflow: hidden;
         text-overflow: ellipsis;
-        //display: -webkit-box;
-        display: flex;
+        display: -webkit-box;
+        //display: flex;
+        margin-top: 2px;
         -webkit-line-clamp: $userCardDiscriptionLineCount;
         -webkit-box-orient: vertical;
         align-items: center;
@@ -678,19 +695,26 @@ $userCardBasicInfoHeight: $userCardHeadImgSize * 0.5;
 }
 
 $sendDanmakuInputHeight: 44px;
+$sendDanmakuIdleWidth: 32px;
 #sendDanmakuPanel {
   position: fixed;
   top: 20px;
   z-index: 300;
-  width: calc(100% - #{$scrollBarWidth + $resizeFixSize + $prefixWidth});
-  margin-left: $prefixWidth;
+  //width: calc(100% - #{$prefixWidth});
+  width: $sendDanmakuIdleWidth;
+  margin-left: calc(100% - #{$sendDanmakuIdleWidth + $scrollBarWidth + $resizeFixSize});
+  transition-duration: 0.1s;
+  &:hover {
+    margin-left: $prefixWidth;
+    width: calc(100% - #{$prefixWidth});
+  }
   overflow: hidden;
   #sendDanmakuInput {
-    width: 100%;
+    width: calc(100vw - #{$scrollBarWidth + $resizeFixSize + $prefixWidth});
     box-sizing: border-box;
     resize: none;
     font-size: 16px;
-    margin-left: calc(100% - 26px);
+
     transition-duration: 0.1s;
     background-color: rgba(255,255,255,0.5);
     padding-left: 4px;
@@ -703,7 +727,6 @@ $sendDanmakuInputHeight: 44px;
 
     }
     &:hover {
-      margin-left: 0;
       background-color: white;
       border-radius: 10px;
     }

@@ -10,10 +10,11 @@ Bubble弹幕使, 第三方bilibili直播弹幕客户端桌面端.
 2. 选择想要的版本进行下载(推荐下载最新版本)  
 3. 解压  
 4. 配置```config/config.json```([配置说明](https://github.com/HHHHhgqcdxhg/bubble-danmaku/blob/master/docs/configDoc.md))  
-5. 配置之后就可以打开```bubble弹幕使.exe```开始使用啦  
+5. 如果需要使用发送弹幕的功能, 还要配置```config/cookie.txt```  
+6. 配置之后就可以打开```bubble弹幕使.exe```开始使用啦  
 
 ## Notice
-- 目前仅支持windows系统  
+- 目前仅支持windows系统. 欢迎编译其他操作系统的版本  
 
 ## Todo
 - [x] 完善醒目留言的响应

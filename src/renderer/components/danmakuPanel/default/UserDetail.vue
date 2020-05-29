@@ -2,9 +2,9 @@
     <div id="userDetailHolder" v-if="!!user">
         <div id="userDetail">
             <div id="topBg" :style="`background-image:url('${user.topPhotoFileName}')`">
-                <div @click="refreshUser" title="刷新用户信息">刷新</div>
+                <div @click="refreshUser" title="刷新用户信息" id="refreshButton" :style='`background-image:url("${$store.state.configPath}/src/image/refresh.png")`'></div>
             </div>
-            <outer-link :href="`https://space.bilibili.com/${user.id}`">
+            <outer-link id="headImgHolderLink" :href="`https://space.bilibili.com/${user.id}`">
                 <div id="headImgHolder">
                     <img :src="user.faceUrl" />
                 </div>
