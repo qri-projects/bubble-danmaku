@@ -14,8 +14,8 @@
                 <div id="basicInfoName">用户名: {{ user.name }}</div>
             </div>
             <div id="nameHolder">
-                <span v-show="!editingNickName" @click="editNickName">{{ user.nickName ? user.nickName : user.name }}</span>
-                <input tabindex="0" ref="nickNameInput" v-show="editingNickName" v-model="nickName" @blur="editNickNameBlur" />
+                <span v-show="!editingNickName" @click="editNickName" id="name">{{ user.nickName ? user.nickName : user.name }}</span>
+                <input id="nickNameEditor" tabindex="0" ref="nickNameInput" v-show="editingNickName" v-model="nickName" @blur="editNickNameBlur" />
             </div>
             <div id="badgesHolder">
                 <div class="badge guardBadge" v-if="user.guardLevel > 0">
@@ -72,9 +72,12 @@
         }
 
         setUserNickName(user:UserInDB, nickName:String){
+            if(this.nickName == this.user.nickName || this.nickName == this.user.name){
+                return;
+            }
             this.$store.dispatch("SET_FOCUSED_USER_NICKNAME", {nickName})
-            window.db.updateUserAsync(user);
             let newUser:UserInDB = {...user, "nickName":nickName}
+            window.db.updateUserAsync(newUser);
             this.$store.dispatch("SET_USER_IN_CACHE", {"user":newUser});
         }
 

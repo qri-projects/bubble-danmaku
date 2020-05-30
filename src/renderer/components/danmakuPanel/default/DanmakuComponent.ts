@@ -1,7 +1,8 @@
-import {Component, Prop, Vue} from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import store from "../../../store";
-import {DanmakuWrapper, SuperChatWrapper} from "../../../scripts/DanmakuHandler";
-import {getUserInfo} from "../../../scripts/util/getUserInfoUtil";
+import { DanmakuWrapper, SuperChatWrapper } from "../../../scripts/DanmakuHandler";
+import { getUserInfo } from "../../../scripts/util/getUserInfoUtil";
+import { UserInDB } from "../../../scripts/db";
 
 @Component({
     template: store.state.templates.danmakuTemplate,
@@ -9,11 +10,11 @@ import {getUserInfo} from "../../../scripts/util/getUserInfoUtil";
 class Danmaku extends Vue {
     @Prop({ type: DanmakuWrapper }) data;
 
-    get user(){
+    get user(): UserInDB {
         return this.$store.getters.getUser(this.data.user.id);
     }
 
-    get privilegeType(){
+    get privilegeType() {
         return this.data.danmaku.info[7] || 0;
     }
 
@@ -21,22 +22,20 @@ class Danmaku extends Vue {
         return store.state.config.prefixFileName[this.privilegeType];
     }
 
-    get userNameStyle(){
+    get userNameStyle() {
         if (this.user.nickName) {
             return `color: ${store.state.config.favoriteUserNameColor} !important`;
         } else if (this.privilegeType) {
             return `color:${store.state.config.guardUserNameColor[this.privilegeType]} !important`;
         } else {
             let color: String =
-                store.state.config.userNameRandColors[
-                    Math.floor(Math.random() * store.state.config.userNameRandColors.length)
-                    ];
+                store.state.config.userNameRandColors[this.user.id % store.state.config.userNameRandColors.length];
             return `color: ${color} !important`;
         }
     }
 
-    focusUser(){
-        this.$store.dispatch("SET_FOCUS_USER", {"userInDB":this.user});
+    focusUser() {
+        this.$store.dispatch("SET_FOCUS_USER", { "userInDB": this.user });
     }
 }
 

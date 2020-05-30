@@ -145,20 +145,20 @@ $danmakuMarginTop: 8px;
 
   .headImg {
     width: $headImgSize;
-    height: $headImgSize;
+    //height: $headImgSize;
     border-radius: 50%;
-    box-shadow: 0 0 0 1px #4f7dff;
+    //box-shadow: 0 0 0 1px #4f7dff;
     display: var(--show-user-head-img);
     align-items: center;
     user-select: none;
     -webkit-user-select: none;
     cursor: pointer;
-  }
-
-  .headImgImg {
-    width: $headImgSize;
-    height: $headImgSize;
-    border-radius: 50%;
+    .headImgImg {
+      width: $headImgSize;
+      height: $headImgSize;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px #4f7dff;
+    }
   }
 
   .line {
@@ -626,6 +626,19 @@ $userCardRefreshButtonSize: 24px;
         width: 100%;
         height: 100%;
         border-radius: 50%;
+      }
+    }
+
+    #nameHolder{
+      height: 23px;
+
+      #name{
+        font-weight: bold;
+        color: rgb(255, 116, 116);
+        font-size: 16px;
+      }
+      #nickNameEditor{
+        font-size: 15px;
       }
     }
 

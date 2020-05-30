@@ -1,5 +1,5 @@
 {
-    "roomId": 336116,
+    "roomId": 4767523,
     "showUserHeadImg": true,
     "showUserName": true,
     "showUserMedal": true,
@@ -15,9 +15,9 @@
         "#a068f1",
         "#5896de",
         "#61decb",
-        "#ffc0cb"
+        "#ff7890"
     ],
-    "favoriteUserNameColor": "gold",
+    "favoriteUserNameColor": "#ff9728",
     "guardUserNameColor": [
         "#ff0000",
         "#ff86b2",
@@ -29,7 +29,7 @@
     "showSilverGift": true,
     "giftCoinUpperThan": {
         "gold": 0,
-        "silver": 0
+        "silver": 23301
     },
     "guardBuyGiftImgFileName": [
         "guard0.png",
