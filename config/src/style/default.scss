@@ -45,7 +45,8 @@ a {
   text-decoration: none;
   color: black;
 }
-a:visited{
+
+a:visited {
   color: black;
 }
 
@@ -70,6 +71,10 @@ a:visited{
   /*background: rgba(0,0,0,0.1);*/
   /*border-radius: 5px;*/
   border-radius: 5px;
+}
+
+img {
+  user-select: none;
 }
 
 #danmakuPanelBg {
@@ -117,7 +122,7 @@ $danmakuMarginTop: 8px;
     height: 1px;
   }
 
-  .card-detail{
+  .card-detail {
     margin-right: 0;
     margin-bottom: 0;
     margin-top: $danmakuMarginTop;
@@ -153,6 +158,7 @@ $danmakuMarginTop: 8px;
     user-select: none;
     -webkit-user-select: none;
     cursor: pointer;
+
     .headImgImg {
       width: $headImgSize;
       height: $headImgSize;
@@ -175,6 +181,7 @@ $danmakuMarginTop: 8px;
     display: var(--show-user-name);
     font-weight: bold;
     text-shadow: 0 0 4px white;
+    cursor: pointer;
   }
 
   .content {
@@ -260,6 +267,7 @@ $danmakuMarginTop: 8px;
   @for $j from 0 through 9 {
     .ul-#{$i * 10 - $j } {
       border-color:map.get($ulColors, $i);
+
       color:map.get($ulColors, $i);
     }
   }
@@ -296,6 +304,7 @@ $danmakuMarginTop: 8px;
     font-weight: bold;
     text-shadow: 0 0 4px black;
     text-align: center;
+    cursor: pointer;
   }
 
   .headImg {
@@ -323,6 +332,7 @@ $danmakuMarginTop: 8px;
     font-weight: bolder;
     color: white;
     text-shadow: 1px 0px $sendTextTextShadow, -1px 0px $sendTextTextShadow, 0px -1px $sendTextTextShadow, 0px 1px $sendTextTextShadow;
+    user-select: none;
   }
 
   $giftTextTextShadow: 2px black;
@@ -334,6 +344,11 @@ $danmakuMarginTop: 8px;
     display: flex;
     font-size: 22px;
     font-weight: bold;
+    cursor: default;
+
+    .mult {
+      user-select: none;
+    }
   }
 }
 
@@ -363,9 +378,11 @@ $danmakuMarginTop: 8px;
   z-index: 2;
   min-height: 88px;
 }
-.danmakuPanel .card-detail{
+
+.danmakuPanel .card-detail {
   margin: 0px 0px 10px 20px;
 }
+
 .card-item-middle-top {
   border-radius: 6px 6px 0 0;
   height: 50px;
@@ -385,10 +402,12 @@ $danmakuMarginTop: 8px;
   -ms-flex-align: center;
   align-items: center;
 }
-.card-detail .card-item-middle-top-left{
+
+.card-detail .card-item-middle-top-left {
   cursor: pointer;
 }
-.card-detail .card-item-middle-top .card-item-middle-top-left .icon-face-frame, .card-detail .card-item-middle-top .card-item-middle-top-left .icon-face{
+
+.card-detail .card-item-middle-top .card-item-middle-top-left .icon-face-frame, .card-detail .card-item-middle-top .card-item-middle-top-left .icon-face {
   width: 30px;
   height: 30px;
   border-radius: 17px;
@@ -396,7 +415,8 @@ $danmakuMarginTop: 8px;
   background-position: 50%;
   background-repeat: no-repeat;
 }
-.card-detail .card-item-middle-top .card-item-middle-top-left .icon-face-frame{
+
+.card-detail .card-item-middle-top .card-item-middle-top-left .icon-face-frame {
   width: 34px;
   height: 34px;
   position: absolute;
@@ -416,10 +436,12 @@ $danmakuMarginTop: 8px;
   color: #333;
   width: 100%;
 }
+
 .card-detail .card-item-middle-top .card-item-middle-top-right .name {
   opacity: .78;
   font-size: 12px;
 }
+
 .card-detail .card-item-middle-top .card-item-middle-top-right .content-bottom {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -431,7 +453,8 @@ $danmakuMarginTop: 8px;
   -ms-flex-align: baseline;
   align-items: baseline;
 }
-.card-detail .card-item-middle-top .card-item-middle-top-right  {
+
+.card-detail .card-item-middle-top .card-item-middle-top-right {
   margin: 2px 0 0 6px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -443,10 +466,12 @@ $danmakuMarginTop: 8px;
   color: #333;
   width: 100%;
 }
+
 .card-detail .card-item-middle-top .card-item-middle-top-right .content-bottom .price span {
   font-size: 12px;
   color: #999;
 }
+
 .card-detail .card-item-middle-bottom {
   position: relative;
   padding: 8px 10px;
@@ -455,17 +480,20 @@ $danmakuMarginTop: 8px;
   border-radius: 0px 0px 6px 6px;
   min-height: 38px;
 }
+
 .card-detail .card-item-middle-bottom .input-contain, .card-detail .card-item-middle-bottom .input-trans-contain {
   position: relative;
   min-height: 12px;
   word-wrap: break-word;
 }
+
 .card-detail .card-item-middle-bottom .input-contain .text, .card-detail .card-item-middle-bottom .input-trans-contain .text {
   font-size: 12px;
   color: #fff;
   text-align: left;
   line-height: 20px;
 }
+
 .card-detail .card-item-middle-bottom .bottom-background {
   position: absolute;
   right: 0;
@@ -480,7 +508,7 @@ $danmakuMarginTop: 8px;
 $superChatQueueItemHeight: 38px;
 $superCHatQueueItemHolderFixScrollHeight: 7px;
 $superChatQueueItemBorder: 2px;
-$superChatQueueItemCircleWidth:$superChatQueueItemHeight - 4px;
+$superChatQueueItemCircleWidth: $superChatQueueItemHeight - 4px;
 #superChatQueueHolder {
   width: calc(100% - #{($prefixWidth + $scrollBarWidth)});;
   height: $superChatQueueItemHeight + $superCHatQueueItemHolderFixScrollHeight;
@@ -506,6 +534,7 @@ $superChatQueueItemCircleWidth:$superChatQueueItemHeight - 4px;
       border-radius: ($superChatQueueItemHeight - 2 * $superChatQueueItemBorder)/2;
       cursor: pointer;
     }
+
     .headImg {
       width: 100%;
       height: 100%;
@@ -519,10 +548,11 @@ $superChatQueueItemCircleWidth:$superChatQueueItemHeight - 4px;
       margin-right: 5px;
       min-width: 30px;
 
-      .priceHolder{
+      .priceHolder {
         color: white;
         cursor: default;
       }
+
       .remainTimeHolder {
         font-size: 11px;
         color: #ccc;
@@ -531,7 +561,7 @@ $superChatQueueItemCircleWidth:$superChatQueueItemHeight - 4px;
       }
     }
 
-    .remainTimeClockHolder{
+    .remainTimeClockHolder {
       width: $superChatQueueItemCircleWidth;
       height: $superChatQueueItemCircleWidth;
       border: 2px solid white;
@@ -542,8 +572,9 @@ $superChatQueueItemCircleWidth:$superChatQueueItemHeight - 4px;
     }
   }
 }
+
 $userCardTopBgHeight: 85px;
-$userCardContentHeight: 110px;
+$userCardContentHeight: 120px;
 $userCardHeadImgSize: 64px;
 $userCardDiscriptionFontSize: 12px;
 $userCardDiscriptionLineHeight: 17px;
@@ -560,14 +591,15 @@ $userCardRefreshButtonSize: 24px;
   position: fixed;
   z-index: 200;
 
-  #userDetailMask{
+  #userDetailMask {
     width: 100%;
     height: calc(100% - #{$bottomHeight});
     margin-top: -1 * ($userCardTopBgHeight + $userCardContentHeight + $userCardMarginTop);
-    background-color: rgba(0,0,0,0.55);
+    background-color: rgba(0, 0, 0, 0.55);
     z-index: 210;
     position: relative;
   }
+
   #userDetail {
     width: 100%;
     height: $userCardTopBgHeight + $userCardContentHeight;
@@ -589,16 +621,16 @@ $userCardRefreshButtonSize: 24px;
       background-position: 50%;
       box-shadow: 0px -4px 8px 0 #737373 inset;
 
-      #refreshButton{
+      #refreshButton {
         width: $userCardRefreshButtonSize;
         height: $userCardRefreshButtonSize;
         cursor: pointer;
         background-size: cover;
-        background-color: rgba(0,0,0,0.2);
+        background-color: rgba(0, 0, 0, 0.2);
       }
     }
 
-    #basicInfo{
+    #basicInfo {
       margin-top: -0.5 * $userCardHeadImgSize;
       height: $userCardBasicInfoHeight;
       align-self: start;
@@ -609,9 +641,11 @@ $userCardRefreshButtonSize: 24px;
       padding-left: 5px;
       z-index: 325;
     }
-    a#headImgHolderLink{
+
+    a#headImgHolderLink {
       z-index: 330;
     }
+
     #headImgHolder {
       width: $userCardHeadImgSize;
       height: $userCardHeadImgSize;
@@ -629,15 +663,16 @@ $userCardRefreshButtonSize: 24px;
       }
     }
 
-    #nameHolder{
+    #nameHolder {
       height: 23px;
 
-      #name{
+      #name {
         font-weight: bold;
         color: rgb(255, 116, 116);
         font-size: 16px;
       }
-      #nickNameEditor{
+
+      #nickNameEditor {
         font-size: 15px;
       }
     }
@@ -683,6 +718,7 @@ $userCardRefreshButtonSize: 24px;
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
+      height: 23px;
 
       .badge {
       }
@@ -696,7 +732,7 @@ $userCardRefreshButtonSize: 24px;
         }
       }
 
-      .userMedalBadge{
+      .userMedalBadge {
         cursor: pointer;
       }
 
@@ -709,6 +745,12 @@ $userCardRefreshButtonSize: 24px;
 
 $sendDanmakuInputHeight: 44px;
 $sendDanmakuIdleWidth: 32px;
+
+.sendDanmakuPanelActive {
+  margin-left: $prefixWidth !important;
+  width: calc(100% - #{$prefixWidth}) !important;
+}
+
 #sendDanmakuPanel {
   position: fixed;
   top: 20px;
@@ -717,29 +759,28 @@ $sendDanmakuIdleWidth: 32px;
   width: $sendDanmakuIdleWidth;
   margin-left: calc(100% - #{$sendDanmakuIdleWidth + $scrollBarWidth + $resizeFixSize});
   transition-duration: 0.1s;
-  &:hover {
-    margin-left: $prefixWidth;
-    width: calc(100% - #{$prefixWidth});
-  }
   overflow: hidden;
+
+  &:focus {
+    margin-left: $prefixWidth !important;
+    width: calc(100% - #{$prefixWidth}) !important;
+  }
+
   #sendDanmakuInput {
     width: calc(100vw - #{$scrollBarWidth + $resizeFixSize + $prefixWidth});
     box-sizing: border-box;
     resize: none;
-    font-size: 16px;
+    font-size: 14px;
 
     transition-duration: 0.1s;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255, 255, 255, 0.5);
     padding-left: 4px;
     padding-top: 4px;
     height: $sendDanmakuInputHeight;
     border-radius: $sendDanmakuInputHeight / 2;
 
-    &:focus {
+    &:focus, &:hover {
       outline-width: 0 !important;
-
-    }
-    &:hover {
       background-color: white;
       border-radius: 10px;
     }

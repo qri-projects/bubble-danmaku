@@ -1,17 +1,16 @@
-
 <div
-    :class="`danmaku user_id_${user.id}${privilegeType?` guard guard_${privilegeType}` : ''}${user.nickName ? ' favorite' : ''}`"
+        :class="`danmaku user_id_${user.id}${privilegeType?` guard guard_${privilegeType}` : ''}${user.nickName ? ' favorite' : ''}`"
 >
     <div v-if="$store.state.config.showGuardPrefix" class="prefix">
-        <img class="prefixImg" :src="`${$store.state.configPath}/src/image/${prefixFileName}`" alt="" />
+        <img class="prefixImg" :src="`${$store.state.configPath}/src/image/${prefixFileName}`" alt=""/>
     </div>
-    <div class="headImg" v-if="$store.state.config.showUserHeadImg" @click="focusUser" title="用户详情">
-        <img :src="user.faceUrl" alt="" class="headImgImg" />
+    <div class="headImg" v-if="$store.state.config.showUserHeadImg" @click="focusUser" :title="`uid: ${user.id}`">
+        <img :src="user.faceUrl" alt="" class="headImgImg"/>
     </div>
     <div class="line">
         <outer-link
-            v-if="$store.state.config.showUserMedal && user.medal.medalLevel"
-            :href="`https://live.bilibili.com/${user.medal.roomId}`"
+                v-if="$store.state.config.showUserMedal && user.medal.medalLevel"
+                :href="`https://live.bilibili.com/${user.medal.roomId}`"
         >
             <span :class="`userMedal medalLevel-${user.medal.medalLevel}`" :title="`主播: ${user.medal.liverName}`">
                 <span class="medalName">{{user.medal.medalName}}</span>
@@ -21,9 +20,8 @@
         <span v-if="$store.state.config.showUserLevel" :class="`ul ul-${user.userLevel}`">
             UL {{user.userLevel}}
         </span>
-        <outer-link v-if="$store.state.config.showUserName" :href="`https://space.bilibili.com/${user.id}`" title="用户主页">
-            <span class="userName" :style="userNameStyle">{{user.nickName?user.nickName:user.name}}&nbsp;:</span>
-        </outer-link>
+        <span v-if="$store.state.config.showUserName" class="userName" :style="userNameStyle" @click="focusUser"
+              :title="`uid: ${user.id}`">{{user.nickName?user.nickName:user.name}}&nbsp;:</span>
         <span class="content">{{data.danmaku.info["1"]}}</span>
     </div>
 </div>

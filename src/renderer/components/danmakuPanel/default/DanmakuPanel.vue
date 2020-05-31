@@ -45,7 +45,7 @@
 
         async handleDanmaku(danmaku: DANMU_MSG): Promise<void> {
             let medal: UserInDBMedal = new UserInDBMedal(danmaku.info["3"]["0"], danmaku.info["3"]["1"], danmaku.info["3"]["2"], danmaku.info["3"]["3"]);
-            let user = await getUserInfo(danmaku.info["2"]["0"], danmaku.info["2"]["1"], "", medal, danmaku.info["4"]["0"], danmaku.info["6"]);
+            let user = await getUserInfo(danmaku.info["2"]["0"], danmaku.info["2"]["1"], "", medal, danmaku.info["4"]["0"], danmaku.info[7]);
             if (user == null) {
                 console.error("danmaku user null, data: ", danmaku);
             } else {

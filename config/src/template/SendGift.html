@@ -1,13 +1,11 @@
 <div class="gift">
     <div class="user">
-        <img :src="user.faceUrl" alt="" class="headImgImg" @click="focusUser" />
-        <outer-link :href="`https://space.bilibili.com/${user.id}`">
-            <div class="userName">{{user.nickName?user.nickName:user.name}}</div>
-        </outer-link>
+        <img :src="user.faceUrl" :title="`uid: ${user.id}`" class="headImgImg" @click="focusUser" />
+        <div class="userName" :title="`uid: ${user.id}`" @click="focusUser">{{user.nickName?user.nickName:user.name}}</div>
     </div>
     <div class="send">赠送</div>
-    <img class="giftImg" :src="`${giftImg}`" />
-    <div class="giftNum">
+    <img class="giftImg" :src="`${giftImg}`" :title="giftRaw.name"/>
+    <div class="giftNum" :title="`总价值: ￥${giftData.coin_type==='gold'?giftData.total_coin / 1000:'0'}`">
         <div class="mult">x&nbsp;</div>
         <div class="giftNumNumber">{{giftNumber}}</div>
     </div>
