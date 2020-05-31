@@ -84,6 +84,6 @@ export  default  {
 
     // 用户信息缓存持续时间
     "userExpireTime": 86400000,
-    // 启用发送弹幕功能
+    // 启用发送弹幕功能, 必须同时在bubble-danmaku/config/cookie.txt中设置cookie才能发送弹幕
     "enableSendDanmaku": true
 };
