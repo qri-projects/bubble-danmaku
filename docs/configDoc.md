@@ -5,20 +5,21 @@
 
 ```js
 let x = {
-    // 监听的房间号
+    // 监听的房间号, 简单的使用的话, 更改此项即可
     "roomId": 336116,
 
     // 弹幕设置
-    // 显示弹幕用户头像
+    // 是否显示弹幕用户头像
     "showUserHeadImg": true,
-    // 显示弹幕用户名
+    // 是否显示弹幕用户名
     "showUserName": true,
-    // 显示弹幕用户牌子
+    // 是否显示弹幕用户牌子
     "showUserMedal": true,
-    // 显示弹幕用户等级
+    // 是否显示弹幕用户等级
     "showUserLevel": false,
-    // 显示弹幕大航海标识
+    // 是否显示弹幕大航海标识
     "showGuardPrefix": true,
+
     // 弹幕大航海标识文件名, 将对应图片放入bubble-danmaku/config/src/image中即可使用
     // 普通用户对应0, 默认为空白png; 1, 2, 3分别对应总督, 提督, 舰长
     "prefixFileName": ["guard0.png", "guard1.png", "guard2.png", "guard3.png"],
@@ -28,7 +29,7 @@ let x = {
     "favoriteUserNameColor": "#ff9728",
     // 弹幕 大航海用户 用户名颜色, 最左边的为冗余数据不用管, 之后三个依次对应总督 提督 舰长
     "guardUserNameColor": ["#ff0000", "#ff86b2", "#ff86b2", "#ff86b2"],
-    // 弹幕缓存最大条数, 超过这个数值则对旧弹幕进行回收, 以释放内存
+    // 弹幕缓存最大条数, 超过这个数值则对旧弹幕进行回收, 回收至这个数值的一半, 以释放内存
     "danmakuCacheLength": 200,
 
     // 礼物设置
@@ -41,8 +42,7 @@ let x = {
         "gold": 0,
         "silver": 9900,
     },
-    // 收到上舰提示时, 显示的礼物图片, 将对应图片放入bubble-danmaku/config/src/image中即可使用
-    // 普通用户对应0, 默认为空白png; 1, 2, 3分别对应总督, 提督, 舰长
+    // 收到上舰提示时, 显示的礼物图片
     "guardBuyGiftImgFileName": ["guard0.png", "guard1.png", "guard2.png", "guard3.png"],
     // 样式文件文件名, 将css文件放入bubble-danmaku/config/src/style中, 并将该条设置为其文件名, 则可使用该样式
     "styleFileName": "default.css",
@@ -79,9 +79,9 @@ let x = {
     // 窗口置顶
     "top": true,
 
-    // 用户信息缓存持续时间
+    // 用户信息缓存持续时间(单位: 毫秒)
     "userExpireTime": 86400000,
-    // 启用发送弹幕功能
+    // 启用发送弹幕功能, 必须同时在bubble-danmaku/config/cookie.txt中设置cookie才能发送弹幕
     "enableSendDanmaku": true,
 };
 ```

@@ -11,4 +11,6 @@
 ## 注意事项
 cookie相当于你的账号密码, 不要分享/泄露给他人! 本工具不会分享/传输你的cookie, 但你需要在本地存一份cookie来供本工具使用, 请注意文件安全!  
 
+配置了cookie之后, 要在```bubble-danmaku/config/config.json```中将```enableSendDanmaku```设为true, 才会启用发送弹幕功能  
+
 cookie是会过期的, 哪天上b站发现账号掉线了, 要重新登录, 就意味着cookie过期, 需要重新设置cookie.  

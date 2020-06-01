@@ -10,13 +10,13 @@ Bubble弹幕使, 第三方bilibili直播弹幕客户端桌面端.
 2. 选择想要的版本进行下载(推荐下载最新版本)  
 3. 解压  
 4. 配置```config/config.json```([配置说明](https://github.com/HHHHhgqcdxhg/bubble-danmaku/blob/master/docs/configDoc.md))  
-5. 如果需要使用发送弹幕的功能, 还要配置```config/cookie.txt```  
-6. 配置之后就可以打开```bubble弹幕使.exe```开始使用啦  
+5. 如果需要使用发送弹幕的功能, 还要[配置cookie](https://github.com/HHHHhgqcdxhg/bubble-danmaku/blob/master/docs/getCookie.md)  
+6. 配置之后就可以打开```Bubble弹幕使.exe```开始使用啦  
 
 ## 使用
 - 基本功能
 
-总体截图|发送弹幕  
+总体截图|发送弹幕<br>(需要[配置cookie](https://github.com/HHHHhgqcdxhg/bubble-danmaku/blob/master/docs/getCookie.md))  
 ---|---
 ![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-0.png)|![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-1.png)  
 
