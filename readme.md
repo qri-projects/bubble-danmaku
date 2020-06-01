@@ -14,22 +14,23 @@ Bubble弹幕使, 第三方bilibili直播弹幕客户端桌面端.
 6. 配置之后就可以打开```bubble弹幕使.exe```开始使用啦  
 
 ## 使用
-- 总体截图  
-    ![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-0.png)  
-- 发送弹幕的功能  
-    ![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-1.png)  
+- 基本功能
+
+总体截图|发送弹幕  
+---|---
+![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-0.png)|![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-1.png)  
+
 - 用户详情功能  
-    ![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-2.png)  
-- 用户详情中, 点击昵称编辑用户备注名  
-    ![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-3.png)  
-- 编辑过用户备注名之后, 用户的弹幕 用户名颜色会变成金色(这个颜色可以通过配置更改)  
-    ![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-4.png)  
-- 收到醒目留言会在顶部停留5秒  
-    ![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-5.png)  
-- 5秒结束后会插入到弹幕栏  
-    ![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-6.png)  
-- 5秒结束之后, 醒目留言结束之前, 鼠标指到上方停留的sc处可查看该醒目留言  
-    ![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-7.png)  
+
+用户详情|点击昵称编辑用户备注名|备注过的用户名颜色会变成金色<br>(这个颜色可以通过配置更改)
+---|---|---
+![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-2.png)|![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-3.png)|![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-4.png)  
+
+- 醒目留言功能
+
+醒目留言会在顶部停留5秒|5秒结束后会插入到弹幕栏|鼠标指向重新查看醒目留言  
+---|---|---
+![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-5.png)|![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-6.png)|![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-7.png)  
 
 ## 注意
 - 目前仅支持windows系统. 欢迎编译其他操作系统的版本  
