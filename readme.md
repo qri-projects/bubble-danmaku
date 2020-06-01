@@ -20,7 +20,7 @@ Bubble弹幕使, 第三方bilibili直播弹幕客户端桌面端.
     ![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-1.png)  
 - 用户详情功能  
     ![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-2.png)  
-- 用户详情中, 点击昵称编辑用户备注名
+- 用户详情中, 点击昵称编辑用户备注名  
     ![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-3.png)  
 - 编辑过用户备注名之后, 用户的弹幕 用户名颜色会变成金色(这个颜色可以通过配置更改)  
     ![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-4.png)  
