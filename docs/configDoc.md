@@ -41,7 +41,8 @@ let x = {
         "gold": 0,
         "silver": 9900,
     },
-    // 收到上舰提示时, 显示的礼物图片
+    // 收到上舰提示时, 显示的礼物图片, 将对应图片放入bubble-danmaku/config/src/image中即可使用
+    // 普通用户对应0, 默认为空白png; 1, 2, 3分别对应总督, 提督, 舰长
     "guardBuyGiftImgFileName": ["guard0.png", "guard1.png", "guard2.png", "guard3.png"],
     // 样式文件文件名, 将css文件放入bubble-danmaku/config/src/style中, 并将该条设置为其文件名, 则可使用该样式
     "styleFileName": "default.css",
