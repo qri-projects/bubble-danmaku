@@ -1,4 +1,4 @@
-## 配置Cookie
+# 配置Cookie
 > 注意, cookie相当于你的账号密码, 不要分享/泄露给他人. 本工具不会分享/传输你的cookie.  
 
 ## 获取cookie
