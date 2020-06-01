@@ -27,7 +27,7 @@ export  default  {
     "favoriteUserNameColor": "#ff9728",
     // 弹幕 大航海用户 用户名颜色, 最左边的为冗余数据不用管, 之后三个依次对应总督 提督 舰长
     "guardUserNameColor": ["#ff0000", "#ff86b2", "#ff86b2", "#ff86b2"],
-    // 弹幕缓存最大条数, 超过这个数值则对旧弹幕进行回收, 以释放内存
+    // 弹幕缓存最大条数, 超过这个数值则对旧弹幕进行回收, 回收至这个数值的一半, 以释放内存
     "danmakuCacheLength": 200,
 
     // 礼物设置

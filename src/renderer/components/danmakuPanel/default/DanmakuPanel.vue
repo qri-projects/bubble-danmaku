@@ -2,29 +2,34 @@
     <div id="danmakuPanel">
         <user-detail></user-detail>
         <inner-danmaku-panel
-                v-for="danmaku in danmakuQueue"
-                :key="danmaku.key"
-                :data="danmaku"
-                :gift-num="comboMap.get(danmaku.comboId)"
+            v-for="danmaku in danmakuQueue"
+            :key="danmaku.key"
+            :data="danmaku"
+            :gift-num="comboMap.get(danmaku.comboId)"
         ></inner-danmaku-panel>
         <div id="danmakuPanelBottom"></div>
     </div>
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from "vue-property-decorator"
+    import { Component, Prop, Vue } from "vue-property-decorator";
     import InnerDanmakuPanel from "./InnerDanmakuPanel.vue";
-    import {Task, timerTask} from "../../../scripts/timerTask";
-    import {DanmakuWrapper, GuardBuyWrapper, SendGiftWrapper, SuperChatWrapper} from "../../../scripts/DanmakuHandler";
-    import {getDefaultUser, getUserInfo} from "../../../scripts/util/getUserInfoUtil";
+    import { Task, timerTask } from "../../../scripts/timerTask";
+    import {
+        DanmakuWrapper,
+        GuardBuyWrapper,
+        SendGiftWrapper,
+        SuperChatWrapper,
+    } from "../../../scripts/DanmakuHandler";
+    import { getDefaultUser, getUserInfo } from "../../../scripts/util/getUserInfoUtil";
     import UserDetail from "./UserDetail.vue";
-    import {UserInDB, UserInDBMedal} from "../../../scripts/db";
+    import { UserInDB, UserInDBMedal } from "../../../scripts/db";
 
     @Component({
         components: {
             InnerDanmakuPanel,
-            UserDetail
-        }
+            UserDetail,
+        },
     })
     export default class extends Vue {
         // 消息一收到, 就往outerDanmakuQueue里填.
@@ -44,8 +49,20 @@
         }
 
         async handleDanmaku(danmaku: DANMU_MSG): Promise<void> {
-            let medal: UserInDBMedal = new UserInDBMedal(danmaku.info["3"]["0"], danmaku.info["3"]["1"], danmaku.info["3"]["2"], danmaku.info["3"]["3"]);
-            let user = await getUserInfo(danmaku.info["2"]["0"], danmaku.info["2"]["1"], "", medal, danmaku.info["4"]["0"], danmaku.info[7]);
+            let medal: UserInDBMedal = new UserInDBMedal(
+                danmaku.info["3"]["0"],
+                danmaku.info["3"]["1"],
+                danmaku.info["3"]["2"],
+                danmaku.info["3"]["3"]
+            );
+            let user = await getUserInfo(
+                danmaku.info["2"]["0"],
+                danmaku.info["2"]["1"],
+                "",
+                medal,
+                danmaku.info["4"]["0"],
+                danmaku.info[7]
+            );
             if (user == null) {
                 console.error("danmaku user null, data: ", danmaku);
             } else {
@@ -54,7 +71,14 @@
         }
 
         async handleGift(sendGift: SEND_GIFT): Promise<void> {
-            let user = await getUserInfo(sendGift.data.uid, sendGift.data.uname, sendGift.data.face, null, null, sendGift.data.guard_level);
+            let user = await getUserInfo(
+                sendGift.data.uid,
+                sendGift.data.uname,
+                sendGift.data.face,
+                null,
+                null,
+                sendGift.data.guard_level
+            );
             let comboId = sendGift.data.batch_combo_id;
             if (comboId) {
                 if (!this.comboMap.has(comboId)) {
@@ -99,21 +123,44 @@
             // 按一定速率把outerDanmakuQueue中的消息往danmakuQueue中填
             let vue = this;
             timerTask.state["perIntervalInsertDanmakuNum"] = 1;
-            let launchTask = new Task(50, function () {
-                for (let j = 0; j < timerTask.state["perIntervalInsertDanmakuNum"]; j++) {
-                    vue.consumeDanmaku();
-                }
-            }, "consumeDanmakuTask");
-            let adjustLaunchSpeedTask = new Task(50, function () {
-                // 调整速度, 使3秒消耗完
-                let speed = vue.outerDanmakuQueue.length / 3;
-                speed = Math.max(speed, 1);
-                // 50为每秒最多insert的次数, 如果超出50的话, speed / 50会大于1, 即每次消耗danmaku时消耗不止一条
-                timerTask.state["perIntervalInsertDanmakuNum"] = Math.ceil(speed / 50);
-                launchTask.interval = Math.floor(
-                    (1000 / (speed / timerTask.state["perIntervalInsertDanmakuNum"])) / 20
-                );
-            }, "adjustLaunchSpeedTask");
+            let launchTask = new Task(
+                50,
+                function() {
+                    for (let j = 0; j < timerTask.state["perIntervalInsertDanmakuNum"]; j++) {
+                        vue.consumeDanmaku();
+                    }
+                },
+                "consumeDanmakuTask"
+            );
+            let adjustLaunchSpeedTask = new Task(
+                50,
+                function() {
+                    // 调整速度, 使3秒消耗完
+                    let speed = vue.outerDanmakuQueue.length / 3;
+                    speed = Math.max(speed, 1);
+                    // 50为每秒最多insert的次数, 如果超出50的话, speed / 50会大于1, 即每次消耗danmaku时消耗不止一条
+                    timerTask.state["perIntervalInsertDanmakuNum"] = Math.ceil(speed / 50);
+                    launchTask.interval = Math.floor(
+                        1000 / (speed / timerTask.state["perIntervalInsertDanmakuNum"]) / 20
+                    );
+                },
+                "adjustLaunchSpeedTask"
+            );
+
+            let danmakuCacheLength = vue.$store.state.config.danmakuCacheLength;
+            // @ts-ignore
+            let targetSize = parseInt(danmakuCacheLength / 2);
+            let gcTask = new Task(
+                50,
+                () => {
+                    if (vue.danmakuQueue.length >= danmakuCacheLength) {
+                        vue.danmakuQueue.splice(0, vue.danmakuQueue.length - targetSize);
+                    }
+                },
+                "gcTask"
+            );
+
+            timerTask.addTask(gcTask);
             timerTask.addTask(launchTask);
             timerTask.addTask(adjustLaunchSpeedTask);
         }
@@ -123,14 +170,12 @@
             this.addTask();
 
             // 此步必需, 向父组件注册方法; 这几行之外的皆为内部实现可随意调整
-            this.$emit("set-handle-danmaku", {"handleDanmaku": this.handleDanmaku})
-            this.$emit("set-handle-gift", {"handleGift": this.handleGift})
-            this.$emit("set-handle-guard-buy", {"handleGuardBuy": this.handleGuardBuy});
-            this.$emit("set-add-danmaku", {"addDanmaku": this.addDanmaku});
+            this.$emit("set-handle-danmaku", { "handleDanmaku": this.handleDanmaku });
+            this.$emit("set-handle-gift", { "handleGift": this.handleGift });
+            this.$emit("set-handle-guard-buy", { "handleGuardBuy": this.handleGuardBuy });
+            this.$emit("set-add-danmaku", { "addDanmaku": this.addDanmaku });
         }
     }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

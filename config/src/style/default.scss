@@ -109,6 +109,7 @@ $danmakuMarginTop: 8px;
 
   box-sizing: border-box;
   overflow: scroll;
+  overflow-x: hidden;
 
   * {
     overflow-anchor: none;

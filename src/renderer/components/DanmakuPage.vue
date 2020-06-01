@@ -71,7 +71,7 @@
 
             addSuperChatToDanmakuPanel(payload: { superChatWrapper: SuperChatWrapper }) {
                 this.addDanmaku(payload.superChatWrapper);
-            },
+            }
         },
         async created() {
             await handleConfigLoaded();
