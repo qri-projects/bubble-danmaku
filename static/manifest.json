@@ -1,6 +1,6 @@
 {
-  "name": "星空弹幕使",
-  "short_name": "hoshi sora danmaku",
+  "name": "bubble-danmaku",
+  "short_name": "",
   "start_url": "/",
-  "description": "弹幕姬哦~"
+  "description": "第三方bilibili直播弹幕工具"
 }
