@@ -127,6 +127,7 @@ function createWindow() {
         useContentSize: true,
         webPreferences: {
             webSecurity: false,
+            nodeIntegration: true,
         },
     });
 
@@ -160,7 +161,8 @@ function createWindow() {
 }
 
 function createTray() {
-    let tray = new Tray(dev ? "./static/icon.ico" : "./resources/app.asar/dist/electron/static/icon.ico");
+    // let tray = new Tray(dev ? "./static/icon.ico" : "./resources/app.asar/dist/electron/static/icon.ico");
+    let tray = new Tray("./static/icon.ico");
     const menu = new Menu();
     const quitMenuItem = new MenuItem({
         role: "quit",
@@ -173,7 +175,7 @@ function createTray() {
     const configMenuItem = new MenuItem({
         label: "编辑设置文件",
         click: () => {
-            shell.openItem(configFilePath);
+            shell.openExternal(configFilePath);
         },
     });
 
