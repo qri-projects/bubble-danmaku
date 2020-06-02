@@ -1,6 +1,12 @@
 {
   "name": "bubble-danmaku",
   "version": "0.0.4-alpha",
+  "keywords": ["bili", "danmaku", "danmu"],
+  "homepage": "https://github.com/HHHHhgqcdxhg/bubble-danmaku",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/HHHHhgqcdxhg/bubble-danmaku.git"
+  },
   "author": "hhhhhg <va.qri@qq.com>",
   "description": "bubble-danmaku",
   "license": "Other",
