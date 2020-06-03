@@ -175,7 +175,13 @@ function createTray() {
     const configMenuItem = new MenuItem({
         label: "编辑设置文件",
         click: () => {
-            shell.openExternal(configFilePath);
+            try {
+                if (!shell.openExternal("file://" + configFilePath)) {
+                    shell.showItemInFolder(configFilePath);
+                }
+            }catch (e) {
+                shell.showItemInFolder(configFilePath);
+            }
         },
     });
 
