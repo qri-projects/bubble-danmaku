@@ -6,7 +6,7 @@ Bubble弹幕使, 第三方bilibili直播弹幕客户端桌面端.
 本项目秉承高扩展性开发, 具备web前端基础即可轻易自定义样式, 布局及功能.  
 
 ## 使用
-1. 前往[本项目Release页](https://github.com/HHHHhgqcdxhg/bubble-danmaku/releases)  
+1. 前往[本项目Release页](https://github.com/HHHHhgqcdxhg/bubble-danmaku/releases) (或者[百度网盘](https://pan.baidu.com/s/1fndzxV7Y3t-iy-zLAsFSMQ) 提取码: sbgr)  
 2. 下载最新版本的```bubble-danmaku.zip```  
 3. 解压  
 4. 配置```config/config.json```([配置说明](https://github.com/HHHHhgqcdxhg/bubble-danmaku/blob/master/docs/configDoc.md))  
@@ -49,3 +49,6 @@ Bubble弹幕使, 第三方bilibili直播弹幕客户端桌面端.
 - [ ] 完善布局及样式切换系统  
 - [ ] 热更新  
 - [ ] 热重载配置
+
+## 开发环境
+- Node: v14.3.0
