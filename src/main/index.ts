@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Tray, Menu, MenuItem, shell, ipcMain, session } from "electron";
+import {app, BrowserWindow, Tray, Menu, MenuItem, shell, ipcMain, session} from "electron";
 import {
     Config,
     loadConfigAsync,
@@ -7,7 +7,7 @@ import {
     WindowLocation, loadWindowLocation
 } from "../common/config/config";
 import {loadTemplateText, TemplatesText} from "./loadTemplate";
-import { fetchGiftInfoAsync, GiftInfo, requestGiftInfoAsync } from "../renderer/scripts/@type/giftInfo";
+import {fetchGiftInfoAsync, GiftInfo, requestGiftInfoAsync} from "../renderer/scripts/@type/giftInfo";
 import store from "../renderer/store/index";
 import * as testData from "../common/const/TestData";
 import {readfileAsync} from "../common/utils/util";
@@ -29,8 +29,8 @@ if (!dev) {
 
 let mainWindow: BrowserWindow;
 let config: Config;
-let windowLocation:WindowLocation;
-let templates:TemplatesText;
+let windowLocation: WindowLocation;
+let templates: TemplatesText;
 let configLoaded = false;
 let ready = false;
 let gifts: Map<number, GiftInfo> = new Map<number, GiftInfo>();
@@ -39,6 +39,7 @@ let cookie: String;
 let sendDanmakuUtil: SendDanmakuUtil;
 const cookieFilePath = path.resolve("./config/cookie.txt");
 const winURL = dev ? `http://message.bilibili.com` : `file://${__dirname}/index.html`;
+
 // const winURL = `file://${__dirname}/index.html`;
 
 async function loadConfigAndTemplates() {
@@ -54,7 +55,7 @@ async function loadGiftsAsync() {
     }
 }
 
-async function loadCookieAsync(){
+async function loadCookieAsync() {
     cookie = await readfileAsync(cookieFilePath);
     cookie = cookie.replace(/\n/g, "")
     cookie = cookie.replace(/\r/g, "")
@@ -81,11 +82,11 @@ app.on("ready", () => {
     ready = true;
     tryCreateWindow();
 
-    ipcMain.on("createSendDanmaku",(e, {roomId, cookie})=>{
-        const { net } = require('electron')
+    ipcMain.on("createSendDanmaku", (e, {roomId, cookie}) => {
+        const {net} = require('electron')
         sendDanmakuUtil = new SendDanmakuUtil(net, roomId, cookie);
     })
-    ipcMain.on("sendDanmaku", async (e, {msg})=>{
+    ipcMain.on("sendDanmaku", async (e, {msg}) => {
         let res = await sendDanmakuUtil.sendDanmaku(msg);
         res.on("data", (chunk => {
             // console.log(`chunk: ${chunk}`)
@@ -149,7 +150,7 @@ function createWindow() {
         // @ts-ignore
         mainWindow = null;
     });
-    mainWindow.webContents.on("did-finish-load", function() {
+    mainWindow.webContents.on("did-finish-load", function () {
         store.commit("SET_IF_DEV", dev);
         store.commit("SET_CONFIG_PATH", dev ? "../config" : "../../../../config");
         store.commit("SET_GIFTS", gifts);
@@ -175,13 +176,11 @@ function createTray() {
     const configMenuItem = new MenuItem({
         label: "编辑设置文件",
         click: () => {
-            try {
-                if (!shell.openExternal("file://" + configFilePath)) {
-                    shell.showItemInFolder(configFilePath);
-                }
-            }catch (e) {
-                shell.showItemInFolder(configFilePath);
-            }
+                shell.openExternal(dev ? configFilePath : "./config/config.json").then(res=>{
+                    console.log("openExternal res: ", res)
+                }).catch((e)=>{
+                    console.error(`${e}`)
+                })
         },
     });
 
