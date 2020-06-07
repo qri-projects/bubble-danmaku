@@ -1,3 +1,4 @@
+import {app, BrowserWindow, Tray, Menu, MenuItem, shell, ipcMain, Session} from "electron";
 /**
  * This file is used specifically and only for development. It installs
  * `electron-debug` & `vue-devtools`. There shouldn't be any need to
@@ -8,18 +9,10 @@
 /* eslint-disable */
 
 // Install `electron-debug` with `devtron`
+import path from "path";
+
 require("electron-debug")({ showDevTools: true });
 
-// Install `vue-devtools`
-require("electron").app.on("ready", () => {
-  let installExtension = require("electron-devtools-installer");
-  installExtension
-    .default(installExtension.VUEJS_DEVTOOLS)
-    .then(() => {})
-    .catch(err => {
-      console.log("Unable to install `vue-devtools`: \n", err);
-    });
-});
 
 // Require `main` process to boot app
 require('./index.ts');

@@ -1,4 +1,4 @@
-import {app, BrowserWindow, Tray, Menu, MenuItem, shell, ipcMain, session} from "electron";
+import {app, BrowserWindow, Tray, Menu, MenuItem, shell, ipcMain, session, Session} from "electron";
 import {
     Config,
     loadConfigAsync,
@@ -50,9 +50,12 @@ async function loadConfigAndTemplates() {
 
 async function loadGiftsAsync() {
     let giftsList = await requestGiftInfoAsync();
+    // console.log(giftsList)
     for (let gift of giftsList) {
-        gifts[gift.id] = gift;
+        gifts.set(gift.id, gift);
+        // gifts[gift.id] = gift;
     }
+    console.log(gifts)
 }
 
 async function loadCookieAsync() {
@@ -92,6 +95,11 @@ app.on("ready", () => {
             // console.log(`chunk: ${chunk}`)
         }))
     })
+    if (dev) {
+        session.defaultSession.loadExtension(path.resolve("./vue-devtools")).then(() => {
+            console.log("installed vue-devtools")
+        }).catch(console.error)
+    }
 });
 
 app.on("window-all-closed", () => {
