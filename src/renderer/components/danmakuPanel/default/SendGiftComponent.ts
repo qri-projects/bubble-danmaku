@@ -20,7 +20,7 @@ export default class extends Vue {
     }
 
     get giftRaw() {
-        return this.$store.state.gifts[this.giftData.giftId];
+        return this.$store.state.gifts.get(this.giftData.giftId);
     }
 
     get giftImg() {
