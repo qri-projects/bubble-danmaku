@@ -13,6 +13,7 @@ import * as testData from "../common/const/TestData";
 import {readfileAsync} from "../common/utils/util";
 import path from "path";
 import {SendDanmakuUtil} from "./SendDanmakuUtil";
+import os from "os";
 
 let dev = process.env.NODE_ENV === "development";
 // let dev = true;
@@ -55,7 +56,7 @@ async function loadGiftsAsync() {
         gifts.set(gift.id, gift);
         // gifts[gift.id] = gift;
     }
-    console.log(gifts)
+    // console.log(gifts)
 }
 
 async function loadCookieAsync() {
@@ -76,7 +77,9 @@ loadConfigAndTemplatesAndGifts().then(() => {
 
 function tryCreateWindow() {
     if (configLoaded && ready) {
-        tray = createTray();
+        if (os.platform() == "win32") {
+            tray = createTray();
+        }
         createWindow();
     }
 }
@@ -131,7 +134,7 @@ function createWindow() {
         // 任务栏隐藏
         skipTaskbar: !dev,
         // 窗口置顶
-        alwaysOnTop: config.top,
+        alwaysOnTop: dev? false : config.top,
 
         useContentSize: true,
         webPreferences: {
@@ -184,11 +187,11 @@ function createTray() {
     const configMenuItem = new MenuItem({
         label: "编辑设置文件",
         click: () => {
-                shell.openExternal(dev ? configFilePath : "./config/config.json").then(res=>{
-                    console.log("openExternal res: ", res)
-                }).catch((e)=>{
-                    console.error(`${e}`)
-                })
+            shell.openExternal(dev ? configFilePath : "./config/config.json").then(res => {
+                console.log("openExternal res: ", res)
+            }).catch((e) => {
+                console.error(`${e}`)
+            })
         },
     });
 
