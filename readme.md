@@ -58,9 +58,13 @@ Bubble弹幕使, 第三方bilibili直播弹幕客户端桌面端.
 - [x] 完善观众NickName功能  
 - [x] 完善上舰的响应  
 - [x] 通过cookie设置B站账号来使用本工具发送弹幕  
+- [x] MacOS支持  
 - [ ] 完善布局及样式切换系统  
 - [ ] 热更新  
 - [ ] 热重载配置
 
 ## 开发环境
 - Node: v14.3.0
+
+## 乞讨
+软件好用的话可以点击[项目页面](https://github.com/qri-projects/bubble-danmaku)右上角的Star按钮, 给予开发者支持哦~  
