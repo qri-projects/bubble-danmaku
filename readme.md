@@ -2,10 +2,25 @@
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/HHHHhgqcdxhg/bubble-danmaku/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/HHHHhgqcdxhg/bubble-danmaku/graphs/commit-activity) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/HHHHhgqcdxhg/bubble-danmaku/pulls)  
 
 
-Bubble弹幕使, 第三方bilibili直播弹幕客户端桌面端.  
-本项目秉承高扩展性开发, 具备web前端基础即可轻易自定义样式, 布局及功能.  
+Bubble弹幕使, 第三方bilibili直播弹幕客户端桌面端.   
+
+## 特性
+- 开源, 维护支持
+    有问题就修, 有改进建议就选择接受进行改进: [Issue页面](https://github.com/qri-projects/bubble-danmaku/issues)  
+- 秉承高扩展性开发  
+    具备web前端基础即可轻易自定义样式, 布局及功能  
+- 支持透明窗口, 窗口置顶与点击穿透  
+    更加美观实用  
+- 更多数据
+    - 自动获取弹幕发送者信息, 额外增加了用户头像, 头图, 简介等内容  
+    - 备注观众功能, 可为其设定备注名  
+- 多操作系统支持  
+    支持Windows和MacOS  
+- 显示以秒为单位的当前时间  
+    方便观察直播延迟  
 
 ## 使用
+### Windows
 1. 前往[本项目Release页](https://github.com/HHHHhgqcdxhg/bubble-danmaku/releases) (或者[百度网盘](https://pan.baidu.com/s/1fndzxV7Y3t-iy-zLAsFSMQ) 提取码: sbgr)  
 2. 下载最新版本的```bubble-danmaku.zip```  
 3. 解压  
@@ -37,9 +52,6 @@ Bubble弹幕使, 第三方bilibili直播弹幕客户端桌面端.
 拖动底部蓝色的区域来调整窗口位置|左右两侧的边框会靠外一点<br>鼠标放在大概红线位置可调整大小<br>下侧不可调整大小
 ---|---
 ![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-8.png)|![](https://pic.ggemo.com/picgo/bubble-danmaku-doc-img-9.png)
-
-## 注意
-- 目前仅支持windows系统. 欢迎编译其他操作系统的版本  
 
 ## Todo
 - [x] 完善醒目留言的响应  

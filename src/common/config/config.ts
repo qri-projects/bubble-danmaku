@@ -1,10 +1,8 @@
 import path from "path";
 import { readfileAsync } from "../utils/util";
+import {configPath, windowLocationPath} from "../utils/pathUtil";
 
 const fs = require("fs");
-
-const configFilePath = path.resolve("./config/config.json");
-const windowLocationFilePath = path.resolve("./config/windowLocation.json");
 
 class Config {
     roomId: number = 336119;
@@ -22,11 +20,11 @@ class Config {
     danmakuCacheLength: number = 200;
 
     styleFileName: String = "default.css";
-    danmakuTemplateFileName: String = "Danmaku.html";
-    sendGiftTemplateFileName: String = "SendGift.html";
-    superChatTemplateFileName: String = "SuperChat.html";
-    superChatQueueItemTemplateFileName: String = "SuperChatQueueItem.html";
-    innerSuperChatTemplateFileName: String = "InnerSuperChat.html";
+    danmakuTemplateFileName: string = "Danmaku.html";
+    sendGiftTemplateFileName: string = "SendGift.html";
+    superChatTemplateFileName: string = "SuperChat.html";
+    superChatQueueItemTemplateFileName: string = "SuperChatQueueItem.html";
+    innerSuperChatTemplateFileName: string = "InnerSuperChat.html";
     danmakuPanelComponentName: String = "default";
     superChatPanelComponentName: string = "default";
     extendPanelComponentName: string = "default";
@@ -63,17 +61,17 @@ class GuardUserNameColor {
 }
 
 async function loadConfigAsync(): Promise<Config> {
-    let configText: String = await readfileAsync(configFilePath);
+    let configText: String = await readfileAsync(configPath);
     return <Config>JSON.parse(<string>configText);
 }
 
 async function loadWindowLocation(): Promise<WindowLocation> {
-    let text: String = await readfileAsync(windowLocationFilePath);
+    let text: String = await readfileAsync(windowLocationPath);
     return <WindowLocation>JSON.parse(<string>text);
 }
 
 async function saveWindowLocationAsync(windowLocation) {
-    return await fs.writeFileSync(windowLocationFilePath, JSON.stringify(windowLocation, null, 4));
+    return await fs.writeFileSync(windowLocationPath, JSON.stringify(windowLocation, null, 4));
 }
 
-export { Config, WindowLocation, loadConfigAsync, loadWindowLocation, saveWindowLocationAsync, configFilePath };
+export { Config, WindowLocation, loadConfigAsync, loadWindowLocation, saveWindowLocationAsync, configPath };

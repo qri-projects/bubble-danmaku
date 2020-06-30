@@ -3,7 +3,6 @@ import {
     Config,
     loadConfigAsync,
     saveWindowLocationAsync,
-    configFilePath,
     WindowLocation, loadWindowLocation
 } from "../common/config/config";
 import {loadTemplateText, TemplatesText} from "./loadTemplate";
@@ -14,6 +13,7 @@ import {readfileAsync} from "../common/utils/util";
 import path from "path";
 import {SendDanmakuUtil} from "./SendDanmakuUtil";
 import os from "os";
+import {cookiePath, configPath, configDirPath} from "../common/utils/pathUtil";
 
 let dev = process.env.NODE_ENV === "development";
 // let dev = true;
@@ -38,7 +38,6 @@ let gifts: Map<number, GiftInfo> = new Map<number, GiftInfo>();
 let tray;
 let cookie: String;
 let sendDanmakuUtil: SendDanmakuUtil;
-const cookieFilePath = path.resolve("./config/cookie.txt");
 const winURL = dev ? `http://message.bilibili.com` : `file://${__dirname}/index.html`;
 
 // const winURL = `file://${__dirname}/index.html`;
@@ -60,7 +59,7 @@ async function loadGiftsAsync() {
 }
 
 async function loadCookieAsync() {
-    cookie = await readfileAsync(cookieFilePath);
+    cookie = await readfileAsync(cookiePath);
     cookie = cookie.replace(/\n/g, "")
     cookie = cookie.replace(/\r/g, "")
     cookie = cookie.replace(/ /g, "")
@@ -163,7 +162,7 @@ function createWindow() {
     });
     mainWindow.webContents.on("did-finish-load", function () {
         store.commit("SET_IF_DEV", dev);
-        store.commit("SET_CONFIG_PATH", dev ? "../config" : "../../../../config");
+        store.commit("SET_CONFIG_PATH", configDirPath);
         store.commit("SET_GIFTS", gifts);
         store.commit("SET_CONFIG", config);
         store.commit("SET_TEMPLATES", templates);
@@ -187,7 +186,7 @@ function createTray() {
     const configMenuItem = new MenuItem({
         label: "编辑设置文件",
         click: () => {
-            shell.openExternal(dev ? configFilePath : "./config/config.json").then(res => {
+            shell.openExternal(dev ? configPath : "./config/config.json").then(res => {
                 console.log("openExternal res: ", res)
             }).catch((e) => {
                 console.error(`${e}`)
