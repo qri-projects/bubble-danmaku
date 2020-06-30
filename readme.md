@@ -66,5 +66,5 @@ Bubble弹幕使, 第三方bilibili直播弹幕客户端桌面端.
 ## 开发环境
 - Node: v14.3.0
 
-## 乞讨
+## 支持
 软件好用的话可以点击[项目页面](https://github.com/qri-projects/bubble-danmaku)右上角的Star按钮, 给予开发者支持哦~  
