@@ -1,6 +1,6 @@
 {
   "name": "bubble-danmaku",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "keywords": [
     "bili",
     "danmaku",
@@ -17,7 +17,7 @@
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node ./scripts/beforeBuild.js && node .electron-vue/build.js && electron-builder && node ./scripts/afterBuild.js",
-    "buildMac": "node .electron-vue/build.js && electron-builder",
+    "buildMac": "node .electron-vue/build.js && electron-builder && node ./scripts/afterBuildMac.js",
     "build:dir": "node .electron-vue/build.js && electron-builder --dir",
     "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
     "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
