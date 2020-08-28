@@ -113,7 +113,6 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0",
     "webpack-hot-middleware": "^2.25.0",
-    "webpack-merge": "^4.2.2",
-    "windows-build-tools": "^5.2.2"
+    "webpack-merge": "^4.2.2"
   }
 }
