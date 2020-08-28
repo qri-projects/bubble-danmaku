@@ -1,8 +1,13 @@
-配置文件为`bubble-danmaku/config/config.json`  
-第一条 roomId 改为想要监听的房间号即可使用
+## 配置文件位置
+- Windows  
+    ```bubble-danmaku/config/config.json```  
+- Mac  
+    右键```Bubble弹幕使.app```, 点击```显示包内容```, 配置文件在其中的```Contents/config/config.json```  
 
-以下为该文件中选项的详细解释:
+## 简单实用
+第一条 roomId 改为想要监听的房间号即可使用  
 
+## 配置详细解释
 ```js
 let x = {
     // 监听的房间号, 简单的使用的话, 更改此项即可

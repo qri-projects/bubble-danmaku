@@ -13,6 +13,7 @@ $ulColors: (1: #969696, 2:#61c05a, 3:#5896de, 4:#a068f1, 5:#ff86b2, 6: ff9f3d);
 $scrollBarWidth: 8px;
 $resizeFixSize: 5px;
 
+
 :root {
   --show-user-name: inline-block;
   //--show-user-name: none;
@@ -83,6 +84,7 @@ img {
   height: calc(100vh - #{$bottomHeight});
   position: fixed;
   background-image: linear-gradient(210deg, rgba(255, 140, 85, 0.19) 0%, rgba(191, 208, 255, 0.76) 40%, rgba(236, 215, 255, 0.9686) 60%, #ffc3f5 100%);
+  //background-color: rgba(0, 0, 0, 0);
   z-index: -1;
 }
 
@@ -779,8 +781,12 @@ $sendDanmakuIdleWidth: 32px;
     padding-top: 4px;
     height: $sendDanmakuInputHeight;
     border-radius: $sendDanmakuInputHeight / 2;
+    border-style: dashed;
+    border-color: #ff8100;
+    box-shadow: inset 0px 0px 7px 0px #ffed15;
 
     &:focus, &:hover {
+      border-style: solid;
       outline-width: 0 !important;
       background-color: rgba(255,255,255,0.8);
       border-radius: 10px;

@@ -2,6 +2,7 @@ import {Config} from "../common/config/config";
 
 import path from "path";
 import {readfileAsync} from "../common/utils/util";
+import {configDirPath} from "../common/utils/pathUtil";
 
 class TemplatesText {
     "danmakuTemplate";
@@ -12,11 +13,12 @@ class TemplatesText {
 }
 
 async function loadTemplateText(config: Config): Promise<TemplatesText> {
-    const danmakuTemplateFilePath = path.resolve(`./config/src/template/${config.danmakuTemplateFileName}`);
-    const sendGiftTemplateFilePath = path.resolve(`./config/src/template/${config.sendGiftTemplateFileName}`);
-    const superChatTemplateFilePath = path.resolve(`./config/src/template/${config.superChatTemplateFileName}`);
-    const superChatQueueItemTemplateFilePath = path.resolve(`./config/src/template/${config.superChatQueueItemTemplateFileName}`);
-    const innerSuperChatTemplateFilePath = path.resolve(`./config/src/template/${config.innerSuperChatTemplateFileName}`);
+    const templateDirPath = path.join(configDirPath, "src/template");
+    const danmakuTemplateFilePath = path.join(templateDirPath, config.danmakuTemplateFileName);
+    const sendGiftTemplateFilePath = path.join(templateDirPath, config.sendGiftTemplateFileName);
+    const superChatTemplateFilePath = path.join(templateDirPath, config.superChatTemplateFileName);
+    const superChatQueueItemTemplateFilePath = path.join(templateDirPath, config.superChatQueueItemTemplateFileName);
+    const innerSuperChatTemplateFilePath = path.join(templateDirPath, config.innerSuperChatTemplateFileName);
 
     let templates = new TemplatesText();
     templates.danmakuTemplate = await readfileAsync(danmakuTemplateFilePath);
