@@ -19,6 +19,13 @@ Bubble弹幕使, 第三方bilibili直播弹幕客户端桌面端
 - 方便观察直播延迟  
     显示以秒为单位的当前时间  
 
+## LICENSE
+本项目使用的开源协议基于MIT协议, 在MIT协议的基础上给予了被授权人关注并推广[我的频道](https://space.bilibili.com/13578650)(https://space.bilibili.com/13578650)的义务  
+
+参考:  
+- [本项目LICENSE](https://github.com/qri-projects/bubble-danmaku/blob/master/LICENSE)  
+- MIT协议[[百度百科](https://baike.baidu.com/item/MIT%E8%AE%B8%E5%8F%AF%E8%AF%81/6671281?fr=aladdin)|[MIT协议原文](https://opensource.org/licenses/mit-license.php)]
+
 ## 使用
 1. 前往[本项目Release页](https://github.com/HHHHhgqcdxhg/bubble-danmaku/releases) (或者[百度网盘](https://pan.baidu.com/s/1fndzxV7Y3t-iy-zLAsFSMQ) 提取码: sbgr)  
 2. 下载最新版本的```bubble-danmaku.zip```(Windows) 或```bubble-danmaku-mac.zip```(MacOS)  
