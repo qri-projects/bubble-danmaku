@@ -20,7 +20,7 @@ Bubble弹幕使, 第三方bilibili直播弹幕客户端桌面端
     显示以秒为单位的当前时间  
 
 ## LICENSE
-本项目使用的开源协议基于MIT协议, 在MIT协议的基础上给予了被授权人关注并推广[我的频道](https://space.bilibili.com/13578650) \(https://space.bilibili.com/13578650\) 的义务  
+本项目使用的开源协议基于MIT协议, 在MIT协议的基础上给予了被授权人关注并推广[我的频道](https://space.bilibili.com/13578650) (https://space.bilibili.com/13578650) 的义务  
 
 参考:  
 - [本项目LICENSE](https://github.com/qri-projects/bubble-danmaku/blob/master/LICENSE)  
